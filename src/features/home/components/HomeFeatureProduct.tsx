@@ -44,7 +44,7 @@ type CardProps = {
 
 const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
   return (
-    <div className="group relative overflow-hidden bg-gray-200 h-100 ">
+    <div className="group relative overflow-hidden bg-gray-200 h-105 mb-30 rounded-[5px] ">
       <div
         className="absolute inset-0 bg-center bg-cover"
         style={{ backgroundImage: `url(${image})` }}
