@@ -29,7 +29,7 @@ const HomeHero: React.FC = () => {
           <SwiperSlide>
             <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
               <div className="max-w-130 font-outfit w-full">
-                <p className="text-[#FF532E] text-[14px] font-medium mb-3 sm:mb-4">
+                <p className="text-[#FF532E]  font-light mb-3 sm:mb-4">
                   Limited Time Offer 30% Off
                 </p>
 
@@ -38,7 +38,7 @@ const HomeHero: React.FC = () => {
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 lg:gap-8 w-full">
-                  <button className="w-full sm:w-auto px-10 py-2.5 bg-[#FF532E] hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
+                  <button className="w-full sm:w-auto px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
                     Buy now
                   </button>
 
@@ -73,7 +73,7 @@ const HomeHero: React.FC = () => {
           <SwiperSlide>
             <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
               <div className="max-w-130 font-outfit w-full">
-                <p className="text-[#FF532E] text-[14px] font-medium mb-3 sm:mb-4">
+                <p className="text-orange-600 font-light mb-3 sm:mb-4">
                   Hurry up only few lefts!
                 </p>
 
@@ -82,7 +82,7 @@ const HomeHero: React.FC = () => {
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 lg:gap-8 w-full">
-                  <button className="w-full sm:w-auto px-10 py-2.5 bg-[#FF532E] hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
+                  <button className="w-full sm:w-auto px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
                     Shop Now
                   </button>
 
@@ -117,7 +117,7 @@ const HomeHero: React.FC = () => {
           <SwiperSlide>
             <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
               <div className="max-w-130 font-outfit w-full">
-                <p className="text-[#FF532E] text-[14px] font-medium mb-3 sm:mb-4">
+                <p className="text-orange-600 font-light mb-3 sm:mb-4">
                   Exclusive Deal 40% Off
                 </p>
 
@@ -126,7 +126,7 @@ const HomeHero: React.FC = () => {
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 lg:gap-8 w-full">
-                  <button className="w-full sm:w-auto px-10 py-2.5 bg-[#FF532E] hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
+                  <button className="w-full sm:w-auto px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
                     Order Now
                   </button>
 
