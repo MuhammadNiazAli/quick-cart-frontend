@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 const HomeHero: React.FC = () => {
   const paginationRef = useRef<HTMLDivElement | null>(null);
-  // hello new change here
+  // hello new change here hjshdhdjshdjshdjshd
 
   return (
     <section className="w-full flex justify-center">
@@ -28,7 +28,7 @@ const HomeHero: React.FC = () => {
           className="hero-swiper"
         >
           <SwiperSlide>
-            <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
+            <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col-reverse lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
               <div className="max-w-[50%] font-outfit w-full">
                 <p className="text-[#FF532E] mb-2 font-light">
                   Limited Time Offer 30% Off
@@ -72,7 +72,7 @@ const HomeHero: React.FC = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
+            <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col-reverse lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
               <div className="max-w-[50%] font-outfit w-full">
                 <p className="text-orange-600 font-light mb-2 sm:mb-4">
                   Hurry up only few lefts!
@@ -116,7 +116,7 @@ const HomeHero: React.FC = () => {
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
+            <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col-reverse lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
               <div className="max-w-[50%] font-outfit w-full">
                 <p className="text-orange-600 font-light mb-2 sm:mb-4">
                   Exclusive Deal 40% Off
