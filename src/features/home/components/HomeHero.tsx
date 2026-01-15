@@ -72,6 +72,7 @@ const HeroSlide: React.FC<HeroSlideProps> = ({
 
 const HomeHero: React.FC = () => {
   const paginationRef = useRef<HTMLDivElement | null>(null);
+<<<<<<< HEAD
 
   const heroSlides = [
     {
@@ -100,6 +101,9 @@ const HomeHero: React.FC = () => {
       imageAlt: "MacBook",
     },
   ];
+=======
+  // Ahsan khan
+>>>>>>> feature/shop
 
   return (
     <section className="w-full flex justify-center">
