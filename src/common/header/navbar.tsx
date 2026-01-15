@@ -10,29 +10,29 @@ const Navbar: React.FC = () => {
           <Image
             src="/assets/logo.svg"
             alt="Logo"
-            width={130}
-            height={40}
+            width={128.5}
+            height={128}
             priority
           />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
-          <Link href="/" className="text-black hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
+          <Link href="/" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
             Home
           </Link>
-          <Link href="/shop" className="text-black hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
+          <Link href="/shop" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
             Shop
           </Link>
-          <Link href="/about" className="text-black hover:text-[#ff542ed4] transition-all duration-300 ease-out transformfont-lg">
+          <Link href="/about" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transformfont-lg">
             About Us
           </Link>
-          <Link href="/contact" className="text-black hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
+          <Link href="/contact" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
             Contact
           </Link>
 
           <Link
             href="/seller/dashboard"
-            className="px-4 py-1 border border-gray-300/70 rounded-[100px] text-[12px] font-normal text-black bg-white hover:border-[#ff522f30] hover:text-[#ff522fc9]  transition-all duration-300 ease-out transform"
+            className="px-4 py-1 border border-gray-300/70 rounded-[100px] text-xs font-normal text-gray-700 bg-white hover:border-[#ff522f30] hover:text-[#ff522fc9]  transition-all duration-300 ease-out transform"
           >
             Seller Dashboard
           </Link>
@@ -42,19 +42,20 @@ const Navbar: React.FC = () => {
           <Image
             src="/assets/search_icon.svg"
             alt="Search"
-            width={20}
-            height={20}
+            width={16}
+            height={16}
             className="cursor-pointer"
           />
 
-          <div className="flex items-center gap-2 cursor-pointer">
+          <div className="flex items-center gap-2 cursor-pointer hover:text-[#ff542ed4] transition-all duration-300 ease-out transform">
             <Image
               src="/assets/user_icon.svg"
               alt="User"
-              width={20}
-              height={20}
+              width={16}
+              height={16}
+              
             />
-            <span className="text-sm font-lg text-black hover:text-[#ff542ed4] transition-all duration-300 ease-out transform">Account</span>
+            <span className="font-lg text-gray-900 hover:text-gray-600 transition-all duration-300 ease-out transform">Account</span>
           </div>
         </div>
       </div>

@@ -63,8 +63,8 @@ const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
           </p>
 
           <button
-            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-[5px] bg-[#FF600E] text-white text-[16px] font-semibold
-              transition-all duration-300 ease-out transform hover:bg-[#FF550E] cursor-pointer hover:scale-[1.03]"
+            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-[5px] bg-orange-600 text-white text-[16px] font-semibold
+              transition-all duration-300 ease-out transform hover:bg-orange-700 cursor-pointer hover:scale-[1.03]"
           >
             {buttonText}
             <ExternalIcon className="text-white" />
@@ -85,7 +85,7 @@ const HomeFeatureProduct = () => {
           </h2>
 
           <div className="mt-4 flex justify-center">
-            <span className="h-0.5 w-28 bg-[#FF532E]" />
+            <span className="h-0.5 w-28 text-orange-600" />
           </div>
         </div>
 

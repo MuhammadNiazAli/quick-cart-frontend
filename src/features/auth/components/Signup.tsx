@@ -14,7 +14,7 @@ export function SignupFormDemo() {
     console.log("Form submitted");
   };
   return (
-    <div className="shadow-input mx-auto w-full max-w-md rounded-none p-4 md:rounded-2xl md:p-8 bg-black">
+    <div className="shadow-input mx-auto w-full max-w-md rounded-none p-4 md:rounded-2xl md:p-8 bg-stone-950">
       <h2 className="text-xl text-neutral-200 font-medium">
         Welcome to <span className="text-[#EA580C]">Q</span>uickcart
       </h2>
