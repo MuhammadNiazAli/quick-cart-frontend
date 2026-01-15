@@ -44,7 +44,7 @@ type CardProps = {
 
 const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
   return (
-    <div className="group relative overflow-hidden bg-gray-200 h-105 mb-30 rounded-[5px] ">
+    <div className="group relative overflow-hidden bg-gray-200 h-105 rounded-[5px] ">
       <div
         className="absolute inset-0 bg-center bg-cover"
         style={{ backgroundImage: `url(${image})` }}
@@ -77,7 +77,7 @@ const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
 
 const HomeFeatureProduct = () => {
   return (
-    <section className="w-full">
+    <section className="w-full mb-10">
       <div className="w-full max-w-275 mx-auto px-7.5">
         <div className="text-center pt-10">
           <h2 className="text-[#374151] text-[30px] font-medium">
