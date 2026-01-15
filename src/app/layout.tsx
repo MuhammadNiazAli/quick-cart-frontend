@@ -5,10 +5,11 @@ import Navbar from "@/common/header/navbar";
 import Footer from "@/common/footer/footer";
 
 const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'], 
-  variable: '--font-outfit', 
-})
+  variable: "--font-outfit",
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ["latin"],
+});
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
