@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 const HomeHero: React.FC = () => {
   const paginationRef = useRef<HTMLDivElement | null>(null);
-  // hello new change here hjshdhdjshdjshdjshd
+  // Ahsan khan
 
   return (
     <section className="w-full flex justify-center">
