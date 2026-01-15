@@ -10,8 +10,8 @@ const Navbar: React.FC = () => {
           <Image
             src="/assets/logo.svg"
             alt="Logo"
-            width={130}
-            height={40}
+            width={128}
+            height={128}
             priority
           />
         </Link>
