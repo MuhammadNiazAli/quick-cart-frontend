@@ -13,7 +13,7 @@ const HomeHero: React.FC = () => {
   // hello new change
 
   return (
-    <section className="w-full flex justify-center">
+    <section className="w-full flex justify-center jjjjj">
       <div className="w-full max-w-275 px-7.5 mt-6">
         <Swiper
           modules={[Autoplay, Pagination]}
