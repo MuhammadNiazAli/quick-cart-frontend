@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/common/header/navbar";
-import Footer from "@/common/footer/footer";
+import AppShell from "@/common/layout/AppShell";
 
 const outfit = Outfit({
   variable: "--font-outfit",
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,12 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${outfit.variable} antialiased`}
-      >
-        <Navbar/>
-        {children}
-        <Footer/>
+      <body className={`${outfit.variable} antialiased`}>
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
