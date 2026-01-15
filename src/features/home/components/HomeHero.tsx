@@ -13,7 +13,7 @@ const HomeHero: React.FC = () => {
 
   return (
     <section className="w-full flex justify-center">
-      <div className="w-full max-w-290 px-7.5 mt-6">
+      <div className="w-full max-w-275 px-7.5 mt-6">
         <Swiper
           modules={[Autoplay, Pagination]}
           loop
@@ -28,17 +28,17 @@ const HomeHero: React.FC = () => {
         >
           <SwiperSlide>
             <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
-              <div className="max-w-[50%] font-outfit w-full">
-                <p className="text-[#FF532E] mb-2 font-light">
+              <div className="max-w-130 font-outfit w-full">
+                <p className="text-[#FF532E] text-[14px] font-medium mb-3 sm:mb-4">
                   Limited Time Offer 30% Off
                 </p>
 
-                <h2 className="text-[28px] sm:text-[36px] lg:text-[39px] leading-[0.7] lg:leading-12 font-extrabold text-[#374151] mb-5 sm:mb-7 lg:mb-8">
+                <h2 className="text-[28px] sm:text-[36px] lg:text-[39px] leading-[1.2] lg:leading-12 font-extrabold text-[#374151] mb-5 sm:mb-7 lg:mb-8">
                   Experience Pure Sound - Your Perfect Headphones Awaits!
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 lg:gap-8 w-full">
-                  <button className="w-full sm:w-auto px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
+                  <button className="w-full sm:w-auto px-10 py-2.5 bg-[#FF532E] hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
                     Buy now
                   </button>
 
@@ -55,7 +55,7 @@ const HomeHero: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-6 lg:mt-0 w-fit flex justify-center items-center lg:block">
+              <div className="mt-6 lg:mt-0 w-full flex justify-center lg:block">
                 <div className="w-full max-w-[320px] sm:max-w-95 h-50 sm:h-60 lg:w-105 lg:h-80 shrink-0 flex items-center justify-center">
                   <Image
                     src="/assets/header_headphone_image.png"
@@ -72,8 +72,8 @@ const HomeHero: React.FC = () => {
 
           <SwiperSlide>
             <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
-              <div className="max-w-[50%] font-outfit w-full">
-                <p className="text-orange-600 font-light mb-2 sm:mb-4">
+              <div className="max-w-130 font-outfit w-full">
+                <p className="text-[#FF532E] text-[14px] font-medium mb-3 sm:mb-4">
                   Hurry up only few lefts!
                 </p>
 
@@ -82,7 +82,7 @@ const HomeHero: React.FC = () => {
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 lg:gap-8 w-full">
-                  <button className="w-full sm:w-auto px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
+                  <button className="w-full sm:w-auto px-10 py-2.5 bg-[#FF532E] hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
                     Shop Now
                   </button>
 
@@ -99,7 +99,7 @@ const HomeHero: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-6 lg:mt-0 w-fit flex justify-center lg:block">
+              <div className="mt-6 lg:mt-0 w-full flex justify-center lg:block">
                 <div className="w-full max-w-[320px] sm:max-w-95 h-50 sm:h-60 lg:w-105 lg:h-80 shrink-0 flex items-center justify-center">
                   <Image
                     src="/assets/header_playstation_image.png"
@@ -116,8 +116,8 @@ const HomeHero: React.FC = () => {
 
           <SwiperSlide>
             <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11 flex flex-col lg:flex-row items-start lg:items-center justify-start lg:justify-between h-auto lg:h-100">
-              <div className="max-w-[50%] font-outfit w-full">
-                <p className="text-orange-600 font-light mb-2 sm:mb-4">
+              <div className="max-w-130 font-outfit w-full">
+                <p className="text-[#FF532E] text-[14px] font-medium mb-3 sm:mb-4">
                   Exclusive Deal 40% Off
                 </p>
 
@@ -126,7 +126,7 @@ const HomeHero: React.FC = () => {
                 </h2>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-6 lg:gap-8 w-full">
-                  <button className="w-full sm:w-auto px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
+                  <button className="w-full sm:w-auto px-10 py-2.5 bg-[#FF532E] hover:bg-[#FF600E] hover:scale-105 transition-all duration-300 ease-out transform text-white rounded-full text-[14px] font-semibold cursor-pointer">
                     Order Now
                   </button>
 
@@ -143,7 +143,7 @@ const HomeHero: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-6 lg:mt-0 w-fit flex justify-center lg:block">
+              <div className="mt-6 lg:mt-0 w-full flex justify-center lg:block">
                 <div className="w-full max-w-[320px] sm:max-w-95 h-50 sm:h-60 lg:w-105 lg:h-80 shrink-0 flex items-center justify-center">
                   <Image
                     src="/assets/header_macbook_image.png"
