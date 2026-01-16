@@ -95,7 +95,7 @@ const HomeFeatureProduct = () => {
 
   return (
     <section className="w-full mb-10">
-      <div className="w-full max-w-240 mx-auto px-7.5">
+      <div className="w-full max-w-245 mx-auto px-7.5">
         <div className="text-center pt-10">
           <h2 className="text-[#374151] text-[30px] font-medium">
             Featured Products
@@ -106,7 +106,7 @@ const HomeFeatureProduct = () => {
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
           {featureCardsData.map((card, index) => (
             <FeatureCard
               key={index}

@@ -7,7 +7,7 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <footer className="w-full bg-white">
-      <div className="w-full max-w-400 mx-auto px-4 sm:px-6 lg:px-30 pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-14 lg:pb-16">
+      <div className="w-full max-w-400 mx-auto px-4 sm:px-6 lg:px-30 pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-14 lg:pb-0">
         <div className="grid grid-cols-1 md:grid-cols-[2.2fr_1fr_1fr] gap-y-10 sm:gap-y-14 md:gap-y-0 md:gap-x-40 items-start">
           <div className="mt-0 md:mt-20">
             <Image
@@ -33,16 +33,16 @@ const Footer = () => {
             </h4>
 
             <ul className="mt-10 space-y-2 text-[#6B7280] text-[14px]">
-              <li className="cursor-pointer hover:text-[#111827] transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
                 Home
               </li>
-              <li className="cursor-pointer hover:text-[#111827] transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
                 About us
               </li>
-              <li className="cursor-pointer hover:text-[#111827] transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
                 Contact us
               </li>
-              <li className="cursor-pointer hover:text-[#111827] transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
                 Privacy policy
               </li>
             </ul>
@@ -63,7 +63,7 @@ const Footer = () => {
 
       <div className="w-full border-t border-neutral-300" />
 
-      <div className="w-full flex items-center justify-center px-4 py-4 lg:h-13 lg:py-0">
+      <div className="w-full flex items-center justify-center px-4 py-4 lg:h-11 lg:py-0">
         <p className="text-center text-[#111827de] text-[14px] leading-5">
           Copyright 2025 © GreatStack.dev All Right Reserved.
         </p>
