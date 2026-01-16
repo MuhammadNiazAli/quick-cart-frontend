@@ -44,7 +44,7 @@ const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
           <button
             className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-[5px]
               bg-[#EA580C] text-white text-sm transition-all duration-300
-              hover:bg-orange-600 hover:scale-[1.03]"
+              hover:bg-orange-600 hover:scale-[1.03] cursor-pointer"
           >
             {buttonText}
             <ExternalIcon />
