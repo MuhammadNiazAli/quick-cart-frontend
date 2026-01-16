@@ -123,7 +123,7 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
 
         <div className="flex items-center gap-3 sm:gap-6 lg:gap-8">
           <button
-            className="px-8 py-2.5 bg-orange-600 hover:bg-[#FF600E]
+            className="px-8 py-2.5 md:py-2.5 md:px-10 bg-orange-600 hover:bg-[#FF600E]
             transition-all duration-300 text-white rounded-full text-[14px] font-semibold whitespace-nowrap"
           >
             {cta}
