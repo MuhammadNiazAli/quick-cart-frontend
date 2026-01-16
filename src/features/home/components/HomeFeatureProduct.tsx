@@ -44,27 +44,23 @@ type CardProps = {
 
 const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
   return (
-    <div className="group relative overflow-hidden bg-gray-200 h-105 mb-30 rounded-[5px] ">
+    <div className="group relative overflow-hidden bg-gray-200 h-90 rounded-[5px]">
       <div
         className="absolute inset-0 bg-center bg-cover"
         style={{ backgroundImage: `url(${image})` }}
       />
-
       <div className="absolute inset-0 transition-colors duration-500 ease-out group-hover:bg-black/40" />
-
       <div className="relative z-10 h-full flex items-end">
-        <div className="w-full px-10 pb-10 transform transition-transform duration-300 ease-out group-hover:-translate-y-3">
-          <h3 className="text-white text-[25px] font-extrabold leading-tight">
+        <div className="w-full px-10 pb-5 transform transition-transform duration-300 ease-out group-hover:-translate-y-3">
+          <h3 className="text-white text-[21px] font-medium font-outfit leading-tight">
             {title}
           </h3>
-
-          <p className="mt-3 text-white/90 text-[16px] leading-7 max-w-[320px]">
+          <p className="mt-3 -mb-3.5 text-white/90 text-[14px] leading-6 max-w-[320px]">
             {desc}
           </p>
-
           <button
-            className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-[5px] bg-orange-600 text-white text-[16px] font-semibold
-              transition-all duration-300 ease-out transform hover:bg-orange-700 cursor-pointer hover:scale-[1.03]"
+            className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-[5px] bg-[#EA580C] text-white text-[16px] font-semibold
+              transition-all duration-300 ease-out transform hover:bg-orange-600 cursor-pointer hover:scale-[1.03]"
           >
             {buttonText}
             <ExternalIcon className="text-white" />
@@ -76,40 +72,50 @@ const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
 };
 
 const HomeFeatureProduct = () => {
+  const featureCardsData = [
+    {
+      image: "/assets/girl_with_headphone_image.png",
+      title: "Unparalleled Sound",
+      desc: "Experience crystal-clear audio with premium headphones.",
+      buttonText: "Buy now",
+    },
+    {
+      image: "/assets/girl_with_earphone_image.png",
+      title: "Stay Connected",
+      desc: "Compact and stylish earphones for every occasion.",
+      buttonText: "Buy now",
+    },
+    {
+      image: "/assets/boy_with_laptop_image.png",
+      title: "Power in Every Pixel",
+      desc: "Shop the latest laptops for work, gaming, and more.",
+      buttonText: "Buy now",
+    },
+  ];
+
   return (
-    <section className="w-full">
-      <div className="w-full max-w-275 mx-auto px-7.5">
+    <section className="w-full mb-10">
+      <div className="w-full max-w-245 mx-auto px-7.5">
         <div className="text-center pt-10">
           <h2 className="text-[#374151] text-[30px] font-medium">
             Featured Products
           </h2>
 
-          <div className="mt-4 flex justify-center">
-            <span className="h-0.5 w-28 text-orange-600" />
+          <div className="mt-1 flex justify-center">
+            <span className="h-0.5 bg-orange-600 w-27.5" />
           </div>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <FeatureCard
-            image="/assets/girl_with_headphone_image.png"
-            title="Unparalleled Sound"
-            desc="Experience crystal-clear audio with premium headphones."
-            buttonText="Buy now"
-          />
-
-          <FeatureCard
-            image="/assets/girl_with_earphone_image.png"
-            title="Stay Connected"
-            desc="Compact and stylish earphones for every occasion."
-            buttonText="Buy now"
-          />
-
-          <FeatureCard
-            image="/assets/boy_with_laptop_image.png"
-            title="Power in Every Pixel"
-            desc="Shop the latest laptops for work, gaming, and more."
-            buttonText="Buy now"
-          />
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15">
+          {featureCardsData.map((card, index) => (
+            <FeatureCard
+              key={index}
+              image={card.image}
+              title={card.title}
+              desc={card.desc}
+              buttonText={card.buttonText}
+            />
+          ))}
         </div>
       </div>
     </section>

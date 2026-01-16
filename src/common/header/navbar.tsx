@@ -55,7 +55,8 @@ const Navbar: React.FC = () => {
               height={16}
               
             />
-            <span className="font-lg text-gray-900 hover:text-gray-600 transition-all duration-300 ease-out transform">Account</span>
+            <Link href='/signup'>
+            <span className="font-lg text-gray-900 hover:text-gray-600 transition-all duration-300 ease-out transform">Account</span></Link>
           </div>
         </div>
       </div>
