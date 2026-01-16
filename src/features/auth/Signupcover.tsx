@@ -1,10 +1,10 @@
 'use client'
 
-import { SignupFormDemo } from "./components/Signup"
+import { SignupForm } from "./components/Signup"
 
 
 const Signupcover = () => {
-  return <SignupFormDemo/>
+  return <SignupForm/>
 }
 
 export default Signupcover

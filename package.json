@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
+    "@react-three/fiber": "^10.0.0-alpha.0",
     "@tabler/icons-react": "^3.36.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,6 +24,7 @@
     "react-hook-form": "^7.71.1",
     "swiper": "^12.0.3",
     "tailwind-merge": "^3.4.0",
+    "three": "^0.182.0",
     "zod": "^4.3.5"
   },
   "devDependencies": {
@@ -30,6 +32,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.182.0",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",

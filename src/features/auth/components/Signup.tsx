@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { MoveRight } from "lucide-react";
 
-export function SignupFormDemo() {
+export function SignupForm() {
   const [signup, setsignup] = useState('signup');
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
