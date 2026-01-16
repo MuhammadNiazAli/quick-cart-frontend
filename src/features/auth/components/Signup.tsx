@@ -1,10 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { useState } from "react";
-import logo from '../../../../public/assets/logo.svg'
 import { MoveRight } from "lucide-react";
 
 export function SignupFormDemo() {

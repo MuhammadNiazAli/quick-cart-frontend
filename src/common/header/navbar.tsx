@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
               height={16}
               
             />
-            <Link href='/signup'>
+            <Link href='/account'>
             <span className="font-lg text-gray-900 hover:text-gray-600 transition-all duration-300 ease-out transform">Account</span></Link>
           </div>
         </div>

@@ -8,7 +8,7 @@ import Footer from "@/common/footer/footer";
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const hideChromeRoutes = ["/signup"];
+  const hideChromeRoutes = ["/account"];
   const shouldHide = hideChromeRoutes.includes(pathname);
 
   return (
