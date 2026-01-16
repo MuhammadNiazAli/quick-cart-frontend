@@ -66,7 +66,7 @@ const HomeHero: React.FC = () => {
             display: flex !important;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
           }
 
@@ -75,6 +75,7 @@ const HomeHero: React.FC = () => {
             height: 8px;
             opacity: 1;
             background: #d1d5db;
+            cursor:pointer;
           }
 
           .hero-pagination .swiper-pagination-bullet-active {
@@ -125,18 +126,17 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
         </h2>
 
         <div className="flex items-center gap-3 sm:gap-6 lg:gap-8">
-          {/* 🔥 MOVING BORDER CTA BUTTON */}
+       
           <Button
             borderRadius="9999px"
             className="bg-orange-600 text-white text-[14px] font-semibold
-              hover:bg-[#FF600E]"
+              hover:bg-[#FF550E] hover:scale-101"
             containerClassName="h-11 w-[140px]"
             borderClassName="opacity-90"
           >
             {cta}
           </Button>
 
-          {/* Secondary link button (unchanged) */}
           <button className="group flex items-center gap-3 text-[#374151] font-semibold cursor-pointer">
             {link}
             <Image
@@ -144,7 +144,7 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
               alt="Arrow"
               width={16}
               height={16}
-              className="transition-transform duration-300 group-hover:translate-x-1"
+              className="transition-transform duration-300 group-hover:translate-x-1.5 -ml-1"
             />
           </button>
         </div>

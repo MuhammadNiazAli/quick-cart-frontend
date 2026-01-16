@@ -54,7 +54,7 @@ export function Button({
 
       <div
         className={cn(
-          "relative flex h-full w-full items-center justify-center border border-orange-600 bg-slate-900/80 text-sm text-white antialiased backdrop-blur-xl cursor-pointer",
+          "relative flex h-full w-full items-center justify-center border border-yellow-500 bg-slate-900/80 text-sm text-white antialiased backdrop-blur-xl cursor-pointer",
           className
         )}
         style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
