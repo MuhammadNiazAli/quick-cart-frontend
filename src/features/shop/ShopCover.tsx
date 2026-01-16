@@ -12,8 +12,8 @@ const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
       <div className="w-full max-w-290 px-7.5 mt-8">
         {showTitle && (
           <h1 className="text-[22px] font-medium text-gray-700">
-            All pr
-            <span className="border-b-2 border-orange-600">oducts</span>
+            All pro
+            <span className="border-b-2 border-orange-600">ducts</span>
           </h1>
         )}
 

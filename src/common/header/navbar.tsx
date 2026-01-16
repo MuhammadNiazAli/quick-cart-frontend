@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
           </Link>
 
           <Link
-            href="/seller/dashboard"
+            href="/seller"
             className="px-4 py-1 border border-gray-300/70 rounded-[100px] text-xs font-normal text-gray-700 bg-white hover:border-[#ff522f30] hover:text-[#ff522fc9]  transition-all duration-300 ease-out transform"
           >
             Seller Dashboard
