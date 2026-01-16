@@ -60,8 +60,11 @@ const HomeHero: React.FC = () => {
         <style jsx global>{`
           .hero-pagination {
             position: static !important;
-            display: inline-flex !important;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
             gap: 8px;
+            width: 100%;
           }
 
           .hero-pagination .swiper-pagination-bullet {
@@ -82,7 +85,6 @@ const HomeHero: React.FC = () => {
 
 export default HomeHero;
 
-
 type HeroSlideProps = {
   badge: string;
   title: string;
@@ -93,7 +95,8 @@ type HeroSlideProps = {
 
 const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
   return (
-    <div className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11
+    <div
+      className="bg-[#E6E9F2] rounded-2xl px-6 sm:px-10 lg:px-15 py-8 sm:py-10 lg:py-11
       flex flex-col-reverse md:flex-row items-center
       gap-14 md:gap-8 lg:gap-0
       justify-center lg:justify-between
@@ -119,8 +122,10 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
         </h2>
 
         <div className="flex items-center gap-3 sm:gap-6 lg:gap-8">
-          <button className="px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E]
-            transition-all duration-300 text-white rounded-full text-[14px] font-semibold">
+          <button
+            className="px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E]
+            transition-all duration-300 text-white rounded-full text-[14px] font-semibold"
+          >
             {cta}
           </button>
 
