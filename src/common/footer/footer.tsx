@@ -42,7 +42,7 @@ const Footer = () => {
               <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 Contact us
               </li>
-              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200 whitespace-nowrap">
                 Privacy policy
               </li>
             </ul>
