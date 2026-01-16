@@ -76,7 +76,7 @@ const HomeCTA = () => {
             <input
               type="email"
               placeholder="Enter your email id"
-              className="w-full max-w-md rounded-l-[5px] border border-gray-300 px-5 py-2.5 text-base md:py-3"
+              className="w-full max-w-md rounded-l-[5px] rounded-r-none border border-gray-300 px-5 py-2.5 text-base md:py-2.75"
             />
             <button className="rounded-r-[5px] bg-orange-600 px-8 py-2.5 text-base font-normal text-white shadow-md transition-all md:px-10 md:py-2.5 md:text-lg cursor-pointer">
               Subscribe
