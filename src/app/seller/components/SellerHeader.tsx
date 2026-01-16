@@ -8,7 +8,7 @@ const SellerHeader = () => {
         <Image src="/assets/logo.svg" alt="Logo" width={120} height={40} />
       </div>
       <div>
-        <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+        <button className="bg-[#4B5563] text-white px-8 py-2 rounded-full text-sm cursor-pointer">
           Logout
         </button>
       </div>
