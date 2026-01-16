@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 "use client";
 
 import React, { useRef } from "react";
@@ -168,4 +166,3 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
     </div>
   );
 };
->>>>>>> feature/shop
