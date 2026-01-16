@@ -35,15 +35,15 @@ const HomeCTA = () => {
               <div className="mt-8 mb-10">
                 <Link
                   href="/"
-                  className="inline-flex items-center gap-3 rounded-[5px] bg-[#ff5500] px-10 py-2.5 text-base font-semibold text-white shadow-md transition-all hover:bg-[#f97416] md:px-10 md:py-2.5 md:text-sm group"
+                  className="inline-flex items-center gap-3 rounded-[5px] bg-orange-600 px-10 py-2.5 text-base font-semibold text-white shadow-md transition-all md:px-10 md:py-2.5 md:text-sm group"
                 >
                   Buy now
                   <Image
                     src="/assets/arrow_icon_white.svg"
                     alt="Arrow"
-                    width={20}
+                    width={16}
                     height={20}
-                    className="transition-transform duration-300 group-hover:translate-x-1.5"
+                    className="transition-transform duration-300 group-hover:translate-x-1.5 -ml-2"
                   />
                 </Link>
               </div>
@@ -78,7 +78,7 @@ const HomeCTA = () => {
               placeholder="Enter your email id"
               className="w-full max-w-md rounded-l-[5px] border border-gray-300 px-5 py-2.5 text-base md:py-3"
             />
-            <button className="rounded-r-[5px] bg-[#EA580C] px-8 py-2.5 text-base font-normal text-white shadow-md transition-all hover:bg-orange-600 md:px-10 md:py-2.5 md:text-lg cursor-pointer">
+            <button className="rounded-r-[5px] bg-orange-600 px-8 py-2.5 text-base font-normal text-white shadow-md transition-all md:px-10 md:py-2.5 md:text-lg cursor-pointer">
               Subscribe
             </button>
           </div>
