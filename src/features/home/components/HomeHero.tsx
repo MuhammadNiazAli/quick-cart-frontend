@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import { Button } from "@/components/ui/moving-border";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -33,6 +34,7 @@ const HomeHero: React.FC = () => {
               image="/assets/header_headphone_image.png"
             />
           </SwiperSlide>
+
           <SwiperSlide>
             <HeroSlide
               badge="Hurry up only few lefts!"
@@ -42,6 +44,7 @@ const HomeHero: React.FC = () => {
               image="/assets/header_playstation_image.png"
             />
           </SwiperSlide>
+
           <SwiperSlide>
             <HeroSlide
               badge="Exclusive Deal 40% Off"
@@ -122,13 +125,18 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
         </h2>
 
         <div className="flex items-center gap-3 sm:gap-6 lg:gap-8">
-          <button
-            className="px-10 py-2.5 bg-orange-600 hover:bg-[#FF600E]
-            transition-all duration-300 text-white rounded-full text-[14px] font-semibold cursor-pointer"
+          {/* 🔥 MOVING BORDER CTA BUTTON */}
+          <Button
+            borderRadius="9999px"
+            className="bg-orange-600 text-white text-[14px] font-semibold
+              hover:bg-[#FF600E]"
+            containerClassName="h-11 w-[140px]"
+            borderClassName="opacity-90"
           >
             {cta}
-          </button>
+          </Button>
 
+          {/* Secondary link button (unchanged) */}
           <button className="group flex items-center gap-3 text-[#374151] font-semibold cursor-pointer">
             {link}
             <Image
@@ -141,6 +149,7 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
           </button>
         </div>
       </div>
+
       <div className="flex justify-center">
         <div
           className="
