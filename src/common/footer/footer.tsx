@@ -13,13 +13,13 @@ const Footer = () => {
             <Image
               src="/assets/logo.svg"
               alt="QuickCart"
-              width={190}
+              width={170}
               height={44}
               className="h-auto w-auto"
               priority
             />
 
-            <p className="mt-5 max-w-none md:max-w-400 text-[#6B7280] text-[14px] leading-5.5">
+            <p className="mt-5 max-w-none md:max-w-400 text-[#6B7280] text-[13px] leading-5.5">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -32,17 +32,17 @@ const Footer = () => {
               Company
             </h4>
 
-            <ul className="mt-10 space-y-2 text-[#6B7280] text-[14px]">
-              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
+            <ul className="mt-10 space-y-1.5 text-[#6B7280] text-[14px]">
+              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 Home
               </li>
-              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 About us
               </li>
-              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 Contact us
               </li>
-              <li className="cursor-pointer hover:text-[#ff6f00] transition-colors duration-200">
+              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 Privacy policy
               </li>
             </ul>
@@ -53,7 +53,7 @@ const Footer = () => {
               Get in touch
             </h4>
 
-            <div className="mt-10 space-y-2 text-[#6B7280] text-[14px]">
+            <div className="mt-10 space-y-1 text-[#6B7280] text-[14px]">
               <p>+1-234-567-890</p>
               <p>contact@greatstack.dev</p>
             </div>
