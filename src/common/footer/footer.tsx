@@ -19,7 +19,7 @@ const Footer = () => {
               priority
             />
 
-            <p className="mt-5 max-w-none md:max-w-400 text-[#6B7280] text-[13px] leading-5.5">
+            <p className="mt-5 max-w-none md:max-w-400 w-100 text-[#6B7280] text-[13px] leading-5.5">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
