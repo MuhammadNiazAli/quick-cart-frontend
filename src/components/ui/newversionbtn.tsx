@@ -10,7 +10,7 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
-export function Button({
+export function Buttonvtwo({
   borderRadius = "1.75rem",
   children,
   as: Component = "button",
@@ -32,7 +32,7 @@ export function Button({
   return (
     <Component
       className={cn(
-        "relative h-16 w-40 overflow-hidden bg-transparent p-px text-xl",
+        "relative h-12 w-40 overflow-hidden bg-transparent p-px text-xl",
         containerClassName
       )}
       style={{ borderRadius }}
@@ -45,7 +45,7 @@ export function Button({
         <MovingBorder duration={duration} rx="30%" ry="30%">
           <div
             className={cn(
-              "h-20 w-20 bg-[radial-gradient(#FF550E_20%,transparent_60%)] opacity-[0.8]",
+              "h-20 w-80 bg-[radial-gradient(#000_10%,transparent_0%)] opacity-[0.2]",
               borderClassName
             )}
           />
@@ -54,7 +54,7 @@ export function Button({
 
       <div
         className={cn(
-          "relative flex h-full w-full items-center justify-center border text-sm text-white antialiased backdrop-blur-3xl cursor-pointer",
+          "relative flex h-full w-full items-center justify-center border text-sm text-white antialiased backdrop-blur-[30rem] cursor-pointer",
           className
         )}
         style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}

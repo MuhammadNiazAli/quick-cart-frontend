@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Page = async ({ params }: Props) => {
-  const { id } = await params; // ✅ CORRECT
+  const { id } = await params; 
   const product=products.find(item=>item.id===Number(id));
   if(!product){
     return <div className="max-w-7xl mx-auto px-6 py-14">Product not found</div>

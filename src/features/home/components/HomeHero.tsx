@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/moving-border";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { Buttonvtwo } from "@/components/ui/newversionbtn";
 
 const HomeHero: React.FC = () => {
   const paginationRef = useRef<HTMLDivElement | null>(null);
@@ -137,7 +138,7 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
             {cta}
           </Button>
 
-          <button className="group flex items-center gap-3 text-[#374151] font-semibold cursor-pointer">
+          <Buttonvtwo className="group flex items-center gap-3 text-[#374151] font-semibold cursor-pointer">
             {link}
             <Image
               src="/assets/arrow_icon.svg"
@@ -146,7 +147,7 @@ const HeroSlide = ({ badge, title, cta, link, image }: HeroSlideProps) => {
               height={16}
               className="transition-transform duration-300 group-hover:translate-x-1.5 -ml-1"
             />
-          </button>
+          </Buttonvtwo>
         </div>
       </div>
 
