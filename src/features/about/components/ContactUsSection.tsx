@@ -37,7 +37,7 @@ const ContactUsSection: React.FC = () => {
         </div>
 
         <div className="grid gap-10 lg:grid-cols-2">
-          {/* Contact Info */}
+         
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-100">
