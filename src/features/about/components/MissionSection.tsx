@@ -7,7 +7,6 @@ const MissionSection: React.FC = () => {
   return (
     <section className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             Our Mission
@@ -20,9 +19,7 @@ const MissionSection: React.FC = () => {
           </p>
         </div>
 
-      
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Left Image */}
           <div className="w-full lg:w-1/2">
             <Image
               src="/assets/sm_controller_image.png"
@@ -39,14 +36,13 @@ const MissionSection: React.FC = () => {
               Empowering People, Transforming Lives
             </h3>
             <p className="text-lg text-gray-600 mb-6">
-              We believe in creating meaningful connections through our
-              products and services. Our goal is to provide solutions that are
-              not only effective but also inspiring and transformative. We are
-              committed to making the world a better place through innovation
-              and creativity.
+              We believe in creating meaningful connections through our products
+              and services. Our goal is to provide solutions that are not only
+              effective but also inspiring and transformative. We are committed
+              to making the world a better place through innovation and
+              creativity.
             </p>
 
-            {/* CTA Button */}
             <a
               href="/about"
               className="inline-flex items-center gap-3 text-lg font-semibold text-white bg-orange-600 px-8 py-3 rounded-full shadow-md hover:bg-orange-500 transition-all"

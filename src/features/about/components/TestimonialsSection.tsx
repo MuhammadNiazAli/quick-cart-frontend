@@ -58,7 +58,7 @@ const TestimonialsSection: React.FC = () => {
   return (
     <section className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Heading */}
+        
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
             What Our Customers Say
@@ -107,7 +107,7 @@ const TestimonialsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Pagination Styling */}
+     
       <style jsx global>{`
         .testimonial-pagination {
           position: static !important;
@@ -146,7 +146,7 @@ const TestimonialCard = ({
 }: Testimonial) => {
   return (
     <div className="bg-white rounded-2xl p-6 h-full border hover:shadow-md transition flex flex-col">
-      {/* Rating */}
+     
       <div className="flex items-center mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
@@ -160,12 +160,12 @@ const TestimonialCard = ({
         ))}
       </div>
 
-      {/* Message */}
+      
       <p className="text-gray-700 text-[12px] leading-relaxed grow">
         “{message}”
       </p>
 
-      {/* User */}
+    
       <div className="flex items-center mt-6">
         <img
           src={image}
