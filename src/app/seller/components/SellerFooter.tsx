@@ -16,20 +16,23 @@ const SellerFooter = () => {
         <Image
           src="/assets/facebook_icon.svg"
           alt="Facebook"
-          width={24}
-          height={24}
+          width={35}
+          height={35}
+          className="cursor-pointer"
         />
         <Image
           src="/assets/twitter_icon.svg"
           alt="Twitter"
-          width={24}
-          height={24}
+          width={35}
+          height={35}
+          className="cursor-pointer"
         />
         <Image
           src="/assets/instagram_icon.svg"
           alt="Instagram"
-          width={24}
-          height={24}
+          width={35}
+          height={35}
+          className="cursor-pointer"
         />
       </div>
     </footer>

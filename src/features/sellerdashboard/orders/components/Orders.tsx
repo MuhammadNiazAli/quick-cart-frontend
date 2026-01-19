@@ -1,120 +1,108 @@
+"use client";
+import Image from "next/image";
 import React from "react";
 
-type Order = {
-  id: string;
-  product: string;
-  date: string;
-  amount: string;
-  status: "Pending" | "Shipped" | "Delivered" | "Cancelled";
-};
-
-const mockOrders: Order[] = [
+const orders = [
   {
-    id: "ORD-1001",
-    product: "Wireless Headphones",
-    date: "2026-01-12",
-    amount: "$120.00",
-    status: "Delivered",
+    id: 1,
+    products: "Samsung Galaxy S23 x 1, ASUS ROG Zephyrus G16 x 1",
+    items: 2,
+    name: "asdf",
+    address: "asdfasdf",
+    city: "asdf, asdf",
+    phone: "9876543210",
+    total: "$2854.98",
+    method: "COD",
+    date: "16/01/2026",
+    payment: "Pending",
   },
   {
-    id: "ORD-1002",
-    product: "Smartwatch Series 7",
-    date: "2026-01-14",
-    amount: "$250.00",
-    status: "Shipped",
+    id: 2,
+    products: "ASUS ROG Zephyrus G16 x 1",
+    items: 1,
+    name: "sudheeshk",
+    address: "acubsdo",
+    city: "abcid, sdjkbv",
+    phone: "9876543210",
+    total: "$2038.99",
+    method: "COD",
+    date: "16/01/2026",
+    payment: "Pending",
   },
   {
-    id: "ORD-1003",
-    product: "Gaming Laptop",
-    date: "2026-01-15",
-    amount: "$1,450.00",
-    status: "Pending",
+    id: 3,
+    products:
+      "Samsung Galaxy S23 x 3, ASUS ROG Zephyrus G16 x 2, Apple AirPods Pro 2nd gen x 2",
+    items: 3,
+    name: "ameeee",
+    address: "jghadsdsa",
+    city: "ghads, asgd",
+    phone: "9876543210",
+    total: "$7342.93",
+    method: "COD",
+    date: "16/01/2026",
+    payment: "Pending",
   },
   {
-    id: "ORD-1004",
-    product: "Bluetooth Speaker",
-    date: "2026-01-16",
-    amount: "$75.00",
-    status: "Cancelled",
+    id: 4,
+    products: "Samsung Galaxy S23 x 9",
+    items: 1,
+    name: "ayas",
+    address: "asdfasdf",
+    city: "asfd, asdf",
+    phone: "9876543210",
+    total: "$7342.91",
+    method: "COD",
+    date: "15/01/2026",
+    payment: "Pending",
   },
 ];
 
-const statusColors: Record<Order["status"], string> = {
-  Pending: "bg-yellow-100 text-yellow-800",
-  Shipped: "bg-blue-100 text-blue-800",
-  Delivered: "bg-green-100 text-green-800",
-  Cancelled: "bg-red-100 text-red-800",
-};
-
-const Orders: React.FC = () => {
+const Orders = () => {
   return (
-    <section className="bg-gray-50 py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Heading */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Your Recent Orders
-          </h2>
-          <p className="mt-3 text-gray-600">
-            Track your latest purchases and see the order status at a glance.
-          </p>
-        </div>
-
-        {/* Orders Table (desktop) */}
-        <div className="hidden md:block">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="px-6 py-3 text-gray-700 font-medium">Order ID</th>
-                <th className="px-6 py-3 text-gray-700 font-medium">Product</th>
-                <th className="px-6 py-3 text-gray-700 font-medium">Date</th>
-                <th className="px-6 py-3 text-gray-700 font-medium">Amount</th>
-                <th className="px-6 py-3 text-gray-700 font-medium">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mockOrders.map((order) => (
-                <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-50 transition">
-                  <td className="px-6 py-4 font-medium text-gray-900">{order.id}</td>
-                  <td className="px-6 py-4 text-gray-700">{order.product}</td>
-                  <td className="px-6 py-4 text-gray-700">{order.date}</td>
-                  <td className="px-6 py-4 text-gray-700">{order.amount}</td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${statusColors[order.status]}`}
-                    >
-                      {order.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Mobile Cards */}
-        <div className="md:hidden space-y-4">
-          {mockOrders.map((order) => (
-            <div
-              key={order.id}
-              className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100"
-            >
-              <div className="flex justify-between items-center mb-2">
-                <h4 className="font-semibold text-gray-900">{order.product}</h4>
-                <span
-                  className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${statusColors[order.status]}`}
-                >
-                  {order.status}
-                </span>
-              </div>
-              <p className="text-gray-500 text-sm">Order ID: {order.id}</p>
-              <p className="text-gray-500 text-sm">Date: {order.date}</p>
-              <p className="text-gray-900 font-medium mt-2">Amount: {order.amount}</p>
+    <div className="bg-white rounded-lg border-t border-b border-r-0 border-l-0 mt-5">
+      {orders.map((order) => (
+        <div
+          key={order.id}
+          className="grid grid-cols-1 md:grid-cols-5 gap-6 p-6 border-b last:border-none items-center"
+        >
+          <div className="flex justify-center md:justify-start">
+            <div className="w-14 h-14 bg-pink-50/10 rounded-lg flex items-center justify-center">
+              <Image
+                src="/assets/box_icon.svg"
+                alt="Order Icon"
+                width={100}
+                height={100}
+              />
             </div>
-          ))}
+          </div>
+
+          <div className="md:col-span-2">
+            <p className="text-sm font-medium text-gray-800">
+              {order.products}
+            </p>
+            <p className="text-sm text-gray-500 mt-2">Items : {order.items}</p>
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-800">{order.name}</p>
+            <p className="text-sm text-gray-500">{order.address}</p>
+            <p className="text-sm text-gray-500">{order.city}</p>
+            <p className="text-sm text-gray-500">{order.phone}</p>
+          </div>
+
+          <div>
+            <p className="text-sm font-medium text-gray-800">{order.total}</p>
+          </div>
+
+          <div>
+            <p className="text-sm text-gray-700">Method : {order.method}</p>
+            <p className="text-sm text-gray-500">Date : {order.date}</p>
+            <p className="text-sm text-gray-500">Payment : {order.payment}</p>
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 };
 

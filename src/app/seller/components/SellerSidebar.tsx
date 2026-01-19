@@ -43,8 +43,8 @@ const SellerSidebar = () => {
               <Image
                 src={item.icon}
                 alt={item.label}
-                width={20}
-                height={20}
+                width={23}
+                height={23}
                 className="opacity-90"
               />
               <span>{item.label}</span>

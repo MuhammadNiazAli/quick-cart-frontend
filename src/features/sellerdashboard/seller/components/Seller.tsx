@@ -1,96 +1,160 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
-import { Star, Users } from "lucide-react";
-
-type SellerData = {
-  name: string;
-  products: number;
-  rating: number;
-  image: string;
-};
-
-const mockSellers: SellerData[] = [
-  {
-    name: "TechHub Store",
-    products: 120,
-    rating: 5,
-    image: "https://via.placeholder.com/80x80.png?text=TH",
-  },
-  {
-    name: "GadgetWorld",
-    products: 85,
-    rating: 4,
-    image: "https://via.placeholder.com/80x80.png?text=GW",
-  },
-  {
-    name: "HomeEssentials",
-    products: 60,
-    rating: 5,
-    image: "https://via.placeholder.com/80x80.png?text=HE",
-  },
-  {
-    name: "Fashionista",
-    products: 90,
-    rating: 4,
-    image: "https://via.placeholder.com/80x80.png?text=F",
-  },
-];
+"use client";
+import React, { useRef, useState } from "react";
 
 const Seller: React.FC = () => {
+  const fileRef = useRef<HTMLInputElement | null>(null);
+  const [image, setImage] = useState<string | null>(null);
+  const [form, setForm] = useState({
+    name: "",
+    desc: "",
+    category: "Earphone",
+    price: 0,
+    offer: 0,
+  });
+
+  const handleImageClick = () => fileRef.current?.click();
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImage(URL.createObjectURL(file));
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setForm((p) => ({ ...p, [name]: value }));
+  };
+
+  const handleSubmit = () => {
+    console.log({ image, ...form });
+  };
+
   return (
-    <section className="bg-gray-50 py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Heading */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            Top Sellers
-          </h2>
-          <p className="mt-3 text-gray-600">
-            Meet our trusted sellers who provide premium products and great service.
-          </p>
+    <div className="max-w-xl mt-6 p-5 bg-white">
+      <h2 className="text-sm font-medium text-gray-600 mb-2">Product Image</h2>
+
+      <div
+        onClick={handleImageClick}
+        className="border-2 border-dashed border-gray-300 rounded-lg h-20 w-30 flex items-center justify-center cursor-pointer hover:border-orange-500 transition"
+      >
+        {image ? (
+          <img
+            src={image}
+            alt="Preview"
+            className="h-full w-full object-contain p-2"
+          />
+        ) : (
+          <div className="flex flex-col items-center gap-2 text-gray-400">
+            <svg
+              className="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3-3 3 3M12 16v6"
+              />
+            </svg>
+            <span className="text-sm">upload</span>
+          </div>
+        )}
+      </div>
+
+      <input
+        ref={fileRef}
+        type="file"
+        hidden
+        accept="image/*"
+        onChange={handleImageChange}
+      />
+
+      <div className="mt-4">
+        <label className="block text-sm text-gray-600 mb-1">Product Name</label>
+        <input
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          placeholder="Type here"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 outline-none focus:border-orange-500"
+        />
+      </div>
+
+      <div className="mt-4">
+        <label className="block text-sm text-gray-600 mb-1">Description</label>
+        <textarea
+          name="desc"
+          value={form.desc}
+          onChange={handleChange}
+          rows={4}
+          placeholder="Type here"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 outline-none focus:border-orange-500 resize-none"
+        />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
+        <div>
+          <label className="block text-sm text-gray-600 mb-1">Category</label>
+          <select
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm outline-none focus:border-orange-500"
+          >
+            {[
+              "Earphone",
+              "Headphone",
+              "Watch",
+              "Smartphone",
+              "Laptop",
+              "Camera",
+              "Accessories",
+            ].map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Sellers Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
-          {mockSellers.map((seller, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-sm hover:shadow-md transition p-6 flex flex-col items-center text-center"
-            >
-              <div className="w-20 h-20 mb-4 rounded-full overflow-hidden">
-                <img
-                  src={seller.image}
-                  alt={seller.name}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <h3 className="text-gray-900 font-semibold text-lg mb-1">
-                {seller.name}
-              </h3>
-              <p className="text-gray-500 text-sm mb-2">
-                <Users className="inline h-4 w-4 mr-1 text-orange-600" />
-                {seller.products} Products
-              </p>
-              <div className="flex items-center justify-center mb-4">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`h-4 w-4 ${
-                      i < seller.rating
-                        ? "text-yellow-400 fill-yellow-400"
-                        : "text-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-              <button className="mt-auto w-full rounded-full bg-orange-600 text-white py-2 font-semibold text-sm hover:bg-orange-500 transition">
-                Visit Store
-              </button>
-            </div>
-          ))}
+        <div>
+          <label className="block text-sm text-gray-600 mb-1">Price</label>
+          <input
+            name="price"
+            type="number"
+            value={form.price}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm outline-none focus:border-orange-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm text-gray-600 mb-1">Offer</label>
+          <input
+            name="offer"
+            type="number"
+            value={form.offer}
+            onChange={handleChange}
+            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm outline-none focus:border-orange-500"
+          />
         </div>
       </div>
-    </section>
+
+      <button
+        onClick={handleSubmit}
+        className="mt-5 px-8 bg-orange-600 text-white py-2 rounded-md text-sm hover:bg-orange-500 transition cursor-pointer"
+      >
+        ADD
+      </button>
+    </div>
   );
 };
 
