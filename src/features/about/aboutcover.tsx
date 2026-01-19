@@ -20,8 +20,8 @@ const Aboutcover: React.FC = () => {
       <CoreValuesSection />
       <TestimonialsSection />
       <JoinOurTeamSection />
-      <ContactUsSection />
       <FAQSection />
+      <ContactUsSection />
     </section>
   );
 };
