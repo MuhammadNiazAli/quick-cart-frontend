@@ -1,8 +1,23 @@
 "use client";
+
 import Image from "next/image";
 import React from "react";
 
-const orders = [
+type Order = {
+  id: number;
+  products: string;
+  items: number;
+  name: string;
+  address: string;
+  city: string;
+  phone: string;
+  total: string;
+  method: string;
+  date: string;
+  payment: string;
+};
+
+const orders: Order[] = [
   {
     id: 1,
     products: "Samsung Galaxy S23 x 1, ASUS ROG Zephyrus G16 x 1",
@@ -60,48 +75,62 @@ const orders = [
 
 const Orders = () => {
   return (
-    <div className="bg-white -ml-50 lg:ml-0 rounded-lg border-t border-b border-r-0 border-l-0 mt-5">
-      {orders.map((order) => (
-        <div
-          key={order.id}
-          className="grid grid-cols-1 md:grid-cols-5 gap-6 p-6 border-b last:border-none items-center"
-        >
-          <div className="flex justify-center md:justify-start">
-            <div className="w-14 h-14 bg-pink-50/10 rounded-lg flex items-center justify-center">
-              <Image
-                src="/assets/box_icon.svg"
-                alt="Order Icon"
-                width={100}
-                height={100}
-              />
+    
+    <div className="mt-5 rounded-lg bg-white -ml-50 lg:ml-0">
+      <h1 className="font-medium text-lg text-gray-700 mb-5">orders</h1>
+      <div className="divide-y divide-gray-200  border border-l-0 border-r-0 border-gray-200">
+        {orders.map((order) => (
+          <div
+            key={order.id}
+            className="grid grid-cols-1 gap-4 p-4 sm:p-5 lg:grid-cols-12 lg:gap-6 lg:p-6"
+          >
+            <div className="flex items-start lg:col-span-1">
+              <div className="h-12 w-12 shrink-0 rounded-lg bg-pink-50 flex items-center justify-center">
+                <Image
+                  src="/assets/box_icon.svg"
+                  alt="Order Icon"
+                  width={50}
+                  height={50}
+                />
+              </div>
+            </div>
+
+            <div className="min-w-0 lg:col-span-5">
+              <p className="text-sm font-medium text-gray-900 truncate sm:whitespace-normal sm:wrap-break-word">
+                {order.products}
+              </p>
+              <p className="mt-1 text-sm text-gray-500">Items: {order.items}</p>
+            </div>
+
+            <div className="min-w-0 lg:col-span-3">
+              <p className="text-sm font-medium text-gray-900 truncate">
+                {order.name}
+              </p>
+              <p className="text-sm text-gray-500 truncate">{order.address}</p>
+              <p className="text-sm text-gray-500 truncate">{order.city}</p>
+              <p className="text-sm text-gray-500 truncate">{order.phone}</p>
+            </div>
+
+            <div className="lg:col-span-1 lg:text-right">
+              <p className="text-sm font-semibold text-gray-900">
+                {order.total}
+              </p>
+            </div>
+
+            <div className="lg:col-span-2 lg:text-right">
+              <p className="text-sm text-gray-700">
+                <span className="text-gray-500">Method:</span> {order.method}
+              </p>
+              <p className="text-sm text-gray-500">
+                <span className="text-gray-400">Date:</span> {order.date}
+              </p>
+              <p className="text-sm text-gray-500">
+                <span className="text-gray-400">Payment:</span> {order.payment}
+              </p>
             </div>
           </div>
-
-          <div className="md:col-span-2">
-            <p className="text-sm font-medium text-gray-800">
-              {order.products}
-            </p>
-            <p className="text-sm text-gray-500 mt-2">Items : {order.items}</p>
-          </div>
-
-          <div>
-            <p className="text-sm text-gray-800">{order.name}</p>
-            <p className="text-sm text-gray-500">{order.address}</p>
-            <p className="text-sm text-gray-500">{order.city}</p>
-            <p className="text-sm text-gray-500">{order.phone}</p>
-          </div>
-
-          <div>
-            <p className="text-sm font-medium text-gray-800">{order.total}</p>
-          </div>
-
-          <div>
-            <p className="text-sm text-gray-700">Method : {order.method}</p>
-            <p className="text-sm text-gray-500">Date : {order.date}</p>
-            <p className="text-sm text-gray-500">Payment : {order.payment}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
