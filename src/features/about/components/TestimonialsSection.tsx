@@ -19,36 +19,36 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
-    name: "Ayesha Khan",
-    role: "Verified Buyer",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    name: "Usman Tariq",
+    role: "Startup Founder",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
     rating: 5,
     message:
-      "Absolutely loved the product! Quality was top-notch and delivery was super fast. Highly recommended.",
+      "Their full stack development skills are impressive. The ecommerce platform they built works smoothly from frontend to backend.",
   },
   {
-    name: "Ali Raza",
-    role: "Repeat Customer",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Ayesha Noor",
+    role: "Product Manager",
+    image: "https://randomuser.me/api/portraits/women/52.jpg",
+    rating: 5,
+    message:
+      "Clean UI, strong logic, and proper structure. They truly understand web development at a deep level.",
+  },
+  {
+    name: "Hamza Shah",
+    role: "Business Owner",
+    image: "https://randomuser.me/api/portraits/men/61.jpg",
     rating: 4,
     message:
-      "Great experience overall. Customer support was responsive and the product matched the description perfectly.",
+      "Very professional collaboration. Muhammad Niaz Ali and Ahsaan Khan delivered exactly what they promised.",
   },
   {
-    name: "Sara Ahmed",
-    role: "Happy Client",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
+    name: "Sara Malik",
+    role: "Tech Consultant",
+    image: "https://randomuser.me/api/portraits/women/33.jpg",
     rating: 5,
     message:
-      "One of the best ecommerce stores I’ve shopped from. Clean UI, fair pricing, and amazing quality.",
-  },
-  {
-    name: "Hamza Ali",
-    role: "Loyal Customer",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
-    rating: 5,
-    message:
-      "Amazing shopping experience. Prices are fair and product quality exceeded expectations.",
+      "Strong problem-solving skills and great communication. Their animations and UX work stand out.",
   },
 ];
 
@@ -56,19 +56,17 @@ const TestimonialsSection: React.FC = () => {
   const paginationRef = useRef<HTMLDivElement | null>(null);
 
   return (
-    <section className="bg-white py-16">
-      <div className="max-w-7xl mx-auto px-4">
-        
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-            What Our Customers Say
+    <section className="bg-white py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+            What People Say About Our Work
           </h2>
-          <p className="text-gray-600 mt-3">
-            Trusted by thousands of happy shoppers
+          <p className="text-gray-600 mt-3 text-sm sm:text-base">
+            Feedback from clients and collaborators
           </p>
         </div>
 
-     
         <Swiper
           modules={[Autoplay, Pagination]}
           loop
@@ -101,13 +99,11 @@ const TestimonialsSection: React.FC = () => {
           ))}
         </Swiper>
 
-        {/* Pagination */}
         <div className="mt-8 flex justify-center">
           <div ref={paginationRef} className="testimonial-pagination" />
         </div>
       </div>
 
-     
       <style jsx global>{`
         .testimonial-pagination {
           position: static !important;
@@ -135,8 +131,6 @@ const TestimonialsSection: React.FC = () => {
 
 export default TestimonialsSection;
 
-
-
 const TestimonialCard = ({
   name,
   role,
@@ -146,26 +140,21 @@ const TestimonialCard = ({
 }: Testimonial) => {
   return (
     <div className="bg-white rounded-2xl p-6 h-full border hover:shadow-md transition flex flex-col">
-     
       <div className="flex items-center mb-4">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
             key={i}
             className={`h-5 w-5 ${
-              i < rating
-                ? "text-yellow-400 fill-yellow-400"
-                : "text-gray-300"
+              i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
             }`}
           />
         ))}
       </div>
 
-      
-      <p className="text-gray-700 text-[12px] leading-relaxed grow">
+      <p className="text-gray-700 text-[13px] leading-relaxed grow">
         “{message}”
       </p>
 
-    
       <div className="flex items-center mt-6">
         <img
           src={image}
@@ -173,12 +162,8 @@ const TestimonialCard = ({
           className="h-12 w-12 rounded-full object-cover"
         />
         <div className="ml-4">
-          <h4 className="text-sm font-semibold text-gray-900">
-            {name}
-          </h4>
-          <p className="text-xs text-gray-500">
-            {role}
-          </p>
+          <h4 className="text-sm font-semibold text-gray-900">{name}</h4>
+          <p className="text-xs text-gray-500">{role}</p>
         </div>
       </div>
     </div>

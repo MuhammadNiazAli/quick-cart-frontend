@@ -10,29 +10,29 @@ type FAQItem = {
 
 const faqs: FAQItem[] = [
   {
-    question: "How long does delivery usually take?",
+    question: "What type of work do you do?",
     answer:
-      "Delivery typically takes 2–5 business days depending on your location. You’ll receive tracking details once your order is shipped.",
+      "We build functional websites, animated websites, and full-stack web applications. We focus on clean UI, strong logic, and smooth user experience.",
   },
   {
-    question: "What is your return policy?",
+    question: "Do you build full-stack projects with backend too?",
     answer:
-      "We offer a hassle-free return policy within 7 days of delivery, provided the product is unused and in original packaging.",
+      "Yes. We build complete full-stack solutions where frontend and backend are connected properly, and core flows work end-to-end.",
   },
   {
-    question: "Are your products genuine and covered by warranty?",
+    question: "Which technologies do you use?",
     answer:
-      "Yes, all our products are 100% authentic and come with applicable brand warranties for your peace of mind.",
+      "We mainly work with modern web stacks like Next.js, TypeScript, Tailwind CSS, and scalable backend setups. The stack depends on project needs.",
   },
   {
-    question: "What payment methods do you accept?",
+    question: "Can you build ecommerce websites with all features working?",
     answer:
-      "We accept credit/debit cards, online banking, and cash on delivery in selected locations.",
+      "Yes. We recently built a full-stack ecommerce project together. It includes working features and will continue to receive improvements and updates.",
   },
   {
-    question: "How can I contact customer support?",
+    question: "How can we contact you for a project or collaboration?",
     answer:
-      "You can reach our support team via email, live chat, or the contact page. We’re available 7 days a week.",
+      "You can contact Muhammad Niaz Ali at mrniazali132@gmail.com or 0320 8050617. You can also contact Ahsaan Khan at ahsaankhan.div@gmail.com or 0308 5856344.",
   },
 ];
 
@@ -44,15 +44,14 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-16 sm:py-20">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+    <section className="bg-white py-12 sm:py-16 lg:py-20">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
             Frequently Asked Questions
           </h2>
-          <p className="mt-4 text-gray-600 leading-relaxed">
-            Find quick answers to common questions about ordering, delivery, and
-            support.
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
+            Quick answers about our services, process, and how to reach us.
           </p>
         </div>
 
@@ -63,25 +62,25 @@ const FAQSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className="rounded-2xl border bg-white px-6 py-5 transition"
+                className="rounded-2xl border bg-white px-5 sm:px-6 py-4 sm:py-5 transition hover:shadow-sm"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="flex w-full items-center justify-between text-left"
+                  className="flex w-full items-center justify-between text-left gap-4"
                 >
-                  <span className="text-base font-semibold text-gray-900">
+                  <span className="text-sm sm:text-base font-semibold text-gray-900">
                     {faq.question}
                   </span>
 
                   <ChevronDown
-                    className={`h-5 w-5 text-gray-500 transition-transform duration-300 ${
+                    className={`h-5 w-5 text-gray-500 shrink-0 transition-transform duration-300 ${
                       isOpen ? "rotate-180" : ""
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="mt-4 text-sm text-gray-600 leading-relaxed">
+                  <div className="mt-3 sm:mt-4 text-sm text-gray-600 leading-relaxed">
                     {faq.answer}
                   </div>
                 )}
