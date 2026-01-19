@@ -11,7 +11,7 @@ export default function SellerLayout({ children }: { children: React.ReactNode }
   const showFooter = pathname === "/seller/product-list" || pathname === "/seller/orders";
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-gray-100">
+    <div className="flex h-screen w-full overflow-hidden bg-white">
       {/* Sidebar */}
       <SellerSidebar />
 

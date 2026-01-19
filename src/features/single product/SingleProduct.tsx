@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Button } from "@/components/ui/moving-border";
 import { Buttonvtwo } from "@/components/ui/newversionbtn";
 import Image, { StaticImageData } from "next/image";
