@@ -1,8 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const Navbar: React.FC = () => {
+  const pathname = usePathname(); 
+
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/shop" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  const isActive = (href: string) => pathname === href;
+
   return (
     <header className="w-full h-15 bg-white border-b border-gray-300 flex items-center px-8 lg:px-32">
       <div className="w-full flex items-center justify-between">
@@ -17,22 +29,21 @@ const Navbar: React.FC = () => {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
-          <Link href="/" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
-            Home
-          </Link>
-          <Link href="/shop" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
-            Shop
-          </Link>
-          <Link href="/about" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transformfont-lg">
-            About Us
-          </Link>
-          <Link href="/contact" className="text-gray-900 hover:text-[#ff542ed4] transition-all duration-300 ease-out transform font-lg">
-            Contact
-          </Link>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-gray-900 font-lg transition-all duration-300 ease-out transform
+                ${isActive(link.href) ? "text-[#ff542ed4] border-b-2 border-[#ff542ed4] pb-1" : "hover:text-[#ff542ed4]"}`
+              }
+            >
+              {link.name}
+            </Link>
+          ))}
 
           <Link
             href="/seller"
-            className="px-4 py-1 border border-gray-300/70 rounded-[100px] text-xs font-normal text-gray-700 bg-white hover:border-[#ff522f30] hover:text-[#ff522fc9]  transition-all duration-300 ease-out transform"
+            className="px-4 py-1 border border-gray-300/70 rounded-[100px] text-xs font-normal text-gray-700 bg-white hover:border-[#ff522f30] hover:text-[#ff522fc9] transition-all duration-300 ease-out transform"
           >
             Seller Dashboard
           </Link>
@@ -53,10 +64,12 @@ const Navbar: React.FC = () => {
               alt="User"
               width={16}
               height={16}
-              
             />
-            <Link href='/account'>
-            <span className="font-lg text-gray-900 hover:text-gray-600 transition-all duration-300 ease-out transform">Account</span></Link>
+            <Link href="/account">
+              <span className="font-lg text-gray-900 hover:text-gray-600 transition-all duration-300 ease-out transform">
+                Account
+              </span>
+            </Link>
           </div>
         </div>
       </div>
