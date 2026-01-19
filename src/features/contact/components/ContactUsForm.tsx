@@ -78,7 +78,7 @@ const ContactUsForm: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setContactTo("niaz")}
-                className={`rounded-xl border px-4 py-3 text-left transition ${
+                className={`rounded-xl border px-4 py-3 text-left transition cursor-pointer ${
                   contactTo === "niaz"
                     ? "border-orange-600 bg-orange-50"
                     : "border-gray-200 hover:bg-gray-50"
@@ -92,7 +92,7 @@ const ContactUsForm: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setContactTo("ahsaan")}
-                className={`rounded-xl border px-4 py-3 text-left transition ${
+                className={`rounded-xl border px-4 py-3 text-left transition cursor-pointer ${
                   contactTo === "ahsaan"
                     ? "border-orange-600 bg-orange-50"
                     : "border-gray-200 hover:bg-gray-50"
