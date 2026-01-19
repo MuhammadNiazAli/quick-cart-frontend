@@ -35,7 +35,7 @@ const Seller: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mt-6 p-5 bg-white">
+    <div className="max-w-xl -ml-50 lg:ml-0 mt-6 p-5 bg-white">
       <h2 className="text-sm font-medium text-gray-600 mb-2">Product Image</h2>
 
       <div

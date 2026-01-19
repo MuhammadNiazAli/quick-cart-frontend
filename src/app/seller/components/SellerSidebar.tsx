@@ -18,7 +18,7 @@ const SellerSidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="w-15 lg:w-64 shrink-0 bg-white border-r border-gray-200 shadow-sm fixed left-0 top-16 h-screen z-30">
+    <aside className="w-15 lg:w-64 shrink-0 bg-white border-r border-neutral-400/50 fixed left-0 top-16 h-screen z-30">
       <nav className="mt-2 flex flex-col">
         {menu.map((item) => {
           const isActive = pathname === item.href;
@@ -30,16 +30,18 @@ const SellerSidebar = () => {
               className={clsx(
                 "group relative flex items-center gap-3 px-4 py-3.5 text-sm font-medium transition-all",
                 isActive
-                  ? "bg-orange-600/15"
+                  ? "bg-orange-600/10"
                   : "text-gray-600 hover:text-gray-800 hover:bg-gray-50"
               )}
             >
+    
               <div
                 className={clsx(
-                  "absolute right-0 top-1/2 h-12 w-1 -translate-y-1/2 bg-orange-500 transition-all",
-                  isActive ? "opacity-100" : "opacity-0 group-hover:opacity-0"
+                  "absolute right-0 top-1/2 h-12.5 w-1.5 -translate-y-1/2 bg-orange-400 transition-all",
+                  isActive ? "opacity-100" : "opacity-0"
                 )}
               />
+
               <Image
                 src={item.icon}
                 alt={item.label}
@@ -47,11 +49,17 @@ const SellerSidebar = () => {
                 height={23}
                 className="opacity-90"
               />
-              <span>{item.label}</span>
+
+             
+              <span className="hidden lg:block">
+                {item.label}
+              </span>
+
+              
               <div
                 className={clsx(
                   "absolute inset-0 bg-orange-50/0 transition-colors",
-                  !isActive && "group-hover:bg-gray-200/40"
+                  !isActive && "group-hover:bg-neutral-300/15"
                 )}
               />
             </Link>

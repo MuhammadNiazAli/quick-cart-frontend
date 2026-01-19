@@ -18,11 +18,9 @@ const getCategory = (title: string) => {
 
 const ProductList = () => {
   return (
-    <div className="bg-white rounded-lg border p-4 mt-5">
-      {/* Title */}
+    <div className="bg-white -ml-50 lg:ml-0 rounded-lg border p-4 mt-5">
       <h2 className="text-xl font-semibold mb-4">All Product</h2>
 
-      {/* Header */}
       <div className="grid grid-cols-4 text-sm font-medium text-gray-700 border-b pb-3">
         <span>Product</span>
         <span>Category</span>
@@ -30,7 +28,6 @@ const ProductList = () => {
         <span className="text-right">Action</span>
       </div>
 
-      {/* Rows */}
       {products.map((item) => (
         <div
           key={item.id}

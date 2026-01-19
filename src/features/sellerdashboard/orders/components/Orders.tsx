@@ -60,7 +60,7 @@ const orders = [
 
 const Orders = () => {
   return (
-    <div className="bg-white rounded-lg border-t border-b border-r-0 border-l-0 mt-5">
+    <div className="bg-white -ml-50 lg:ml-0 rounded-lg border-t border-b border-r-0 border-l-0 mt-5">
       {orders.map((order) => (
         <div
           key={order.id}
