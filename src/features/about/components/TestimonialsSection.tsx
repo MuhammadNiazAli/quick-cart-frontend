@@ -59,9 +59,10 @@ const TestimonialsSection: React.FC = () => {
     <section className="bg-white py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-            What People Say About Our Work
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
+            What <span className="border-b-3 border-orange-500 pb-2.5">People Say About Our</span> Work
           </h2>
+            
           <p className="text-gray-600 mt-3 text-sm sm:text-base">
             Feedback from clients and collaborators
           </p>

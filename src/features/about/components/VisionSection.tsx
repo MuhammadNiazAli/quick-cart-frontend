@@ -25,8 +25,8 @@ const VisionSection: React.FC = () => {
 
           
           <div className="group rounded-2xl border p-6 sm:p-8 text-center hover:shadow-md transition-all duration-300 ease-in-out hover:scale-105">
-            <div className="mx-auto mb-4 sm:mb-5 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-orange-50">
-              <Eye className="h-6 w-6 p-0.5 sm:h-9 sm:w-9 text-orange-500 transition-all duration-300 group-hover:text-gray-200 group-hover:bg-orange-600 rounded-full" />
+            <div className="mx-auto mb-4 sm:mb-5 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-orange-50 group-hover:bg-orange-600">
+              <Eye className="h-6 w-6 p-0.5 sm:h-9 sm:w-9 text-orange-500 transition-all duration-300 group-hover:text-gray-200" />
             </div>
 
             <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">
@@ -41,8 +41,8 @@ const VisionSection: React.FC = () => {
 
         
           <div className="group rounded-2xl border p-6 sm:p-8 text-center hover:shadow-md transition-all duration-300 ease-in-out hover:scale-105">
-            <div className="mx-auto mb-4 sm:mb-5 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-orange-50">
-              <Target className="h-6 w-6 sm:h-9 sm:w-9 p-0.5 text-orange-500 transition-all duration-300 group-hover:text-gray-200 group-hover:bg-orange-600 rounded-full" />
+            <div className="mx-auto mb-4 sm:mb-5 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-orange-100 group-hover:bg-orange-600">
+              <Target className="h-8 w-8 sm:h-7 sm:w-7 text-orange-500  transition-all duration-300 group-hover:text-gray-200" />
             </div>
 
             <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">
@@ -58,8 +58,8 @@ const VisionSection: React.FC = () => {
 
           
           <div className="group rounded-2xl border p-6 sm:p-8 text-center hover:shadow-md transition-all duration-300 ease-in-out hover:scale-105">
-            <div className="mx-auto mb-4 sm:mb-5 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-orange-50 text-orange-600">
-              <HeartHandshake className="h-6 w-6 p-0.5 sm:h-9 sm:w-9 text-orange-500 transition-all duration-300 group-hover:text-gray-200 group-hover:bg-orange-600 rounded-full" />
+            <div className="mx-auto mb-4 sm:mb-5 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-orange-50 text-orange-600 group-hover:bg-orange-600">
+              <HeartHandshake className="h-6 w-6 p-0.5 sm:h-7 sm:w-7 text-orange-500 transition-all duration-300 group-hover:text-gray-200" />
             </div>
 
             <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">
