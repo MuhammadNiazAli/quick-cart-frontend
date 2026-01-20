@@ -47,8 +47,8 @@ const FAQSection: React.FC = () => {
     <section className="bg-white py-12 sm:py-16 lg:py-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-            Frequently Asked Questions
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
+            Fr<span className="border-b-3 border-orange-500 pb-1.5">equently Asked Questio</span>ns
           </h2>
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
             Quick answers about our services, process, and how to reach us.

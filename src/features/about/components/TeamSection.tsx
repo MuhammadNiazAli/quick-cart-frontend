@@ -70,7 +70,7 @@ const TeamSection: React.FC = () => {
               <div
                 key={m.name}
                 className="group bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-xl transition-all duration-300 ease-in-out overflow-hidden hover:scale-101"
-              >
+               >
                 <div className="flex flex-col sm:flex-row">
                   <button
                     type="button"
