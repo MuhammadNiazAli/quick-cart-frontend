@@ -8,8 +8,8 @@ const CoreValuesSection: React.FC = () => {
     <section className="bg-white py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-            Our Core Values
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
+            Ou<span className="border-b-3 border-orange-500 pb-1.5">r Core Valu</span>es
           </h2>
 
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -19,7 +19,7 @@ const CoreValuesSection: React.FC = () => {
         </div>
 
         <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition hover:shadow-md">
+          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition-all duration-300 ease-in-out hover:shadow-md hover:scale-103">
             <div className="mx-auto mb-4 sm:mb-5 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-orange-100 group-hover:bg-orange-600 transition">
               <ShieldCheck className="h-6 w-6 sm:h-7 sm:w-7 text-orange-600 group-hover:text-white transition" />
             </div>
@@ -34,7 +34,7 @@ const CoreValuesSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition hover:shadow-md">
+          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition-all duration-300 ease-in-out hover:shadow-md hover:scale-103">
             <div className="mx-auto mb-4 sm:mb-5 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-orange-100 group-hover:bg-orange-600 transition">
               <Sparkles className="h-6 w-6 sm:h-7 sm:w-7 text-orange-600 group-hover:text-white transition" />
             </div>
@@ -49,7 +49,7 @@ const CoreValuesSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition hover:shadow-md">
+          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition-all duration-300 ease-in-out hover:shadow-md hover:scale-103">
             <div className="mx-auto mb-4 sm:mb-5 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-orange-100 group-hover:bg-orange-600 transition">
               <Users className="h-6 w-6 sm:h-7 sm:w-7 text-orange-600 group-hover:text-white transition" />
             </div>
@@ -64,7 +64,7 @@ const CoreValuesSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition hover:shadow-md">
+          <div className="group rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8 text-center transition-all duration-300 ease-in-out hover:shadow-md hover:scale-103">
             <div className="mx-auto mb-4 sm:mb-5 flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full bg-orange-100 group-hover:bg-orange-600 transition">
               <Smile className="h-6 w-6 sm:h-7 sm:w-7 text-orange-600 group-hover:text-white transition" />
             </div>

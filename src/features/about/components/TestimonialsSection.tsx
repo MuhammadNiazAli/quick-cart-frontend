@@ -24,7 +24,7 @@ const testimonials: Testimonial[] = [
     image: "https://randomuser.me/api/portraits/men/45.jpg",
     rating: 5,
     message:
-      "Their full stack development skills are impressive. The ecommerce platform they built works smoothly from frontend to backend.",
+      "Their full stack development skills. The ecommerce they built works smoothly from frontend to backend.",
   },
   {
     name: "Ayesha Noor",

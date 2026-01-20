@@ -8,10 +8,9 @@ const HistorySection: React.FC = () => {
     <section className="bg-white py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-            Our Journey So Far
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
+            Ou<span className="border-b-3 border-orange-500 pb-1.5">r Journey So F</span>ar
           </h2>
-
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
             This journey started with learning web development the right way.
             Over time, we turned that learning into real projects and a full

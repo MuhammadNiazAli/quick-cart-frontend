@@ -8,8 +8,8 @@ const JoinOurTeamSection: React.FC = () => {
     <section className="bg-white py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-            Join Our Team
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
+            Jo<span className="border-b-3 border-orange-500 pb-1.5">in Our Te</span>am
           </h2>
 
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
