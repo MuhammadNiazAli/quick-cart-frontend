@@ -1,7 +1,8 @@
+"use client";
+
 import React from "react";
 import Card from "./components/Shop";
 import { products } from "../../../public/assets/cartdata";
-import Link from "next/link";
 
 type ShopCoverProps = {
   showTitle?: boolean;
@@ -20,15 +21,15 @@ const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
 
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5 mt-2">
           {products.map((item) => (
-            <Link href={`/shop/${item.id}`} key={item.id}>
-              <Card
-                image={item.image}
-                title={item.title}
-                description={item.description}
-                price={item.price}
-                rating={item.rating}
-              />
-            </Link>
+            <Card
+              key={item.id}        // important for React list rendering
+              id={item.id}          // pass id for dynamic route
+              image={item.image}
+              title={item.title}
+              description={item.description}
+              price={item.price}
+              rating={item.rating}
+            />
           ))}
         </div>
       </div>

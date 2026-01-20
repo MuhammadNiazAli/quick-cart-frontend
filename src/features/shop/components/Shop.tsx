@@ -1,10 +1,11 @@
+"use client";
 import Image, { StaticImageData } from "next/image";
-import { Heart } from "lucide-react";
 import star from "../../../../public/assets/star_icon.svg";
 import heart from "../../../../public/assets/heart_icon.svg";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type CardProps = {
+  id: number; // dynamic route id
   image: StaticImageData;
   title: string;
   description: string;
@@ -13,16 +14,25 @@ type CardProps = {
 };
 
 export default function Card({
+  id,
   image,
   title,
   description,
   price,
   rating,
 }: CardProps) {
+  const router = useRouter();
+
   return (
-    <div className="sm:w-fit w-full rounded-xl bg-white p-4 shadow-sm hover:shadow-md transition mx-auto flex flex-col justify-start">
+    <div
+      className="sm:w-fit w-full rounded-xl bg-white p-4 shadow-sm hover:shadow-md transition mx-auto flex flex-col justify-start cursor-pointer"
+      onClick={() => router.push(`/shop/${id}`)} // navigate to dynamic route
+    >
       <div className="relative rounded-lg sm:h-52 max-h-40 bg-gray-100 p-4 flex justify-center">
-        <button className="absolute top-2 right-2 rounded-full bg-white p-1 shadow">
+        <button
+          onClick={(e) => e.stopPropagation()} // prevent card click
+          className="absolute top-2 right-2 rounded-full bg-white p-1 shadow"
+        >
           <Image
             src={heart}
             alt="heart"
@@ -37,7 +47,7 @@ export default function Card({
           alt={title}
           width={160}
           height={160}
-          className="object-contain sm:w-40 sm:h-40 w-30 h-30 hover:scale-105 transition-transform duration-300 cursor-pointer"
+          className="object-contain sm:w-40 sm:h-40 w-30 h-30 hover:scale-105 transition-transform duration-300"
         />
       </div>
 
@@ -46,19 +56,11 @@ export default function Card({
           {title}
         </h3>
 
-        <p className="sm:text-xs text-[10px] text-gray-400">
-          {description}
-        </p>
+        <p className="sm:text-xs text-[10px] text-gray-400">{description}</p>
 
         <div className="flex items-center">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Image
-              key={i}
-              src={star}
-              alt="Star"
-              width={12}
-              height={12}
-            />
+            <Image key={i} src={star} alt="Star" width={12} height={12} />
           ))}
           <span className="text-xs text-gray-500 ml-1">{rating}</span>
         </div>
@@ -68,14 +70,16 @@ export default function Card({
             {price}
           </span>
 
-          <Link href='/cart'>
           <button
+            onClick={(e) => {
+              e.stopPropagation(); // prevent card click
+              router.push("/cart");
+            }}
             className="rounded-full border px-4 py-1.5 text-xs font-medium
             hover:bg-orange-600 hover:text-white cursor-pointer text-gray-500 transition whitespace-nowrap"
           >
             Buy now
           </button>
-          </Link>
         </div>
       </div>
     </div>
