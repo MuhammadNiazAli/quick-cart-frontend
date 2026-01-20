@@ -53,9 +53,9 @@ const TeamSection: React.FC = () => {
 
   return (
     <>
-      <section className="bg-white py-12 sm:py-16">
+      <section className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12">
+          <div className="text-center mb-12 sm:mb-14">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
             Me<span className="border-b-3 border-orange-500 pb-1.5">et Our Te</span>am
           </h2>
