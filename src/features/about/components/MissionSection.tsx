@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import webimage from '../../../../public//assets/types-of-web-development-738x0.webp'
+import webimage from '../../../../public//assets/about.png'
 
 const MissionSection: React.FC = () => {
   return (
