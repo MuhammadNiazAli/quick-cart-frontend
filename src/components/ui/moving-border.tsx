@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useRef } from "react";
-import {
-  motion,
-  useAnimationFrame,
-  useMotionTemplate,
-  useMotionValue,
-  useTransform,
-} from "motion/react";
+import { motion, useAnimationFrame, useMotionTemplate, useMotionValue, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export function Button({
@@ -16,7 +10,7 @@ export function Button({
   as: Component = "button",
   containerClassName,
   borderClassName,
-  duration,
+  duration = 1500,
   className,
   ...otherProps
 }: {
@@ -45,7 +39,7 @@ export function Button({
         <MovingBorder duration={duration} rx="30%" ry="30%">
           <div
             className={cn(
-              "h-20 w-20 bg-[radial-gradient(#FF550E_20%,transparent_60%)] opacity-[0.8]",
+              "h-20 w-20 bg-[radial-gradient(#FF550E_20%,transparent_60%)] opacity-[0.8] transition-all ease-in-out",
               borderClassName
             )}
           />
@@ -68,8 +62,8 @@ export function Button({
 export const MovingBorder = ({
   children,
   duration = 1500,
-  rx,
-  ry,
+  rx = "30%",
+  ry = "30%",
   ...otherProps
 }: {
   children: React.ReactNode;
@@ -78,7 +72,6 @@ export const MovingBorder = ({
   ry?: string;
   [key: string]: any;
 }) => {
- 
   const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue<number>(0);
 
@@ -117,7 +110,7 @@ export const MovingBorder = ({
           height="100%"
           rx={rx}
           ry={ry}
-          ref={pathRef} 
+          ref={pathRef}
         />
       </svg>
       <motion.div

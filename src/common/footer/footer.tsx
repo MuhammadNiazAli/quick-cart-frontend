@@ -3,6 +3,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -32,16 +33,21 @@ const Footer = () => {
               Company
             </h4>
 
-            <ul className="mt-10 space-y-1.5 text-[#6B7280] text-[14px]">
+            <ul className="mt-10 w-20 space-y-1.5 text-[#6B7280] text-[14px]">
+              <Link href='/'>
               <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 Home
               </li>
+              </Link>
+              <Link href='/about'>
               <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 About us
-              </li>
+              </li></Link>
+               <Link href='/contact'>
               <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                 Contact us
               </li>
+              </Link>
               <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200 whitespace-nowrap">
                 Privacy policy
               </li>
