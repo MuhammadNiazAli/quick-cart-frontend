@@ -21,7 +21,7 @@ const MissionSection: React.FC = () => {
               alt="Our Mission"
               width={500}
               height={350}
-              className="w-full object-cover rounded-lg shadow-lg"
+              className="w-full object-cover rounded-lg"
             />
           </div>
 
