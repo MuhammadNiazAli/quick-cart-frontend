@@ -75,7 +75,7 @@ export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
 
                         <button
                           type="button"
-                          className="text-xs text-orange-500 hover:underline mt-1"
+                          className="text-xs text-orange-500 hover:underline mt-1 cursor-pointer"
                           onClick={() => onRemove?.(item.id)}
                         >
                           Remove
@@ -92,7 +92,7 @@ export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
-                        className="w-9 h-9 border rounded-md text-gray-700 hover:bg-gray-50"
+                        className="w-9 h-9 border rounded-md text-gray-700 hover:bg-gray-50 cursor-pointer"
                         onClick={() =>
                           handleQtyChange(item.id, Math.max(1, item.qty - 1))
                         }
@@ -106,7 +106,7 @@ export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
 
                       <button
                         type="button"
-                        className="w-9 h-9 border rounded-md text-gray-700 hover:bg-gray-50"
+                        className="w-9 h-9 border rounded-md text-gray-700 hover:bg-gray-50 cursor-pointer"
                         onClick={() => handleQtyChange(item.id, item.qty + 1)}
                       >
                         ›

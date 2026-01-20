@@ -44,9 +44,9 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-12 sm:py-16 lg:py-20">
+    <section className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 sm:mb-14">
+        <div className="text-center mb-10 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
             Freq<span className="border-b-3 border-orange-500 pb-2">uently Asked Quest</span>ions
           </h2>

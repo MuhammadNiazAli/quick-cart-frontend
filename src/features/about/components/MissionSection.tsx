@@ -6,9 +6,9 @@ import webimage from '../../../../public//assets/about.png'
 
 const MissionSection: React.FC = () => {
   return (
-    <section className="bg-white py-12 sm:py-16">
+    <section className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10 sm:mb-12">
+        <div className="text-center mb-12 sm:mb-14">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
             O<span className="border-b-3 border-orange-500 pb-1">ur Missio</span>n
           </h2>
@@ -50,26 +50,6 @@ const MissionSection: React.FC = () => {
               updates will be added in the future to enhance performance and
               user experience.
             </p>
-
-            <a
-              href="/about"
-              className="inline-flex items-center gap-2 sm:gap-3 text-base sm:text-lg font-semibold text-white bg-orange-600 px-6 sm:px-8 py-3 rounded-full shadow-md hover:bg-orange-500 transition-all"
-            >
-              Learn More About Us
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                fill="none"
-                viewBox="0 0 20 20"
-                className="text-white transition-transform duration-300 group-hover:translate-x-1"
-              >
-                <path
-                  fill="currentColor"
-                  d="M10 3v7H3v2h7v7h2v-7h7V10h-7V3h-2z"
-                />
-              </svg>
-            </a>
           </div>
         </div>
       </div>
