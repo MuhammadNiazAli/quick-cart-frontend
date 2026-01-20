@@ -2,6 +2,7 @@ import Image, { StaticImageData } from "next/image";
 import { Heart } from "lucide-react";
 import star from "../../../../public/assets/star_icon.svg";
 import heart from "../../../../public/assets/heart_icon.svg";
+import Link from "next/link";
 
 type CardProps = {
   image: StaticImageData;
@@ -67,12 +68,14 @@ export default function Card({
             {price}
           </span>
 
+          <Link href='/cart'>
           <button
             className="rounded-full border px-4 py-1.5 text-xs font-medium
             hover:bg-orange-600 hover:text-white cursor-pointer text-gray-500 transition whitespace-nowrap"
           >
             Buy now
           </button>
+          </Link>
         </div>
       </div>
     </div>
