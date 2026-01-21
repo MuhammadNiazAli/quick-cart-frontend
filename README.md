@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuickCart - E-commerce Platform
 
-## Getting Started
+**QuickCart** is a modern, responsive, and fully customizable e-commerce frontend built using **Next.js** and **TypeScript**. The project leverages **shadcn UI components** and **Tailwind CSS** for a clean, modular, and dynamic user interface.  
 
-First, run the development server:
+This project represents a collaborative effort between **Muhammad Niaz Ali** and **Ahsaan Khan**, focusing on building a scalable, user-friendly, and professional e-commerce experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Table of Contents
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Project Overview](#project-overview)  
+- [Features](#features)  
+- [Tech Stack](#tech-stack)  
+- [Folder Structure](#folder-structure)  
+- [UI Contributions](#ui-contributions)  
+- [Getting Started](#getting-started)  
+- [Future Enhancements](#future-enhancements)  
+- [License](#license)  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Project Overview
 
-To learn more about Next.js, take a look at the following resources:
+QuickCart is designed as a fully responsive e-commerce frontend platform. It provides a seamless user experience for both buyers and sellers, with fully functional components such as:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Home Page  
+- Navigation Bar  
+- Footer  
+- About & Contact Pages  
+- Shop Page with product listings  
+- Seller Dashboard  
+- Sign Up / Sign In Modals  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The design emphasizes **modularity, responsiveness, and scalability**, ensuring the frontend can easily integrate with any backend solution in the future.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### User-Facing Features
+- Responsive **Home Page** showcasing products and categories  
+- **Shop Page** with dynamic product listings  
+- User authentication modals: **Sign Up / Sign In**  
+- **Contact Us** and **About** pages for company information  
+- Membership modal for special roles (Viewer / Partner)  
+
+### Seller Features
+- **Seller Dashboard UI** for product management (frontend)  
+
+### UI & Design
+- Fully responsive across **mobile, tablet, and desktop**  
+- Consistent theme using **Tailwind CSS** and **shadcn UI components**  
+- Modular, reusable, and customizable components  
+- Horizontal and vertical layouts for better UX  
+
+---
+
+## Tech Stack
+
+- **Frontend Framework:** Next.js (App Router)  
+- **Language:** TypeScript  
+- **Styling:** Tailwind CSS  
+- **UI Components:** shadcn/ui, Lucide Icons  
+- **State Management:** React `useState` & Next.js built-in routing  
+- **Others:** Custom dynamic folder structure for scalable UI development  
+
+---
+
+## Folder Structure
+
+The project uses a **custom, dynamic folder structure** designed for flexibility and scalability:
+
