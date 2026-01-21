@@ -3,12 +3,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import MembershipModal from "./MembershipModal";
 
 const Footer = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  
+  const membership: {
+    role: "Admin" | "Partner";
+    status: "accepted" | "rejected" | "pending";
+  } = {
+    role: "Partner",
+    status: "pending", 
+  };
+
   return (
     <footer className="w-full bg-white">
-      <div className="w-full max-w-400 mx-auto px-6 sm:px-6 lg:px-30 pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-14 lg:pb-0">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-6 lg:px-30 pt-10 sm:pt-16 lg:pt-20 pb-10 sm:pb-14 lg:pb-0">
         <div className="grid grid-cols-1 md:grid-cols-[2.2fr_1fr_1fr] gap-y-10 sm:gap-y-14 md:gap-y-0 md:gap-x-40 items-start">
+          
+        
           <div className="mt-0 md:mt-20">
             <Image
               src="/assets/logo.svg"
@@ -18,21 +33,19 @@ const Footer = () => {
               className="h-auto w-auto"
               priority
             />
-
             <p className="mt-5 max-w-none md:max-w-400 lg:w-100 text-[#6B7280] text-[13px] leading-5.5">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              ever since the 1500s.
             </p>
           </div>
 
+        
           <div className="md:my-20">
             <h4 className="text-[#111827] text-[16px] font-semibold -mb-5">
               Company
             </h4>
-
-            <ul className="mt-10 w-20 space-y-1.5 text-[#6B7280] text-[14px]">
+            <ul className="mt-10 w-32 space-y-1.5 text-[#6B7280] text-[14px]">
               <Link href="/">
                 <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
                   Home
@@ -54,15 +67,20 @@ const Footer = () => {
             </ul>
           </div>
 
+        
           <div className="md:mt-20">
             <h4 className="text-[#111827] text-[16px] -mb-5 font-semibold">
               Get in touch
             </h4>
-
             <div className="mt-10 space-y-3 text-[#6B7280] text-[14px]">
               <p>+1-234-567-890</p>
               <p>contact@greatstack.dev</p>
-              <button className="w-full sm:w-auto px-6 py-3 bg-orange-600 text-white font-medium rounded-lg shadow-md hover:scale-103 text-[13px] transition transform duration-200 cursor-pointer hover:bg-orange-500">
+
+             
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="w-full sm:w-auto px-6 py-3 bg-orange-600 text-white font-medium rounded-lg shadow-md hover:scale-103 text-[13px] transition transform duration-200 cursor-pointer hover:bg-orange-500"
+              >
                 Join Membership
               </button>
             </div>
@@ -77,6 +95,13 @@ const Footer = () => {
           Copyright 2025 © GreatStack.dev All Right Reserved.
         </p>
       </div>
+
+   
+      <MembershipModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        membership={membership}
+      />
     </footer>
   );
 };
