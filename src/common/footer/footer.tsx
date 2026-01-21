@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -34,19 +33,20 @@ const Footer = () => {
             </h4>
 
             <ul className="mt-10 w-20 space-y-1.5 text-[#6B7280] text-[14px]">
-              <Link href='/'>
-              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
-                Home
-              </li>
+              <Link href="/">
+                <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
+                  Home
+                </li>
               </Link>
-              <Link href='/about'>
-              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
-                About us
-              </li></Link>
-               <Link href='/contact'>
-              <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
-                Contact us
-              </li>
+              <Link href="/about">
+                <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
+                  About us
+                </li>
+              </Link>
+              <Link href="/contact">
+                <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200">
+                  Contact us
+                </li>
               </Link>
               <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200 whitespace-nowrap">
                 Privacy policy
@@ -59,9 +59,12 @@ const Footer = () => {
               Get in touch
             </h4>
 
-            <div className="mt-10 space-y-1 text-[#6B7280] text-[14px]">
+            <div className="mt-10 space-y-3 text-[#6B7280] text-[14px]">
               <p>+1-234-567-890</p>
               <p>contact@greatstack.dev</p>
+              <button className="w-full sm:w-auto px-6 py-3 bg-orange-600 text-white font-medium rounded-lg shadow-md hover:scale-103 text-[13px] transition transform duration-200 cursor-pointer hover:bg-orange-500">
+                Join Membership
+              </button>
             </div>
           </div>
         </div>
