@@ -9,7 +9,7 @@ const MissionSection: React.FC = () => {
     <section className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 lg:mb-15 mb-4">
             O<span className="border-b-3 border-orange-500 pb-1">ur Missio</span>n
           </h2>
         </div>

@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { TbBrandGoogleAnalytics } from "react-icons/tb";
+import { HiOutlineUsers } from "react-icons/hi2";
 
 const menu = [
   { label: "Add Product", href: "/seller", icon: "/assets/add_icon.svg" },
@@ -12,6 +14,12 @@ const menu = [
     icon: "/assets/product_list_icon.svg",
   },
   { label: "Orders", href: "/seller/orders", icon: "/assets/order_icon.png" },
+  {
+    label: "Analytics",
+    href: "/seller/analytics",
+    icon: "react-icon",
+  },
+  { label: "Membership", href: "/seller/membership", icon: "membership-icon" },
 ];
 
 const SellerSidebar = () => {
@@ -34,7 +42,6 @@ const SellerSidebar = () => {
                   : "text-gray-600 hover:text-gray-800 hover:bg-gray-50"
               )}
             >
-    
               <div
                 className={clsx(
                   "absolute right-0 top-1/2 h-12.5 w-1.5 -translate-y-1/2 bg-orange-400 transition-all",
@@ -42,20 +49,23 @@ const SellerSidebar = () => {
                 )}
               />
 
-              <Image
-                src={item.icon}
-                alt={item.label}
-                width={23}
-                height={23}
-                className="opacity-90"
-              />
+            
+              {item.icon === "react-icon" ? (
+                <TbBrandGoogleAnalytics className="w-6 h-6 text-gray-700" />
+              ) : item.icon === "membership-icon" ? (
+                <HiOutlineUsers className="w-6 h-6 text-gray-700" />
+              ) : (
+                <Image
+                  src={item.icon}
+                  alt={item.label}
+                  width={23}
+                  height={23}
+                  className="opacity-90"
+                />
+              )}
 
-             
-              <span className="hidden lg:block">
-                {item.label}
-              </span>
+              <span className="hidden lg:block">{item.label}</span>
 
-              
               <div
                 className={clsx(
                   "absolute inset-0 bg-orange-50/0 transition-colors",
