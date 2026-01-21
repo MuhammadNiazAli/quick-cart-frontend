@@ -9,9 +9,12 @@ const MissionSection: React.FC = () => {
     <section className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-14">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            O<span className="border-b-3 border-orange-500 pb-1">ur Missio</span>n
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2.5">
+            Our <span className="text-orange-500">Mission</span>
           </h2>
+          <div className="mt-1 flex justify-center">
+            <span className="h-0.5 w-28.5 bg-orange-600" />
+          </div>
         </div>
 
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12">

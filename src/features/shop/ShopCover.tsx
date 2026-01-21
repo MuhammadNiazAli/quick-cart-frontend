@@ -22,8 +22,8 @@ const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5 mt-2">
           {products.map((item) => (
             <Card
-              key={item.id}        // important for React list rendering
-              id={item.id}          // pass id for dynamic route
+              key={item.id}        
+              id={item.id}          
               image={item.image}
               title={item.title}
               description={item.description}
