@@ -7,12 +7,13 @@ const VisionSection: React.FC = () => {
   return (
     <section className="bg-white py-6 sm:py-8 lg:py-12">
       <div className=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-       
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
-            Ou<span className="border-b-3 border-orange-500 pb-1.5">r Vision & Purpo</span>se
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2.5">
+            Our Vision <span className="text-orange-500">& Purpose</span>
           </h2>
+          <div className="mt-1 flex justify-center">
+            <span className="h-0.5 w-35 bg-orange-600" />
+          </div>
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
             Our purpose is to master web development and keep exploring what we
             can build with it. We create functional websites, animated web apps,

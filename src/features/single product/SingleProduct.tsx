@@ -4,6 +4,8 @@ import { Buttonvtwo } from "@/components/ui/newversionbtn";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import React from "react";
+import { featuredProductIds } from "../../../public/assets/cartdata";
+import Card from "../shop/components/Shop";
 
 type ProductType = {
   id: number;
@@ -78,16 +80,37 @@ const SingleProduct = ({ product, id }: ProductType) => {
               />
             </Buttonvtwo>
             <Link href={'/cart'} >
-            <Button
-              borderRadius="9999px"
-              className="bg-orange-600 text-white text-[14px] font-semibold
+              <Button
+                borderRadius="9999px"
+                className="bg-orange-600 text-white text-[14px] font-semibold
                                      hover:bg-[#FF550E] hover:scale-101"
-              containerClassName="h-11 w-[140px]"
-              borderClassName="opacity-90"
-            >
-             Buy Now
-            </Button></Link>
+                containerClassName="h-11 w-[140px]"
+                borderClassName="opacity-90"
+              >
+                Buy Now
+              </Button></Link>
           </div>
+        </div>
+      </div>
+      <div className="text-center mt-10">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2.5">
+          Featured <span className="text-orange-500">Products</span>
+        </h2>
+        <div className="mt-1 flex justify-center">
+          <span className="h-0.5 w-28.5 bg-orange-600" />
+        </div>
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5 mt-2">
+          {featuredProductIds.map((item) => (
+            <Card
+              key={item.id}
+              id={item.id}
+              image={item.image}
+              title={item.title}
+              description={item.description}
+              price={item.price}
+              rating={item.rating}
+            />
+          ))}
         </div>
       </div>
     </section>
