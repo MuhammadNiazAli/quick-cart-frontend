@@ -92,7 +92,7 @@ const SingleProduct = ({ product, id }: ProductType) => {
           </div>
         </div>
       </div>
-      <div className="text-center">
+      <div className="text-center mt-10">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2.5">
           Featured <span className="text-orange-500">Products</span>
         </h2>
