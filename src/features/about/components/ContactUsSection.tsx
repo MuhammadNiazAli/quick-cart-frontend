@@ -24,7 +24,7 @@ const ContactUsSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-6 sm:py-8 lg:py-12">
+    <section className="bg-white py-6 sm:py-8 lg:py-12 lg:-mb-15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2.5">
