@@ -26,7 +26,7 @@ export function SignupForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const BACKEND_URL = 'http://localhost:8000'; // <- your Express backend
+  const BACKEND_URL = 'http://localhost:8000'; 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ export function SignupForm() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
-          credentials: 'include', // send cookies
+          credentials: 'include',
         }
       );
 
@@ -53,7 +53,7 @@ export function SignupForm() {
 
       if (!res.ok) throw new Error('message' in data ? data.message : 'Something went wrong');
 
-      // Redirect to home page after successful signup/login
+    
       router.push('/');
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
