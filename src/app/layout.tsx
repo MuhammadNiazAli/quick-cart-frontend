@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import AppShell from "@/common/layout/AppShell";
+import ScrollProvider from "./providers/ScrollProvider";
+import { Toaster } from "react-hot-toast";
+import AppBootstrap from "@/common/refreshToken-store/AppBootstrap";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -22,7 +25,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.variable} antialiased`}>
-        <AppShell>{children}</AppShell>
+        <ScrollProvider>
+          {" "}
+              <AppBootstrap>
+          <AppShell>{children}</AppShell>{" "}
+          </AppBootstrap>
+        </ScrollProvider>
+         <Toaster 
+          position="top-right" 
+          toastOptions={{
+            style: {
+              borderRadius: '10px',
+              background: '#fff',
+              color: '#333',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+            },
+            success: { duration: 3000 },
+          }}
+        />
       </body>
     </html>
   );

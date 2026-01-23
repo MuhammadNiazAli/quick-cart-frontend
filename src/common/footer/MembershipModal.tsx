@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -19,27 +21,49 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
   const [message, setMessage] = useState("");
   const [role, setRole] = useState<"viewer" | "partner">("viewer");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!message.trim()) {
       setToastMessage("Please enter a message before submitting.");
       setTimeout(() => setToastMessage(null), 3000);
       return;
     }
 
-    const payload = {
-      role,
-      message,
-    };
+    try {
+      setLoading(true);
 
-    console.log("Sending to admin:", payload);
+      const res = await fetch(
+        "http://localhost:8000/api/membership/inform",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            role,
+            message,
+          }),
+        }
+      );
 
-    setToastMessage("Your message has been sent to the admin.");
-    setMessage("");
+      const data = await res.json();
 
-    setTimeout(() => setToastMessage(null), 3000);
+      if (!res.ok) {
+        throw new Error(data.message || "Request failed");
+      }
+
+      setToastMessage("Request sent to admin successfully.");
+      setMessage("");
+    } catch (error: any) {
+      setToastMessage(error.message || "Something went wrong");
+    } finally {
+      setLoading(false);
+      setTimeout(() => setToastMessage(null), 3000);
+    }
   };
 
   const handleViewRecord = () => {
@@ -70,7 +94,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
             <div className="flex gap-3">
               <button
                 onClick={() => setRole("viewer")}
-                className={`flex-1 py-2 rounded-lg border font-semibold transition cursor-pointer
+                className={`flex-1 py-2 rounded-lg border font-semibold transition
                   ${
                     role === "viewer"
                       ? "bg-orange-600 text-white border-orange-600"
@@ -82,7 +106,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
 
               <button
                 onClick={() => setRole("partner")}
-                className={`flex-1 py-2 rounded-lg border font-semibold transition cursor-pointer
+                className={`flex-1 py-2 rounded-lg border font-semibold transition
                   ${
                     role === "partner"
                       ? "bg-orange-600 text-white border-orange-600"
@@ -95,8 +119,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
           </div>
 
           <p className="mb-4 text-gray-700 text-sm">
-            If you want to partner with us, please contact the admin. You can
-            inform the admin below.
+            Send a request to admin for partnership approval.
           </p>
 
           <textarea
@@ -109,21 +132,22 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
 
           <button
             onClick={handleSubmit}
-            className="w-full px-5 py-2 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-500 transition mb-3 cursor-pointer"
+            disabled={loading}
+            className="w-full px-5 py-2 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-500 transition mb-3 disabled:opacity-60"
           >
-            Inform Admin
+            {loading ? "Sending..." : "Inform Admin"}
           </button>
 
           <button
             onClick={handleViewRecord}
-            className="w-full px-5 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition cursor-pointer"
+            className="w-full px-5 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition"
           >
             View Your Record
           </button>
 
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 cursor-pointer text-2xl font-bold"
+            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold"
           >
             ✖
           </button>
@@ -131,7 +155,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
       </div>
 
       {toastMessage && (
-        <div className="fixed top-2 left-1/2 -translate-x-1/2 z-9999 bg-white text-black px-6 py-3 rounded-lg shadow-xl border">
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-9999 bg-white text-black px-6 py-3 rounded-lg shadow-xl border">
           {toastMessage}
         </div>
       )}

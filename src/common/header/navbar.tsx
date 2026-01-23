@@ -1,10 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname(); 
+  const router = useRouter();
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -14,6 +19,25 @@ const Navbar: React.FC = () => {
   ];
 
   const isActive = (href: string) => pathname === href;
+
+  // Check role from cookies
+  const getRole = () => {
+    if (typeof document !== "undefined") {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("role="))
+        ?.split("=")[1];
+    }
+    return null;
+  };
+
+  const handleSellerClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const role = getRole();
+    if (role !== "admin") {
+      e.preventDefault();
+      toast.error("Please join membership to access Seller Dashboard!");
+    }
+  };
 
   return (
     <header className="w-full h-15 bg-white border-b border-gray-300 flex items-center px-8 lg:px-32">
@@ -34,8 +58,7 @@ const Navbar: React.FC = () => {
               key={link.href}
               href={link.href}
               className={`text-gray-900 font-lg transition-all duration-300 ease-out transform
-                ${isActive(link.href) ? "text-[#ff542ed4] border-b-2 border-[#ff542ed4] pb-1" : "hover:text-[#ff542ed4]"}`
-              }
+                ${isActive(link.href) ? "text-[#ff542ed4] border-b-2 border-[#ff542ed4] pb-1" : "hover:text-[#ff542ed4]"}`}
             >
               {link.name}
             </Link>
@@ -43,6 +66,7 @@ const Navbar: React.FC = () => {
 
           <Link
             href="/seller"
+            onClick={handleSellerClick}
             className="px-4 py-1 border border-gray-300/70 rounded-[100px] text-xs font-normal text-gray-700 bg-white hover:border-[#ff522f30] hover:text-[#ff522fc9] transition-all duration-300 ease-out transform"
           >
             Seller Dashboard
