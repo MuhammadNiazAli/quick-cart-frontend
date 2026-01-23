@@ -61,9 +61,10 @@ const Footer = () => {
                   Contact us
                 </li>
               </Link>
+              <Link href="/privacy">
               <li className="cursor-pointer hover:text-[#ff6f00] hover:underline transition-colors duration-200 whitespace-nowrap">
                 Privacy policy
-              </li>
+              </li></Link>
             </ul>
           </div>
 

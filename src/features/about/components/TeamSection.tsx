@@ -56,9 +56,12 @@ const TeamSection: React.FC = () => {
       <section className="bg-white py-6 sm:py-8 lg:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-14">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
-            Me<span className="border-b-3 border-orange-500 pb-1.5">et Our Te</span>am
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2.5">
+            Meet Our <span className="text-orange-500">Team</span>
           </h2>
+          <div className="mt-1 flex justify-center">
+            <span className="h-0.5 w-32 bg-orange-600" />
+          </div>
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
               We are a collaborative team of passionate developers who focus on
               building modern, scalable, and user-focused digital products.

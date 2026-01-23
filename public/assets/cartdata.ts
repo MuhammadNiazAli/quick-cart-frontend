@@ -101,3 +101,45 @@ export const products: Product[] = [
     image: bose_hprojector_imageead,
   },
 ];
+export const featuredProductIds: Product[] = [
+  {
+    id: 1,
+    title: "Bose QuietComfort 45",
+    description: "The Bose QuietComfort 45 headphones",
+    price: 329.99,
+    rating: 4.5,
+    image: bose_head,
+  },
+  {
+    id: 2,
+    title: "ASUS ROG Zephyrus G16",
+    description: "The ASUS ROG Zephyrus G16 gaming laptop",
+    price: 1999.99,
+    rating: 4.5,
+    image: macbook_image,
+  },
+  {
+    id: 3,
+    title: "Samsung Galaxy S23",
+    description: "The Samsung Galaxy S23 offers an amazing experience",
+    price: 799.99,
+    rating: 4.5,
+    image: samsung_s23phone_image,
+  },
+  {
+    id: 4,
+    title: "PlayStation 5",
+    description: "The PlayStation 5 takes gaming to the next level",
+    price: 499.99,
+    rating: 4.5,
+    image: playstation_image,
+  },
+  {
+    id: 5,
+    title: "MacBook Pro 16",
+    description: "The MacBook Pro 16 powered by Apple Silicon",
+    price: 2499.99,
+    rating: 4.5,
+    image: header_macbook_image,
+  }
+];

@@ -24,12 +24,15 @@ const ContactUsSection: React.FC = () => {
   };
 
   return (
-    <section className="bg-white py-6 sm:py-8 lg:py-12">
+    <section className="bg-white py-6 sm:py-8 lg:py-12 lg:-mb-15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-10">
-            Ge<span className="border-b-3 border-orange-500 pb-1.5">t in Tou</span>ch
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2.5">
+            Get in <span className="text-orange-500">Touch</span>
           </h2>
+          <div className="mt-1 flex justify-center">
+            <span className="h-0.5 w-28.5 bg-orange-600" />
+          </div>
           <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 leading-relaxed">
             Have a question or want to collaborate? Send us a message or reach
             out using the details below.

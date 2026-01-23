@@ -57,8 +57,11 @@ const ContactUsForm: React.FC = () => {
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-            Contact Us
+            Contact <span className="text-orange-500">Us</span>
           </h2>
+          <div className="mt-1 flex justify-center">
+            <span className="h-0.5 w-28.5 bg-orange-600" />
+          </div>
           <p className="mt-3 text-sm sm:text-base text-gray-600">
             Choose who you want to contact, then send your message.
           </p>

@@ -55,7 +55,7 @@ export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
 
               return (
                 <tr key={item.id} className="align-middle">
-                  {/* Product Details */}
+               
                   <td>
                     <div className="flex items-center gap-4">
                       <div className="w-16 h-16 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden">
