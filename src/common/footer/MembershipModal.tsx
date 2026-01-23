@@ -94,7 +94,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
             <div className="flex gap-3">
               <button
                 onClick={() => setRole("viewer")}
-                className={`flex-1 py-2 rounded-lg border font-semibold transition
+                className={`flex-1 py-2 rounded-lg border font-semibold transition cursor-pointer
                   ${
                     role === "viewer"
                       ? "bg-orange-600 text-white border-orange-600"
@@ -106,7 +106,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
 
               <button
                 onClick={() => setRole("partner")}
-                className={`flex-1 py-2 rounded-lg border font-semibold transition
+                className={`flex-1 py-2 rounded-lg border font-semibold transition cursor-pointer
                   ${
                     role === "partner"
                       ? "bg-orange-600 text-white border-orange-600"
@@ -133,21 +133,21 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full px-5 py-2 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-500 transition mb-3 disabled:opacity-60"
+            className="w-full px-5 py-2 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-500 transition mb-3 disabled:opacity-60 cursor-pointer"
           >
             {loading ? "Sending..." : "Inform Admin"}
           </button>
 
           <button
             onClick={handleViewRecord}
-            className="w-full px-5 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition"
+            className="w-full px-5 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition cursor-pointer"
           >
             View Your Record
           </button>
 
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold cursor-pointer"
           >
             ✖
           </button>

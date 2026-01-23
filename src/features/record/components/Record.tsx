@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 type RecordItem = {
   _id: string;
@@ -21,7 +20,6 @@ const statusStyles: Record<string, string> = {
 const Record = () => {
   const [records, setRecords] = useState<RecordItem[]>([]);
   const [openId, setOpenId] = useState<string | null>(null);
-  const router = useRouter();
 
   const fetchRecords = async () => {
     try {
@@ -29,7 +27,7 @@ const Record = () => {
         "http://localhost:8000/api/membership/my-records",
         {
           credentials: "include",
-        }
+        },
       );
 
       const data = await res.json();
@@ -55,8 +53,6 @@ const Record = () => {
 
         <div className="space-y-4">
           {records.map((rec) => {
-            const isApproved = rec.status === "accepted";
-
             return (
               <div
                 key={rec._id}
@@ -65,9 +61,7 @@ const Record = () => {
                 <div className="flex flex-col md:flex-row justify-between md:items-center gap-4">
                   <div className="space-y-1">
                     <p className="text-sm text-gray-600">Role Requested</p>
-                    <p className="text-lg font-medium">
-                      {rec.requestedRole}
-                    </p>
+                    <p className="text-lg font-medium">{rec.requestedRole}</p>
                   </div>
 
                   <div className="space-y-1">
@@ -87,20 +81,6 @@ const Record = () => {
                       className="px-4 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-500 transition"
                     >
                       {openId === rec._id ? "Hide Details" : "More Details"}
-                    </button>
-
-                    <button
-                      disabled={!isApproved}
-                      onClick={() => router.push("/access/account")}
-                      className={`px-4 py-2 rounded-lg font-medium transition
-                        ${
-                          isApproved
-                            ? "bg-green-600 text-white hover:bg-green-500"
-                            : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                        }
-                      `}
-                    >
-                      Create Account
                     </button>
                   </div>
                 </div>
