@@ -1,19 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 'use client';
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { MoveRight } from "lucide-react";
-import { useRouter } from "next/navigation"; // Next.js 13+ router
+import { useRouter } from "next/navigation";
 
-interface SignupResponse {
-  _id: string;
-  name: string;
-  email: string;
-  role: string;
-  token: string;
+interface AuthResponse {
+  role: "admin" | "user";
+  message?: string;
 }
 
 export function SignupForm() {
@@ -26,7 +24,7 @@ export function SignupForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const BACKEND_URL = 'http://localhost:8000'; 
+  const BACKEND_URL = 'http://localhost:8000';
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,16 +43,22 @@ export function SignupForm() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body),
-          credentials: 'include',
+          credentials: 'include', 
         }
       );
 
-      const data: SignupResponse | { message: string } = await res.json();
+      const data: AuthResponse = await res.json();
 
-      if (!res.ok) throw new Error('message' in data ? data.message : 'Something went wrong');
+      if (!res.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
 
-    
-      router.push('/');
+     
+      if (data.role === 'admin') {
+        router.push('/seller');
+      } else {
+        router.push('/');
+      }
     } catch (err: any) {
       setError(err.message || 'Something went wrong');
     } finally {
@@ -67,6 +71,7 @@ export function SignupForm() {
       <h2 className="text-xl text-neutral-200 font-medium">
         Welcome to <span className="text-[#EA580C]">Q</span>uickcart
       </h2>
+
       <p className="mt-2 max-w-sm text-sm text-neutral-300">
         {signup === 'signup'
           ? 'Create an account to get started'
@@ -76,7 +81,9 @@ export function SignupForm() {
       <form className="my-8" onSubmit={handleSubmit}>
         {signup === 'signup' && (
           <LabelInputContainer className="mb-4">
-            <Label htmlFor="firstname" className="text-neutral-300">Full Name</Label>
+            <Label htmlFor="firstname" className="text-neutral-300">
+              Full Name
+            </Label>
             <Input
               id="firstname"
               placeholder="Full Name"
@@ -89,7 +96,9 @@ export function SignupForm() {
         )}
 
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email" className="text-neutral-300">Email Address</Label>
+          <Label htmlFor="email" className="text-neutral-300">
+            Email Address
+          </Label>
           <Input
             id="email"
             placeholder="projectmayhem@fc.com"
@@ -101,7 +110,9 @@ export function SignupForm() {
         </LabelInputContainer>
 
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="password" className="text-neutral-300/95">Password</Label>
+          <Label htmlFor="password" className="text-neutral-300/95">
+            Password
+          </Label>
           <Input
             id="password"
             placeholder="••••••••"
@@ -120,7 +131,7 @@ export function SignupForm() {
           disabled={loading}
         >
           {signup === 'signup' ? 'Create Account' : 'Sign In'}
-          <MoveRight size={19}/>
+          <MoveRight size={19} />
           <BottomGradient />
         </button>
 
@@ -128,18 +139,22 @@ export function SignupForm() {
           {signup === 'signup' ? (
             <>
               Already have an account?{' '}
-              <a 
+              <a
                 className="text-[#EA580C] hover:text-[#EA580C]/80 cursor-pointer"
-                onClick={()=>setsignup('signin')}
-              >Sign in</a>
+                onClick={() => setsignup('signin')}
+              >
+                Sign in
+              </a>
             </>
           ) : (
             <>
               Don't have an account?{' '}
-              <a 
+              <a
                 className="text-[#EA580C] hover:text-[#EA580C]/80 cursor-pointer"
-                onClick={()=>setsignup('signup')}
-              >Sign Up</a>
+                onClick={() => setsignup('signup')}
+              >
+                Sign Up
+              </a>
             </>
           )}
         </p>
