@@ -3,6 +3,9 @@ import Image, { StaticImageData } from "next/image";
 import star from "../../../../public/assets/star_icon.svg";
 import heart from "../../../../public/assets/heart_icon.svg";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { GetAllProducts } from "@/services/product";
+import { get } from "axios";
 
 type CardProps = {
   id: number; 
@@ -21,6 +24,7 @@ export default function Card({
   price,
   rating,
 }: CardProps) {
+  
   const router = useRouter();
 
   return (

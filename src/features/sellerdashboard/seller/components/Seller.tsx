@@ -1,41 +1,64 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import api from "@/lib/axios";
+import { CreateProduct } from "@/services/product";
 import React, { useRef, useState } from "react";
 
 const Seller: React.FC = () => {
   const fileRef = useRef<HTMLInputElement | null>(null);
+
+  // UI preview
   const [image, setImage] = useState<string | null>(null);
-  const [form, setForm] = useState({
-    name: "",
-    desc: "",
-    category: "Earphone",
-    price: 0,
-    offer: 0,
-  });
+
+  // actual file
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [Title, setTitle] = useState<string>('');
+  const [Description, setDescription] = useState<string>('');
+  const [Category, setCategory] = useState<string>('Earphone');
+  const [Price, setPrice] = useState<number>(0);
+  const [Offer, setOffer] = useState<number>(0);
+  
+  // 🔹 TWO WAY BINDING STATE
 
   const handleImageClick = () => fileRef.current?.click();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
     setImage(URL.createObjectURL(file));
+    setImageFile(file);
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
-  ) => {
-    const { name, value } = e.target;
-    setForm((p) => ({ ...p, [name]: value }));
-  };
+  // 🔹 TWO WAY BINDING HANDLER
+  
 
-  const handleSubmit = () => {
-    console.log({ image, ...form });
+  // 🔹 FORM SUBMIT
+  const handleSubmit = async(e: React.FormEvent) => {
+    e.preventDefault()
+        console.log(image);
+        const formdata:any=new FormData();
+        formdata.append('title',Title);
+        formdata.append('price',Price);
+        formdata.append('category',Category);
+        formdata.append('description',Description);
+        formdata.append('image',imageFile)
+        formdata.append('offer',Offer)
+       await console.log(formdata);
+       
+        await CreateProduct(formdata)
+        setImage(null)
+        setTitle('')
+        setPrice(0)
+        setCategory('Earphone')
+        setOffer(0)
   };
 
   return (
-    <div className="max-w-xl -ml-50 lg:ml-0 mt-6 p-5 bg-white">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-xl -ml-50 lg:ml-0 mt-6 p-5 bg-white"
+    >
       <h2 className="text-sm font-medium text-gray-600 mb-2">Product Image</h2>
 
       <div
@@ -50,20 +73,6 @@ const Seller: React.FC = () => {
           />
         ) : (
           <div className="flex flex-col items-center gap-2 text-gray-400">
-            <svg
-              className="w-7 h-7"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3-3 3 3M12 16v6"
-              />
-            </svg>
             <span className="text-sm">upload</span>
           </div>
         )}
@@ -81,10 +90,9 @@ const Seller: React.FC = () => {
         <label className="block text-sm text-gray-600 mb-1">Product Name</label>
         <input
           name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="Type here"
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 outline-none focus:border-orange-500"
+          value={Title}    
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
         />
       </div>
 
@@ -92,69 +100,57 @@ const Seller: React.FC = () => {
         <label className="block text-sm text-gray-600 mb-1">Description</label>
         <textarea
           name="desc"
-          value={form.desc}
-          onChange={handleChange}
+          value={Description}     
+          onChange={(e) => setDescription(e.target.value)}
           rows={4}
-          placeholder="Type here"
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-700 outline-none focus:border-orange-500 resize-none"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm resize-none"
         />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-4">
-        <div>
-          <label className="block text-sm text-gray-600 mb-1">Category</label>
-          <select
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm outline-none focus:border-orange-500"
-          >
-            {[
-              "Earphone",
-              "Headphone",
-              "Watch",
-              "Smartphone",
-              "Laptop",
-              "Camera",
-              "Accessories",
-            ].map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          name="category"
+          value={Category}    
+          onChange={(e) => setCategory(e.target.value)}
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+        >
+          {[
+            "Earphone",
+            "Headphone",
+            "Watch",
+            "Smartphone",
+            "Laptop",
+            "Camera",
+            "Accessories",
+          ].map((item) => (
+            <option key={item}>{item}</option>
+          ))}
+        </select>
 
-        <div>
-          <label className="block text-sm text-gray-600 mb-1">Price</label>
-          <input
-            name="price"
-            type="number"
-            value={form.price}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm outline-none focus:border-orange-500"
-          />
-        </div>
+        <input
+          name="price"
+          type="number"
+          value={Price}
+          onChange={(e) => setPrice(Number(e.target.value))}
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+        />
 
-        <div>
-          <label className="block text-sm text-gray-600 mb-1">Offer</label>
-          <input
-            name="offer"
-            type="number"
-            value={form.offer}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm outline-none focus:border-orange-500"
-          />
-        </div>
+        <input
+          name="offer"
+          type="number"
+          value={Offer}
+          onChange={(e) => setOffer(Number(e.target.value))}
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm"
+        />
       </div>
 
       <button
-        onClick={handleSubmit}
-        className="mt-5 px-8 bg-orange-600 text-white py-2 rounded-md text-sm hover:bg-orange-500 transition cursor-pointer"
+        type="submit"
+        className="mt-5 px-8 bg-orange-600 text-white py-2 rounded-md text-sm hover:bg-orange-500"
       >
         ADD
       </button>
-    </div>
+    </form>
   );
 };
 
