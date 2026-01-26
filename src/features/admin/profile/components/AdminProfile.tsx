@@ -33,7 +33,7 @@ const AdminProfile: React.FC = () => {
     image: "",
   });
 
-  // Sync query data → local editable state
+
   React.useEffect(() => {
     if (!data) return;
 
