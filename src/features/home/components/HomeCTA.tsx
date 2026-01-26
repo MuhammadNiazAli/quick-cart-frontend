@@ -1,10 +1,99 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSubscribe } from "@/hooks/dealsubscribe/useSubscribe";
 
 const HomeCTA = () => {
+  const [email, setEmail] = useState("");
+
+  const { mutate: subscribe, isPending } = useSubscribe();
+
+  const [toast, setToast] = useState<{
+    show: boolean;
+    type: "success" | "error";
+    text: string;
+  }>({ show: false, type: "success", text: "" });
+
+  const getRole = () => {
+    if (typeof document !== "undefined") {
+      return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("role="))
+        ?.split("=")[1];
+    }
+    return null;
+  };
+
+  const showToast = (type: "success" | "error", text: string) => {
+    setToast({ show: true, type, text });
+    window.setTimeout(() => {
+      setToast((p) => ({ ...p, show: false }));
+    }, 2600);
+  };
+
+  const handleSubscribe = () => {
+    const role = getRole();
+
+    if (role === "partner") {
+      showToast("error", "This action is not allowed for your role");
+      return;
+    }
+
+    const trimmed = email.trim();
+
+    if (!trimmed) {
+      showToast("error", "Please enter your email");
+      return;
+    }
+
+    const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+    if (!isValidEmail) {
+      showToast("error", "Please enter a valid email");
+      return;
+    }
+
+    subscribe(
+      { email: trimmed, discount: 20 },
+      {
+        onSuccess: () => {
+          setEmail("");
+          showToast("success", "Thank you for subscribing!");
+        },
+        onError: (error: any) => {
+          showToast("error", error?.message || "Subscription failed");
+        },
+      },
+    );
+  };
+
   return (
     <div className="w-full bg-white py-16 md:py-20 lg:py-24 lg:-mb-40">
+      <div
+        className={`fixed left-1/2 top-6 z-9999 -translate-x-1/2 transition-all duration-300 ${
+          toast.show ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"
+        }`}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <div
+          className={`flex items-center gap-2 rounded-xl border px-4 py-3 shadow-lg backdrop-blur-sm ${
+            toast.type === "success"
+              ? "bg-white/95 border-emerald-200"
+              : "bg-white/95 border-rose-200"
+          }`}
+        >
+          <span
+            className={`inline-flex h-2.5 w-2.5 rounded-full ${
+              toast.type === "success" ? "bg-emerald-500" : "bg-rose-500"
+            }`}
+          />
+          <p className="text-sm font-medium text-[#374151]">{toast.text}</p>
+        </div>
+      </div>
+
       <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-15">
         <div className="rounded-2xl bg-[#E6E9F2] px-0 py-10 md:px-12 lg:px-16 xl:px-0">
           <div className="flex flex-col items-center gap-10 md:flex-row md:items-center md:justify-between md:gap-8 lg:gap-12">
@@ -77,9 +166,20 @@ const HomeCTA = () => {
               type="email"
               placeholder="Enter your email id"
               className="w-full max-w-md rounded-l-[5px] rounded-r-none border border-gray-300 px-5 py-2.5 text-base md:py-2.75"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSubscribe();
+              }}
+              disabled={isPending}
             />
-            <button className="rounded-r-[5px] bg-orange-600 px-8 py-2.5 text-base font-normal text-white shadow-md transition-all md:px-10 md:py-2.5 md:text-lg cursor-pointer">
-              Subscribe
+            <button
+              className="rounded-r-[5px] bg-orange-600 px-8 py-2.5 text-base font-normal text-white shadow-md transition-all md:px-10 md:py-2.5 md:text-lg cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+              onClick={handleSubscribe}
+              disabled={isPending}
+              type="button"
+            >
+              {isPending ? "Subscribing..." : "Subscribe"}
             </button>
           </div>
         </div>

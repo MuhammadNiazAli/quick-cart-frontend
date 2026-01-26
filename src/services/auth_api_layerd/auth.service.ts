@@ -30,4 +30,11 @@ export const AuthService = {
       body: JSON.stringify(payload),
     });
   },
+
+
+  logout() {
+    return apiFetch<{ message: string }>("/api/auth/logout", {
+      method: "POST",
+    });
+  },
 };

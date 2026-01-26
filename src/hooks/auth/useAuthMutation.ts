@@ -14,17 +14,21 @@ type LoginPayload = {
 
 export const useAuthMutation = () => {
   const signupMutation = useMutation({
-    mutationFn: (payload: SignupPayload) =>
-      AuthService.signup(payload),
+    mutationFn: (payload: SignupPayload) => AuthService.signup(payload),
   });
 
   const loginMutation = useMutation({
-    mutationFn: (payload: LoginPayload) =>
-      AuthService.login(payload),
+    mutationFn: (payload: LoginPayload) => AuthService.login(payload),
+  });
+
+
+  const logoutMutation = useMutation({
+    mutationFn: () => AuthService.logout(),
   });
 
   return {
     signupMutation,
     loginMutation,
+    logoutMutation,
   };
 };
