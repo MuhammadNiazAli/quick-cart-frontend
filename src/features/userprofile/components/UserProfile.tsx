@@ -2,158 +2,134 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState, useEffect, ChangeEvent, useRef } from "react";
+import React, { useState, ChangeEvent, useRef } from "react";
 import toast from "react-hot-toast";
-
-interface UserProfileData {
-  name: string;
-  email: string;
-  role: string;
-  avatar?: string;
-}
+import { useUserProfile } from "@/hooks/user/useUserProfile";
+import { useUpdateUserProfile } from "@/hooks/user/useUpdateUserProfile";
 
 const UserProfile: React.FC = () => {
-  const [user, setUser] = useState<UserProfileData>({
-    name: "",
-    email: "",
-    role: "user",
-    avatar: "",
-  });
-  const [editing, setEditing] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const { data, isLoading } = useUserProfile();
+  const { mutate: updateProfile, isPending } = useUpdateUserProfile();
 
+  const [editing, setEditing] = useState(false);
   const [name, setName] = useState("");
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const fetchProfile = async () => {
-    try {
-      const res = await fetch("http://localhost:8000/api/user/profile", {
-        method: "GET",
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Failed to fetch profile");
+  const startEditing = () => {
+    if (!data) return;
 
-      const data = await res.json();
-      setUser(data);
-      setName(data.name);
-      setAvatarPreview(data.avatar || null);
-    } catch (err: any) {
-      console.error(err);
-      toast.error(err.message || "Error fetching profile");
-    }
+    setName(data.name);
+    setAvatarPreview(data.avatar || null);
+    setEditing(true);
   };
 
-  useEffect(() => {
-    fetchProfile();
-  }, []);
-
-  const handleEditToggle = () => {
-    setEditing(!editing);
+  const cancelEditing = () => {
+    setEditing(false);
+    setAvatarFile(null);
+    setAvatarPreview(null);
   };
 
   const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setAvatarFile(file);
-      setAvatarPreview(URL.createObjectURL(file));
-    }
+    if (!e.target.files?.[0]) return;
+
+    const file = e.target.files[0];
+    setAvatarFile(file);
+    setAvatarPreview(URL.createObjectURL(file));
   };
 
   const openFilePicker = () => {
-    if (fileInputRef.current) fileInputRef.current.click();
+    fileInputRef.current?.click();
   };
 
-  const handleSave = async () => {
-    setLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append("name", name);
-      if (avatarFile) formData.append("avatar", avatarFile);
+  const handleSave = () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    if (avatarFile) formData.append("avatar", avatarFile);
 
-      const res = await fetch("http://localhost:8000/api/user/profile", {
-        method: "PUT",
-        body: formData,
-        credentials: "include",
-      });
-
-      if (!res.ok) throw new Error("Failed to update profile");
-
-      const updatedUser = await res.json();
-      setUser(updatedUser);
-      setAvatarPreview(updatedUser.avatar || null);
-      setEditing(false);
-      toast.success("Profile updated successfully!");
-    } catch (err: any) {
-      console.error(err);
-      toast.error(err.message || "Error updating profile");
-    } finally {
-      setLoading(false);
-    }
+    updateProfile(formData, {
+      onSuccess: () => {
+        setEditing(false);
+        setAvatarFile(null);
+        toast.success("Profile updated successfully!");
+      },
+      onError: (err: any) => {
+        toast.error(err?.message || "Error updating profile");
+      },
+    });
   };
+
+  if (isLoading) {
+    return <div className="p-10 text-center">Loading profile...</div>;
+  }
 
   return (
     <div className="bg-white mt-10 p-6 lg:p-12 max-w-3xl mx-auto shadow-xl border border-neutral-300 rounded-xl">
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Avatar */}
         <div className="flex flex-col items-center">
           <div
-            className={`w-36 h-36 relative cursor-pointer`}
+            className="w-36 h-36 relative cursor-pointer"
             onClick={editing ? openFilePicker : undefined}
           >
             <img
-              src={avatarPreview || user.avatar || "/assets/default-avatar.png"}
+              src={
+                avatarPreview ||
+                data?.avatar ||
+                "/assets/default-avatar.png"
+              }
               alt="Profile"
               className="w-full h-full rounded-full object-cover border-2 border-orange-400"
             />
             {editing && (
               <input
+                ref={fileInputRef}
                 type="file"
                 accept="image/*"
                 onChange={handleAvatarChange}
-                ref={fileInputRef}
-                className="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                className="absolute inset-0 opacity-0 cursor-pointer"
               />
             )}
           </div>
+
           {editing && (
-            <label
+            <span
               onClick={openFilePicker}
               className="mt-2 text-sm text-orange-500 cursor-pointer"
             >
               Change Photo
-            </label>
+            </span>
           )}
         </div>
 
-        <div className="flex-1 w-full">
+        {/* Details */}
+        <div className="flex-1">
           <h2 className="text-2xl font-semibold mb-6">Your Profile</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-gray-600 text-sm mb-1">
-                Full Name
-              </label>
+              <label className="text-sm text-gray-600">Full Name</label>
               {editing ? (
                 <input
-                  type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-gray-300 rounded-md p-2 text-gray-900"
+                  className="w-full border p-2 rounded"
                 />
               ) : (
-                <p className="text-gray-900 font-medium">{user.name}</p>
+                <p className="font-medium">{data?.name}</p>
               )}
             </div>
 
             <div>
-              <label className="block text-gray-600 text-sm mb-1">Email</label>
-              <p className="text-gray-900 font-medium">{user.email}</p>
+              <label className="text-sm text-gray-600">Email</label>
+              <p className="font-medium">{data?.email}</p>
             </div>
 
             <div>
-              <label className="block text-gray-600 text-sm mb-1">Role</label>
-              <p className="text-gray-900 font-medium">{user.role}</p>
+              <label className="text-sm text-gray-600">Role</label>
+              <p className="font-medium">{data?.role}</p>
             </div>
           </div>
 
@@ -161,23 +137,23 @@ const UserProfile: React.FC = () => {
             {editing ? (
               <>
                 <button
+                  disabled={isPending}
                   onClick={handleSave}
-                  disabled={loading}
-                  className="px-6 py-2 bg-orange-600 text-white rounded-md cursor-pointer"
+                  className="px-6 py-2 bg-orange-600 text-white rounded"
                 >
-                  {loading ? "Saving..." : "Save"}
+                  {isPending ? "Saving..." : "Save"}
                 </button>
                 <button
-                  onClick={handleEditToggle}
-                  className="px-6 py-2 bg-gray-300 text-gray-700 rounded-md cursor-pointer"
+                  onClick={cancelEditing}
+                  className="px-6 py-2 bg-gray-300 rounded"
                 >
                   Cancel
                 </button>
               </>
             ) : (
               <button
-                onClick={handleEditToggle}
-                className="px-6 py-2 bg-orange-600 text-white rounded-md cursor-pointer"
+                onClick={startEditing}
+                className="px-6 py-2 bg-orange-600 text-white rounded"
               >
                 Edit Profile
               </button>

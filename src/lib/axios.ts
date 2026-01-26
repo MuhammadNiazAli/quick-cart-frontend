@@ -11,7 +11,7 @@ api.interceptors.response.use(
     const originalRequest = error.config;
     const url = originalRequest?.url || "";
 
-    // 🚫 Auth routes pe refresh kabhi nahi
+   
     if (
       url.includes("/auth/login") ||
       url.includes("/auth/signup") ||
@@ -20,7 +20,7 @@ api.interceptors.response.use(
       return Promise.reject(error);
     }
 
-    // 🚫 Already retried
+   
     if (originalRequest._retry) {
       return Promise.reject(error);
     }
