@@ -5,6 +5,7 @@ import AppShell from "@/common/layout/AppShell";
 import ScrollProvider from "./providers/ScrollProvider";
 import { Toaster } from "react-hot-toast";
 import AppBootstrap from "@/common/refreshToken-store/AppBootstrap";
+import ReactQueryProvider from "./providers/react_tan_stack_quary/ReactQueryProvider";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -25,12 +26,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.variable} antialiased`}>
+          <ReactQueryProvider>
         <ScrollProvider>
           {" "}
               <AppBootstrap>
           <AppShell>{children}</AppShell>{" "}
           </AppBootstrap>
         </ScrollProvider>
+          </ReactQueryProvider>
          <Toaster 
           position="top-right" 
           toastOptions={{

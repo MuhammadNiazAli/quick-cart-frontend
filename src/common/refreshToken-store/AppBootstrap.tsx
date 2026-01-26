@@ -12,7 +12,7 @@ export default function AppBootstrap({
   const pathname = usePathname();
 
   useEffect(() => {
-    // 🚫 Auth pages pe profile kabhi hit mat karo
+   
     if (
       pathname.startsWith("/account") ||
       pathname.startsWith("/login") ||
@@ -22,7 +22,7 @@ export default function AppBootstrap({
     }
 
     getProfile().catch(() => {
-      // silently ignore
+     
     });
   }, [pathname]);
 

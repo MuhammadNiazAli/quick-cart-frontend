@@ -8,7 +8,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const Navbar: React.FC = () => {
-  const pathname = usePathname(); 
+  const pathname = usePathname();
   const router = useRouter();
 
   const navLinks = [
@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
 
   const isActive = (href: string) => pathname === href;
 
-  // Check role from cookies
+
   const getRole = () => {
     if (typeof document !== "undefined") {
       return document.cookie
@@ -31,11 +31,15 @@ const Navbar: React.FC = () => {
     return null;
   };
 
+
   const handleSellerClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const role = getRole();
-    if (role !== "admin") {
+
+    const allowedRoles = ["admin", "partner", "viewer"];
+
+    if (!allowedRoles.includes(role ?? "")) {
       e.preventDefault();
-      toast.error("Please join membership to access Seller Dashboard!");
+      toast.error("You are not authorized to access Seller Dashboard!");
     }
   };
 
@@ -58,7 +62,11 @@ const Navbar: React.FC = () => {
               key={link.href}
               href={link.href}
               className={`text-gray-900 font-lg transition-all duration-300 ease-out transform
-                ${isActive(link.href) ? "text-[#ff542ed4] border-b-2 border-[#ff542ed4] pb-1" : "hover:text-[#ff542ed4]"}`}
+                ${
+                  isActive(link.href)
+                    ? "text-[#ff542ed4] border-b-2 border-[#ff542ed4] pb-1"
+                    : "hover:text-[#ff542ed4]"
+                }`}
             >
               {link.name}
             </Link>
