@@ -3,6 +3,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useInformAdmin } from "@/hooks/membership/member_model_inform/useInformAdmin";
 
 interface MembershipModalProps {
   isOpen: boolean;
@@ -21,49 +22,31 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
   const [message, setMessage] = useState("");
   const [role, setRole] = useState<"viewer" | "partner">("viewer");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
 
+  const { mutate: informAdmin, isPending } = useInformAdmin();
   const router = useRouter();
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!message.trim()) {
       setToastMessage("Please enter a message before submitting.");
       setTimeout(() => setToastMessage(null), 3000);
       return;
     }
 
-    try {
-      setLoading(true);
-
-      const res = await fetch(
-        "http://localhost:8000/api/membership/inform",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            role,
-            message,
-          }),
-        }
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Request failed");
+    informAdmin(
+      { role, message },
+      {
+        onSuccess: () => {
+          setToastMessage("Request sent to admin successfully.");
+          setMessage("");
+          setTimeout(() => setToastMessage(null), 3000);
+        },
+        onError: (error: any) => {
+          setToastMessage(error?.message || "Something went wrong");
+          setTimeout(() => setToastMessage(null), 3000);
+        },
       }
-
-      setToastMessage("Request sent to admin successfully.");
-      setMessage("");
-    } catch (error: any) {
-      setToastMessage(error.message || "Something went wrong");
-    } finally {
-      setLoading(false);
-      setTimeout(() => setToastMessage(null), 3000);
-    }
+    );
   };
 
   const handleViewRecord = () => {
@@ -77,7 +60,9 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
     <>
       <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-40 px-4">
         <div className="bg-white rounded-xl shadow-xl max-w-lg w-full p-6 relative">
-          <h2 className="text-xl font-semibold mb-2">Partner with Us</h2>
+          <h2 className="text-xl font-semibold mb-2">
+            Partner with Us
+          </h2>
 
           <p className="text-sm text-gray-600 mb-4">
             Your current status:{" "}
@@ -86,6 +71,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
             </span>
           </p>
 
+          {/* Role selection */}
           <div className="mb-4">
             <p className="text-sm font-medium text-gray-700 mb-2">
               Select Your Role
@@ -132,10 +118,10 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
 
           <button
             onClick={handleSubmit}
-            disabled={loading}
+            disabled={isPending}
             className="w-full px-5 py-2 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-500 transition mb-3 disabled:opacity-60"
           >
-            {loading ? "Sending..." : "Inform Admin"}
+            {isPending ? "Sending..." : "Inform Admin"}
           </button>
 
           <button
@@ -155,7 +141,7 @@ const MembershipModal: React.FC<MembershipModalProps> = ({
       </div>
 
       {toastMessage && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-9999 bg-white text-black px-6 py-3 rounded-lg shadow-xl border">
+        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-white text-black px-6 py-3 rounded-lg shadow-xl border">
           {toastMessage}
         </div>
       )}

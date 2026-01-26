@@ -1,8 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
+import {
+  useAdminProfile,
+} from "@/hooks/admin/useAdminProfile";
+import {
+  useUpdateAdminProfile,
+} from "@/hooks/admin/useUpdateAdminProfile";
 
 interface Profile {
   name: string;
@@ -14,6 +19,11 @@ interface Profile {
 }
 
 const AdminProfile: React.FC = () => {
+  const { data, isLoading } = useAdminProfile();
+  const { mutate: updateProfile, isPending } =
+    useUpdateAdminProfile();
+
+  const [isEditing, setIsEditing] = useState(false);
   const [profile, setProfile] = useState<Profile>({
     name: "",
     email: "",
@@ -23,116 +33,73 @@ const AdminProfile: React.FC = () => {
     image: "",
   });
 
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/admin/me`,
-          {
-            method: "GET",
-            credentials: "include",
-          },
-        );
+  React.useEffect(() => {
+    if (!data) return;
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch profile");
-        }
-
-        const data = await res.json();
-
-        setProfile({
-          name: data.name,
-          email: data.email,
-          password: "",
-          contact: data.contact || "",
-          role: data.role,
-          image: data.avatar || "",
-        });
-      } catch (err) {
-        console.error(err);
-        alert("Unable to load admin profile");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProfile();
-  }, []);
+    setProfile({
+      name: data.name,
+      email: data.email,
+      password: "",
+      contact: data.contact || "",
+      role: data.role,
+      image: data.avatar || "",
+    });
+  }, [data]);
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: ChangeEvent<HTMLInputElement>
   ) => {
     const { name, value } = e.target;
     setProfile((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
     const file = e.target.files?.[0];
-    if (file) {
-      const preview = URL.createObjectURL(file);
-      setProfile((prev) => ({ ...prev, image: preview }));
-    }
+    if (!file) return;
+
+    const preview = URL.createObjectURL(file);
+    setProfile((prev) => ({ ...prev, image: preview }));
   };
 
-  const handleEditToggle = () => setIsEditing(!isEditing);
+  const handleSave = () => {
+    const payload: {
+      name: string;
+      contact: string;
+      avatar?: string;
+      password?: string;
+    } = {
+      name: profile.name,
+      contact: profile.contact,
+      avatar: profile.image,
+    };
 
-  const handleSave = async () => {
-    try {
-      const payload: any = {
-        name: profile.name,
-        contact: profile.contact,
-        avatar: profile.image,
-      };
-
-      if (profile.password.trim().length >= 6) {
-        payload.password = profile.password;
-      }
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/admin/me`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(payload),
-        },
-      );
-
-      if (!res.ok) {
-        throw new Error("Update failed");
-      }
-
-      const result = await res.json();
-
-      setProfile((prev) => ({
-        ...prev,
-        password: "",
-        name: result.data.name,
-        contact: result.data.contact,
-        image: result.data.avatar,
-      }));
-
-      alert("Profile updated successfully");
-      setIsEditing(false);
-    } catch (err) {
-      console.error(err);
-      alert("Failed to update profile");
+    if (profile.password.trim().length >= 6) {
+      payload.password = profile.password;
     }
+
+    updateProfile(payload, {
+      onSuccess: () => {
+        setProfile((p) => ({ ...p, password: "" }));
+        setIsEditing(false);
+      },
+    });
   };
 
-  if (loading) {
-    return <div className="p-10 text-center">Loading profile...</div>;
+  if (isLoading) {
+    return (
+      <div className="p-10 text-center">
+        Loading profile...
+      </div>
+    );
   }
 
   return (
     <div className="bg-white mt-10 p-6 lg:p-12">
       <div className="max-w-4xl mx-auto bg-white shadow-xl border border-neutral-300 rounded-xl p-8">
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div className="flex flex-col md:flex-row gap-8">
           {/* Avatar */}
           <div className="flex flex-col items-center">
             <div className="w-36 h-36 relative">
@@ -151,40 +118,43 @@ const AdminProfile: React.FC = () => {
               )}
             </div>
             {isEditing && (
-              <span className="mt-2 text-sm text-blue-500 cursor-pointer">
+              <span className="mt-2 text-sm text-blue-500">
                 Change Photo
               </span>
             )}
           </div>
 
-          <div className="flex-1 w-full">
-            <h2 className="text-2xl font-semibold mb-6">Admin Profile</h2>
+          <div className="flex-1">
+            <h2 className="text-2xl font-semibold mb-6">
+              Admin Profile
+            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-gray-600 text-sm mb-1">Name</label>
+                <label className="text-sm text-gray-600">
+                  Name
+                </label>
                 {isEditing ? (
                   <input
-                    type="text"
                     name="name"
                     value={profile.name}
                     onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-md p-2"
+                    className="w-full border p-2 rounded"
                   />
                 ) : (
-                  <p className="font-medium">{profile.name}</p>
+                  <p>{profile.name}</p>
                 )}
               </div>
 
               <div>
-                <label className="block text-gray-600 text-sm mb-1">
+                <label className="text-sm text-gray-600">
                   Email
                 </label>
-                <p className="font-medium">{profile.email}</p>
+                <p>{profile.email}</p>
               </div>
 
               <div>
-                <label className="block text-gray-600 text-sm mb-1">
+                <label className="text-sm text-gray-600">
                   New Password
                 </label>
                 {isEditing ? (
@@ -193,34 +163,27 @@ const AdminProfile: React.FC = () => {
                     name="password"
                     value={profile.password}
                     onChange={handleChange}
-                    placeholder="Leave blank to keep current"
-                    className="w-full border border-gray-300 rounded-md p-2"
+                    className="w-full border p-2 rounded"
                   />
                 ) : (
-                  <p className="font-medium">********</p>
+                  <p>********</p>
                 )}
               </div>
 
               <div>
-                <label className="block text-gray-600 text-sm mb-1">
-                  Contact No
+                <label className="text-sm text-gray-600">
+                  Contact
                 </label>
                 {isEditing ? (
                   <input
-                    type="text"
                     name="contact"
                     value={profile.contact}
                     onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-md p-2"
+                    className="w-full border p-2 rounded"
                   />
                 ) : (
-                  <p className="font-medium">{profile.contact}</p>
+                  <p>{profile.contact}</p>
                 )}
-              </div>
-
-              <div>
-                <label className="block text-gray-600 text-sm mb-1">Role</label>
-                <p className="font-medium">{profile.role}</p>
               </div>
             </div>
 
@@ -228,22 +191,23 @@ const AdminProfile: React.FC = () => {
               {isEditing ? (
                 <>
                   <button
+                    disabled={isPending}
                     onClick={handleSave}
-                    className="px-6 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-500"
+                    className="px-6 py-2 bg-orange-600 text-white rounded"
                   >
                     Save
                   </button>
                   <button
-                    onClick={handleEditToggle}
-                    className="px-6 py-2 bg-gray-300 text-gray-700 rounded-md"
+                    onClick={() => setIsEditing(false)}
+                    className="px-6 py-2 bg-gray-300 rounded"
                   >
                     Cancel
                   </button>
                 </>
               ) : (
                 <button
-                  onClick={handleEditToggle}
-                  className="px-6 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-500"
+                  onClick={() => setIsEditing(true)}
+                  className="px-6 py-2 bg-orange-600 text-white rounded"
                 >
                   Edit Profile
                 </button>
