@@ -6,13 +6,8 @@ import star from "../../../../public/assets/star_icon.svg";
 import heart from "../../../../public/assets/heart_icon.svg";
 
 type CardProps = {
-<<<<<<< HEAD
-  id: string|number; 
-  image: StaticImageData;
-=======
   id: string;
   image: string;
->>>>>>> feature/home
   title: string;
   description: string;
   price: number;
@@ -48,11 +43,7 @@ const imageUrl = image.startsWith("http")
         </button>
 
         <Image
-<<<<<<< HEAD
-          src={`http://localhost:8000/${image}`}
-=======
           src={imageUrl}
->>>>>>> feature/home
           alt={title}
           width={100}
           height={100}

@@ -20,13 +20,6 @@ type ShopCoverProps = {
 };
 
 const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
-<<<<<<< HEAD
-  const [Data, setdata] = useState<data[]>([])
-  useEffect(() => {
-    const getdata = async () => {
-      const data = await GetAllProducts() as data[]
-      if (!data || data.length === 0) return console.log('data not fetched');
-=======
   const [data, setData] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -48,7 +41,6 @@ const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
   if (loading) {
     return <div className="p-10 text-center">Loading products...</div>;
   }
->>>>>>> feature/home
 
   return (
     <section className="w-full flex flex-col items-center mb-10">
