@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import star from "../../../../public/assets/star_icon.svg";
 import heart from "../../../../public/assets/heart_icon.svg";
+import Link from "next/link";
 
 type CardProps = {
   id: string;
@@ -24,16 +25,16 @@ export default function Card({
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
-const imageUrl = image.startsWith("http")
-  ? image
-  : `${API_URL}${image}`;
+  const imageUrl = image.startsWith("http")
+    ? image
+    : `${API_URL}${image}`;
 
   return (
     <div
       onClick={() => router.push(`/shop/${id}`)}
-      className="group bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer"
+      className="group bg-white rounded-xl border hover:scale-102 border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer"
     >
-    
+
       <div className="relative h-30 bg-gray-50 rounded-t-xl flex items-center justify-center overflow-hidden">
         <button
           onClick={(e) => e.stopPropagation()}
@@ -52,7 +53,7 @@ const imageUrl = image.startsWith("http")
         />
       </div>
 
-     
+
       <div className="p-3 space-y-1.5">
         <h3 className="text-sm font-medium text-gray-800 line-clamp-1">
           {title}
@@ -75,12 +76,14 @@ const imageUrl = image.startsWith("http")
             <p className="text-[11px] text-green-600">Free Delivery</p>
           </div>
 
-          <button
-            onClick={(e) => e.stopPropagation()}
-            className="text-xs font-medium px-3 py-1.5 rounded-md bg-orange-600 text-white hover:bg-orange-700 transition"
-          >
-            Buy
-          </button>
+          <Link href="/cart" className="flex">
+            <button
+              onClick={(e) => e.stopPropagation()}
+              className="text-xs cursor-pointer font-medium px-5 py-1.5 rounded-full bg-orange-600 text-white hover:bg-orange-700 transition"
+            >
+              Buy
+            </button>
+          </Link>
         </div>
       </div>
     </div>

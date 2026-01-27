@@ -18,8 +18,9 @@ const SingleProduct = ({ product }: Props) => {
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
-        
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 mb-12">
+
         {/* LEFT: Product Gallery */}
         <div className="bg-white border rounded-xl p-6">
           <div className="flex justify-center items-center h-75">
@@ -37,7 +38,7 @@ const SingleProduct = ({ product }: Props) => {
 
         {/* RIGHT: Product Info */}
         <div className="space-y-5">
-          
+
           <h1 className="text-2xl font-semibold leading-snug">
             {product.title}
           </h1>
@@ -90,26 +91,26 @@ const SingleProduct = ({ product }: Props) => {
 
           {/* Actions */}
           <div className="flex gap-3 pt-4">
-  {/* Add to Cart */}
-  <button
-    type="button"
-    className="h-11 px-6 rounded-xl border border-orange-200 bg-orange-50 text-orange-700 font-semibold
-               hover:bg-orange-100 active:scale-[0.99] transition"
-  >
-    Add to Cart
-  </button>
+            {/* Add to Cart */}
+            <button
+              type="button"
+              className="h-11 px-6 rounded-3xl border border-orange-200 bg-orange-50 text-orange-700 font-semibold
+               hover:bg-orange-100 hover:scale-102 transition cursor-pointer"
+            >
+              Add to Cart
+            </button>
 
-  {/* Buy Now */}
-  <Link href="/cart" className="flex">
-    <button
-      type="button"
-      className="h-11 px-6 rounded-xl bg-linear-to-r from-orange-600 to-amber-500 text-white font-semibold
-                 shadow-sm hover:opacity-95 active:scale-[0.99] transition"
-    >
-      Buy Now
-    </button>
-  </Link>
-</div>
+            {/* Buy Now */}
+            <Link href="/cart" className="flex">
+              <button
+                type="button"
+                className="h-11 px-6 rounded-3xl bg-linear-to-r from-orange-500 to-orange-600 text-white text-[0.95rem] font-semibold
+                 shadow-sm  hover:scale-102 transition cursor-pointer"
+              >
+                Buy Now
+              </button>
+            </Link>
+          </div>
 
 
           {/* Extra Info */}
@@ -119,6 +120,21 @@ const SingleProduct = ({ product }: Props) => {
           </div>
         </div>
       </div>
+      <div>
+        <div className="text-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2.5">
+            Feature <span className="text-orange-500">Products</span>
+          </h2>
+          <div className="mt-1 flex justify-center">
+            <span className="h-0.5 w-34 bg-orange-600" />
+          </div>
+        </div>
+          <div>
+            {/* Dalta ke ba feachure products map ke */}
+          </div>
+      </div>
+      </div>
+      
     </section>
   );
 };
