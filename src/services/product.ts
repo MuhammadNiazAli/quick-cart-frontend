@@ -1,27 +1,41 @@
-import api from "@/lib/axios";
-import { off } from "process";
-import toast from "react-hot-toast";
+import { apiFetch } from "./base_api_client/apiClient";
 
-export const CreateProduct = async (formData: {
+/* =========================
+   PRODUCT TYPE
+========================= */
+export type Product = {
+  _id: string;
   title: string;
   description: string;
   price: number;
   category: string;
-  image: string[];
+  image: string;
   offer?: number;
-}) => {
-    try {
-        const res = await api.post("/product/createproduct", formData);
-        return res.data;
-    } catch (error) {
-        toast.error("Failed to create product");
-    }
+  __v?: number;
 };
-export const GetAllProducts=async()=>{
-    try {
-         const res = await api.get("/product/allproducts");
-         return res.data
-    } catch (error) {
-        
-    }
-}
+
+/* =========================
+   GET ALL PRODUCTS
+========================= */
+export const getAllProducts = async (): Promise<Product[]> => {
+  return apiFetch<Product[]>("/api/product/allproducts");
+};
+
+/* =========================
+   GET SINGLE PRODUCT
+========================= */
+export const getSingleProduct = async (id: string): Promise<Product> => {
+  return apiFetch<Product>(`/api/product/product/${id}`);
+};
+
+/* =========================
+   CREATE PRODUCT (FormData)
+========================= */
+export const createProduct = async (
+  formData: FormData
+): Promise<Product> => {
+  return apiFetch<Product>("/api/product/createproduct", {
+    method: "POST",
+    body: formData, // ✅ NO JSON.stringify
+  });
+};

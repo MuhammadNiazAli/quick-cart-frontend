@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import api from "@/lib/axios";
-import { CreateProduct } from "@/services/product";
+import { createProduct } from "@/services/product";
+
 import React, { useRef, useState } from "react";
 
 const Seller: React.FC = () => {
@@ -46,7 +47,7 @@ const Seller: React.FC = () => {
         formdata.append('offer',Offer)
        await console.log(formdata);
        
-        await CreateProduct(formdata)
+        await createProduct(formdata)
         setImage(null)
         setTitle('')
         setPrice(0)

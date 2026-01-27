@@ -1,116 +1,122 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Button } from "@/components/ui/moving-border";
-import { Buttonvtwo } from "@/components/ui/newversionbtn";
-import Image, { StaticImageData } from "next/image";
-import Link from "next/link";
-import React from "react";
-import { featuredProductIds } from "../../../public/assets/cartdata";
-import Card from "../shop/components/Shop";
+"use client";
 
-type ProductType = {
-  id: number;
-  product: {
-    id: number;
-    image: StaticImageData;
-    title: string;
-    description: string;
-    price: number;
-  };
+import Image from "next/image";
+import Link from "next/link";
+import { Star, ShieldCheck, Truck, RotateCcw } from "lucide-react";
+import { Product } from "@/services/product";
+
+type Props = {
+  product: Product;
 };
 
-const SingleProduct = ({ product, id }: ProductType) => {
+const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+
+const SingleProduct = ({ product }: Props) => {
+  const imageUrl = product.image.startsWith("http")
+    ? product.image
+    : `${API_URL}${product.image}`;
+
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div className="flex justify-center gap-5">
-          <div className="bg-gray-100 rounded-2xl p-6 sm:px-10 py-4 w-full max-w-md">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+        
+        {/* LEFT: Product Gallery */}
+        <div className="bg-white border rounded-xl p-6">
+          <div className="flex justify-center items-center h-75">
             <Image
-              src={product.image}
-              alt={product.title || "Product image"}
-              width={400}
-              height={400}
-              className="object-contain mx-auto"
+              src={imageUrl}
+              alt={product.title}
+              width={300}
+              height={300}
               priority
+              unoptimized
+              className="object-contain"
             />
-            <div className="mt-5 flex justify-start">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white border rounded-xl flex items-center justify-center">
-                <Image
-                  src={product.image}
-                  alt="Product thumbnail"
-                  width={80}
-                  height={80}
-                  className="object-contain"
-                />
-              </div>
-            </div>
           </div>
         </div>
-        <div className="text-start md:text-left">
-          <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-3">
+
+        {/* RIGHT: Product Info */}
+        <div className="space-y-5">
+          
+          <h1 className="text-2xl font-semibold leading-snug">
             {product.title}
           </h1>
-          <div className="flex justify-start items-center gap-2 mb-4 ">
-            <div className="text-orange-500 text-lg">★★★★☆</div>
-            <span className="text-sm text-gray-500">(4.5)</span>
+
+          {/* Rating */}
+          <div className="flex items-center gap-2 text-sm">
+            <div className="flex text-yellow-500">
+              <Star size={16} fill="currentColor" />
+              <Star size={16} fill="currentColor" />
+              <Star size={16} fill="currentColor" />
+              <Star size={16} fill="currentColor" />
+              <Star size={16} />
+            </div>
+            <span className="text-gray-500">(4.1 rating)</span>
           </div>
-          <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-6 max-w-xl  lg:mx-0">
-            {product.description} Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Mollitia vero provident, architecto tempora
-            repellat explicabo vel maiores distinctio fugit? Laborum nemo quasi
-            architecto hic similique facere vero, quaerat cupiditate in?
-          </p>
-          <div className="flex justify-start items-center gap-4 mb-8">
-            <span className="text-2xl font-medium text-gray-800">
+
+          {/* Price */}
+          <div className="flex items-end gap-3">
+            <span className="text-3xl font-bold text-gray-900">
               ${product.price}
             </span>
-            <span className="text-lg text-gray-400 line-through">
-              ${Math.round(product.price * 1.25)}
-            </span>
+
+            {product.offer && (
+              <span className="text-gray-400 line-through text-lg">
+                ${Math.round(product.price * 1.25)}
+              </span>
+            )}
           </div>
-          <hr className="mb-6 max-w-md mx-auto lg:mx-0" />
-          <div className="flex flex-col sm:flex-row justify-start gap-4">
-            <Buttonvtwo className="group flex items-center gap-3 text-[#374151] font-semibold cursor-pointer">
-              Add to Cart
-              <Image
-                src="/assets/arrow_icon.svg"
-                alt="Arrow"
-                width={16}
-                height={16}
-                className="transition-transform duration-300 group-hover:translate-x-1.5 -ml-1"
-              />
-            </Buttonvtwo>
-            <Link href={'/cart'} >
-              <Button
-                borderRadius="9999px"
-                className="bg-orange-600 text-white text-[14px] font-semibold
-                                     hover:bg-[#FF550E] hover:scale-101"
-                containerClassName="h-11 w-[140px]"
-                borderClassName="opacity-90"
-              >
-                Buy Now
-              </Button></Link>
+
+          {/* Description */}
+          <p className="text-gray-600 leading-relaxed max-w-xl">
+            {product.description}
+          </p>
+
+          {/* Delivery & Trust */}
+          <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <Truck size={18} />
+              <span>Free delivery</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <RotateCcw size={18} />
+              <span>7 days return</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={18} />
+              <span>Secure payment</span>
+            </div>
           </div>
-        </div>
-      </div>
-      <div className="text-center mt-10">
-        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2.5">
-          Featured <span className="text-orange-500">Products</span>
-        </h2>
-        <div className="mt-1 flex justify-center">
-          <span className="h-0.5 w-28.5 bg-orange-600" />
-        </div>
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5 mt-2">
-          {featuredProductIds.map((item) => (
-            <Card
-              key={item.id}
-              id={item.id}
-              image={item.image}
-              title={item.title}
-              description={item.description}
-              price={item.price}
-              rating={item.rating}
-            />
-          ))}
+
+          {/* Actions */}
+          <div className="flex gap-3 pt-4">
+  {/* Add to Cart */}
+  <button
+    type="button"
+    className="h-11 px-6 rounded-xl border border-orange-200 bg-orange-50 text-orange-700 font-semibold
+               hover:bg-orange-100 active:scale-[0.99] transition"
+  >
+    Add to Cart
+  </button>
+
+  {/* Buy Now */}
+  <Link href="/cart" className="flex">
+    <button
+      type="button"
+      className="h-11 px-6 rounded-xl bg-linear-to-r from-orange-600 to-amber-500 text-white font-semibold
+                 shadow-sm hover:opacity-95 active:scale-[0.99] transition"
+    >
+      Buy Now
+    </button>
+  </Link>
+</div>
+
+
+          {/* Extra Info */}
+          <div className="border-t pt-4 text-sm text-gray-500">
+            <p>In stock. Ships within 24 hours.</p>
+            <p>Sold by Official Store.</p>
+          </div>
         </div>
       </div>
     </section>

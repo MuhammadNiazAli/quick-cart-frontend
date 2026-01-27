@@ -1,57 +1,68 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import React, { useEffect, useState } from "react";
 import Card from "./components/Shop";
-import { products } from "../../../public/assets/cartdata";
-import { GetAllProducts } from "@/services/product";
-import { error } from "console";
+import { getAllProducts } from "@/services/product";
 
-type ShopCoverProps = {
-  showTitle?: boolean;
-};
-
-type data = {
+export type Product = {
   _id: string;
   title: string;
   description: string;
   price: number;
   category: string;
-  image: string | null;
+  image: string;
   offer?: number;
-  __v?: number;
-}
+};
+
+type ShopCoverProps = {
+  showTitle?: boolean;
+};
 
 const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
-  const [Data, setdata] = useState<data[]>([])
-  useEffect(() => {
-    const getdata = async () => {
-      const data = await GetAllProducts()
-      if (!data) return console.log('data not fech');
+  const [data, setData] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
-      setdata(data)
-      console.log(data);
-    }
-    getdata()
-  }, [])
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await getAllProducts();
+        setData(res);
+      } catch (error) {
+        console.error("Products fetch failed");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <div className="p-10 text-center">Loading products...</div>;
+  }
+
   return (
-    <section className="w-full flex flex-col items-center justify-center mb-10">
-      <div className="w-full max-w-290 px-7.5 mt-8">
+    <section className="w-full flex flex-col items-center mb-10">
+      <div className="w-full max-w-7xl px-6 mt-8">
         {showTitle && (
           <h2 className="text-[22px] font-medium text-gray-700 mb-5">
-            All{" "}<span className="text-orange-500">Pr<span className="border-b-2 border-orange-600">oducts</span></span>
+            All{" "}
+            <span className="text-orange-500">
+              Pr<span className="border-b-2 border-orange-600">oducts</span>
+            </span>
           </h2>
         )}
 
-        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5 mt-2">
-          {Data?.map((item:any) => (
+        <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5">
+          {data.map((item) => (
             <Card
-              key={item.id}
-              id={item.id}
+              key={item._id}
+              id={item._id}
               image={item.image}
               title={item.title}
               description={item.description}
               price={item.price}
-              rating={item.rating}
             />
           ))}
         </div>
