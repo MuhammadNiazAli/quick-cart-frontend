@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,7 +7,7 @@ import SingleProduct from "@/features/single product/SingleProduct";
 import { getSingleProduct, Product } from "@/services/product";
 
 const Page = () => {
-  const params = useParams(); // ✅ CORRECT WAY
+  const params = useParams(); 
   const id = params.id as string;
 
   const [product, setProduct] = useState<Product | null>(null);

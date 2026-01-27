@@ -44,7 +44,7 @@ const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
 
   return (
     <section className="w-full flex flex-col items-center mb-10">
-      <div className="w-full max-w-7xl px-6 mt-8">
+      <div className="w-full max-w-6xl px-6 mt-8">
         {showTitle && (
           <h2 className="text-[22px] font-medium text-gray-700 mb-5">
             All{" "}
