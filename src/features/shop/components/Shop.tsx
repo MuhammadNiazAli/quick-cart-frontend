@@ -8,7 +8,7 @@ import { GetAllProducts } from "@/services/product";
 import { get } from "axios";
 
 type CardProps = {
-  id: number; 
+  id: string|number; 
   image: StaticImageData;
   title: string;
   description: string;
@@ -47,7 +47,7 @@ export default function Card({
         </button>
 
         <Image
-          src={image}
+          src={`http://localhost:8000/${image}`}
           alt={title}
           width={160}
           height={160}

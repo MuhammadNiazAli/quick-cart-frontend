@@ -25,8 +25,8 @@ const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
   const [Data, setdata] = useState<data[]>([])
   useEffect(() => {
     const getdata = async () => {
-      const data = await GetAllProducts()
-      if (!data) return console.log('data not fech');
+      const data = await GetAllProducts() as data[]
+      if (!data || data.length === 0) return console.log('data not fetched');
 
       setdata(data)
       console.log(data);
@@ -45,8 +45,8 @@ const ShopCover = ({ showTitle = true }: ShopCoverProps) => {
         <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:gap-5 mt-2">
           {Data?.map((item:any) => (
             <Card
-              key={item.id}
-              id={item.id}
+              key={item._id}
+              id={item._id}
               image={item.image}
               title={item.title}
               description={item.description}
