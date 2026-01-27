@@ -1,12 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { HiOutlineBell } from "react-icons/hi2";
 import { LuUser } from "react-icons/lu";
-import React from "react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useAuthMutation } from "@/hooks/auth/useAuthMutation";
 
 const SellerHeader = () => {
+  const router = useRouter();
+  const { logoutMutation } = useAuthMutation();
+
   const unreadNotifications = 3;
 
   const getRole = () => {
@@ -21,6 +27,18 @@ const SellerHeader = () => {
 
   const role = getRole();
   const isAdmin = role === "admin";
+
+  const handleLogout = () => {
+    logoutMutation.mutate(undefined, {
+      onSuccess: () => {
+        toast.success("Logged out successfully");
+        router.push("/account");
+      },
+      onError: (err: any) => {
+        toast.error(err?.message || "Logout failed");
+      },
+    });
+  };
 
   return (
     <header className="fixed top-0 left-64 right-0 h-16 bg-white border-b border-neutral-400/50 flex items-center justify-between px-6 lg:px-10 z-50 -ml-65">
@@ -50,8 +68,12 @@ const SellerHeader = () => {
               <LuUser className="w-6 h-6 cursor-pointer" />
             </Link>
 
-            <button className="bg-[#4B5563] hover:bg-[#2f3439] text-white px-8 py-2 rounded-full text-sm transition-colors duration-300">
-              Logout
+            <button
+              onClick={handleLogout}
+              disabled={logoutMutation.isPending}
+              className="bg-[#4B5563] hover:bg-[#2f3439] text-white px-8 py-2 rounded-full text-sm transition-colors duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {logoutMutation.isPending ? "Logging out..." : "Logout"}
             </button>
           </>
         )}
