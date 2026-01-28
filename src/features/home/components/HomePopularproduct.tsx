@@ -10,7 +10,7 @@ const HomePopularproduct = () => {
       
       <ShopCover showTitle={false} />
       <div className="w-full h-20 flex justify-center items-center">
-        <button className="py-2 px-12 border border-gray-500/20 text-gray-500/80 font-normal cursor-pointer rounded-[5px]">See more</button>
+        <button className="py-2 px-12 text-white font-normal cursor-pointer bg-orange-600 rounded-full hover:bg-orange-500 hover:scale-102">See more</button>
       </div>
     </section>
   );
