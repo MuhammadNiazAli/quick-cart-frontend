@@ -1,10 +1,7 @@
-import ShopCover from '@/features/shop/ShopCover'
-import React from 'react'
+import ShopCover from "@/features/shop/ShopCover";
 
-const page = () => {
-  return (
-    <ShopCover/>
-  )
-}
+const Page = () => {
+  return <ShopCover />;
+};
 
-export default page
+export default Page;

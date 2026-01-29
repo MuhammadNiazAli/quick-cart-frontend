@@ -8,13 +8,16 @@ export async function apiFetch<T>(
   url: string,
   options?: RequestInit
 ): Promise<T> {
+
+  const isFormData = options?.body instanceof FormData;
+
   const res = await fetch(`${API_BASE_URL}${url}`, {
+    ...(options || {}),
     headers: {
-      "Content-Type": "application/json",
+      ...(isFormData ? {} : { "Content-Type": "application/json" }),
       ...(options?.headers || {}),
     },
     credentials: "include",
-    ...options,
   });
 
   const data = await res.json();
@@ -25,3 +28,4 @@ export async function apiFetch<T>(
 
   return data;
 }
+

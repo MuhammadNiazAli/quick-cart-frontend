@@ -78,7 +78,7 @@ const TeamSection: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setOpenImage({ src: m.img, alt: m.name })}
-                    className="relative w-full sm:w-44 md:w-52 lg:w-56 shrink-0 cursor-zoom-in"
+                    className="relative w-full sm:w-44 md:w-52 lg:w-56 shrink-0 cursor-pointer"
                     aria-label={`Open image of ${m.name}`}
                   >
                     <div className="relative h-44 sm:h-full sm:min-h-60 md:min-h-65 lg:min-h-70 bg-gray-50">

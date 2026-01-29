@@ -1,16 +1,17 @@
 "use client";
-import Image, { StaticImageData } from "next/image";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import star from "../../../../public/assets/star_icon.svg";
 import heart from "../../../../public/assets/heart_icon.svg";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type CardProps = {
-  id: number; 
-  image: StaticImageData;
+  id: string;
+  image: string;
   title: string;
   description: string;
   price: number;
-  rating: number;
 };
 
 export default function Card({
@@ -19,67 +20,70 @@ export default function Card({
   title,
   description,
   price,
-  rating,
 }: CardProps) {
   const router = useRouter();
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+
+  const imageUrl = image.startsWith("http")
+    ? image
+    : `${API_URL}${image}`;
+
   return (
     <div
-      className="sm:w-fit w-full rounded-xl bg-white p-4 shadow-sm hover:shadow-md transition mx-auto flex flex-col justify-start cursor-pointer"
-      onClick={() => router.push(`/shop/${id}`)} 
+      onClick={() => router.push(`/shop/${id}`)}
+      className="group bg-white rounded-xl border hover:scale-102 border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer"
     >
-      <div className="relative rounded-lg sm:h-52 max-h-40 bg-gray-100 p-4 flex justify-center">
+
+      <div className="relative h-30 bg-gray-50 rounded-t-xl flex items-center justify-center overflow-hidden">
         <button
-          onClick={(e) => e.stopPropagation()} 
-          className="absolute top-2 right-2 rounded-full bg-white p-1 shadow"
+          onClick={(e) => e.stopPropagation()}
+          className="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow hover:scale-110 transition"
         >
-          <Image
-            src={heart}
-            alt="heart"
-            height={12}
-            width={12}
-            className="cursor-pointer hover:scale-110"
-          />
+          <Image src={heart} alt="wishlist" width={14} height={14} />
         </button>
 
         <Image
-          src={image}
+          src={imageUrl}
           alt={title}
-          width={160}
-          height={160}
-          className="object-contain sm:w-40 sm:h-40 w-30 h-30 hover:scale-105 transition-transform duration-300"
+          width={100}
+          height={100}
+          unoptimized
+          className="object-contain group-hover:scale-105 transition-transform"
         />
       </div>
 
-      <div className="mt-2 flex flex-col gap-1">
-        <h3 className="sm:text-sm text-[14px] font-semibold text-gray-700">
+
+      <div className="p-3 space-y-1.5">
+        <h3 className="text-sm font-medium text-gray-800 line-clamp-1">
           {title}
         </h3>
 
-        <p className="sm:text-xs text-[10px] text-gray-400">{description}</p>
+        <p className="text-xs text-gray-500 line-clamp-2">{description}</p>
 
-        <div className="flex items-center">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Image key={i} src={star} alt="Star" width={12} height={12} />
+        {/* Rating */}
+        <div className="flex items-center gap-1">
+          {[...Array(5)].map((_, i) => (
+            <Image key={i} src={star} alt="star" width={12} height={12} />
           ))}
-          <span className="text-xs text-gray-500 ml-1">{rating}</span>
+          <span className="text-[11px] text-gray-400">(5.0)</span>
         </div>
 
-        <div className="flex items-center justify-between mt-1">
-          <span className="font-semibold text-gray-700 text-sm tracking-wide">
-            {price}
-          </span>
+        {/* Price + CTA */}
+        <div className="flex items-center justify-between pt-1">
+          <div>
+            <p className="text-base font-semibold text-gray-900">Rs {price}</p>
+            <p className="text-[11px] text-green-600">Free Delivery</p>
+          </div>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation(); 
-              router.push("/cart");
-            }}
-            className="rounded-full border px-4 py-1.5 text-xs font-medium
-            hover:bg-orange-600 hover:text-white cursor-pointer text-gray-500 transition whitespace-nowrap"
-          >
-            Buy now
-          </button>
+          <Link href="/cart" className="flex">
+            <button
+              onClick={(e) => e.stopPropagation()}
+              className="text-xs cursor-pointer font-medium px-5 py-1.5 rounded-full bg-orange-600 text-white hover:bg-orange-700 transition"
+            >
+              Buy
+            </button>
+          </Link>
         </div>
       </div>
     </div>
