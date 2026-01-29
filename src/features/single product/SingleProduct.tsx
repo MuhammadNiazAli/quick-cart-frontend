@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, ShieldCheck, Truck, RotateCcw } from "lucide-react";
 import { Product } from "@/services/product";
+import { useCart } from "@/context/CartContext/CartContext";
 
 type Props = {
   product: Product;
@@ -12,9 +13,13 @@ type Props = {
 const API_URL = process.env.NEXT_PUBLIC_API_URL!;
 
 const SingleProduct = ({ product }: Props) => {
-  const imageUrl = product.image.startsWith("http")
-    ? product.image
-    : `${API_URL}${product.image}`;
+  const { addToCart } = useCart();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+  const imageUrl = product.image.startsWith("http") ? product.image : `${API_URL}${product.image}`;
+
+  const handleAction = () => {
+    addToCart({ _id: product._id, title: product.title, price: product.price, image: imageUrl, quantity: 1 });
+  };
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
@@ -92,24 +97,14 @@ const SingleProduct = ({ product }: Props) => {
           {/* Actions */}
           <div className="flex gap-3 pt-4">
             {/* Add to Cart */}
-            <button
-              type="button"
-              className="h-11 px-6 rounded-3xl border border-orange-200 bg-orange-50 text-orange-700 font-semibold
-               hover:bg-orange-100 hover:scale-102 transition cursor-pointer"
-            >
-              Add to Cart
-            </button>
-
-            {/* Buy Now */}
-            <Link href="/cart" className="flex">
-              <button
-                type="button"
-                className="h-11 px-6 rounded-3xl bg-linear-to-r from-orange-500 to-orange-600 text-white text-[0.95rem] font-semibold
-                 shadow-sm  hover:scale-102 transition cursor-pointer"
-              >
-                Buy Now
-              </button>
-            </Link>
+            <button onClick={handleAction} className="h-11 px-6 rounded-3xl bg-orange-50 text-orange-700 cursor-pointer">
+        Add to Cart
+      </button>
+      <Link href="/cart">
+        <button onClick={handleAction} className="h-11 px-6 rounded-3xl bg-orange-600 text-white cursor-pointer">
+          Buy Now
+        </button>
+      </Link>
           </div>
 
 

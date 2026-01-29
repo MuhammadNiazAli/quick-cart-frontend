@@ -1,18 +1,17 @@
 "use client";
-
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 
-type CartItem = {
-  id: string;
+type Item = {
+  _id: string;
   title: string;
   image: string;
   price: number;
-  qty: number;
+  quantity: number;
 };
 
 type Props = {
-  items: CartItem[];
+  items: Item[];
   onRemove?: (id: string) => void;
   onQtyChange?: (id: string, qty: number) => void;
 };
@@ -20,16 +19,8 @@ type Props = {
 const money = (n: number) => `$${n.toFixed(2)}`;
 
 export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
-  const [cartItems, setCartItems] = useState(items);
-
-  const handleQtyChange = (id: string, qty: number) => {
-    const updatedItems = cartItems.map((item) =>
-      item.id === id ? { ...item, qty } : item
-    );
-    setCartItems(updatedItems);
-  };
-
-  const totalItems = cartItems.reduce((a, b) => a + b.qty, 0);
+  // Logic Fix: Items seedha props se use ho rahe hain
+  const totalItems = items.reduce((a, b) => a + b.quantity, 0);
 
   return (
     <div className="bg-white border rounded-lg">
@@ -38,7 +29,7 @@ export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
         <p className="text-sm text-gray-500">{totalItems} Items</p>
       </div>
 
-      <div className="px-6 py-6">
+      <div className="px-6 py-6 overflow-x-auto">
         <table className="w-full border-separate border-spacing-y-6">
           <thead>
             <tr className="text-left text-sm text-gray-500">
@@ -50,86 +41,37 @@ export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
           </thead>
 
           <tbody>
-            {cartItems.map((item) => {
-              const subtotal = item.price * item.qty;
-
+            {items.map((item) => {
+              const subtotal = item.price * item.quantity;
               return (
-                <tr key={item.id} className="align-middle">
-               
+                <tr key={item._id} className="align-middle">
                   <td>
                     <div className="flex items-center gap-4">
                       <div className="w-16 h-16 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          width={64}
-                          height={64}
-                          className="object-cover"
-                        />
+                        <Image src={item.image} alt={item.title} width={64} height={64} className="object-cover" />
                       </div>
-
                       <div>
-                        <p className="text-sm font-medium text-gray-800">
-                          {item.title}
-                        </p>
-
-                        <button
-                          type="button"
-                          className="text-xs text-orange-500 hover:underline mt-1 cursor-pointer"
-                          onClick={() => onRemove?.(item.id)}
-                        >
+                        <p className="text-sm font-medium text-gray-800">{item.title}</p>
+                        <button onClick={() => onRemove?.(item._id)} className="text-xs text-orange-500 hover:underline mt-1 cursor-pointer">
                           Remove
                         </button>
                       </div>
                     </div>
                   </td>
-
-                  {/* Price */}
                   <td className="text-sm text-gray-700">{money(item.price)}</td>
-
-                  {/* Quantity */}
                   <td>
                     <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        className="w-9 h-9 border rounded-md text-gray-700 hover:bg-gray-50 cursor-pointer"
-                        onClick={() =>
-                          handleQtyChange(item.id, Math.max(1, item.qty - 1))
-                        }
-                      >
-                        ‹
-                      </button>
-
-                      <div className="w-10 h-9 border rounded-md flex items-center justify-center text-sm text-gray-700">
-                        {item.qty}
-                      </div>
-
-                      <button
-                        type="button"
-                        className="w-9 h-9 border rounded-md text-gray-700 hover:bg-gray-50 cursor-pointer"
-                        onClick={() => handleQtyChange(item.id, item.qty + 1)}
-                      >
-                        ›
-                      </button>
+                      <button onClick={() => onQtyChange?.(item._id, Math.max(1, item.quantity - 1))} className="w-9 h-9 border rounded-md hover:bg-gray-50 cursor-pointer"> ‹ </button>
+                      <div className="w-10 h-9 border rounded-md flex items-center justify-center text-sm">{item.quantity}</div>
+                      <button onClick={() => onQtyChange?.(item._id, item.quantity + 1)} className="w-9 h-9 border rounded-md hover:bg-gray-50 cursor-pointer"> › </button>
                     </div>
                   </td>
-
-                  {/* Subtotal */}
-                  <td className="text-right text-sm text-gray-700">
-                    {money(subtotal)}
-                  </td>
+                  <td className="text-right text-sm text-gray-700">{money(subtotal)}</td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-
-        <button
-          type="button"
-          className="text-orange-500 text-sm mt-2 hover:underline"
-        >
-          ← Continue Shopping
-        </button>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import ScrollProvider from "./providers/ScrollProvider";
 import { Toaster } from "react-hot-toast";
 import AppBootstrap from "@/common/refreshToken-store/AppBootstrap";
 import ReactQueryProvider from "./providers/react_tan_stack_quary/ReactQueryProvider";
+import { CartProvider } from "@/context/CartContext/CartContext";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.variable} antialiased`}>
+        <CartProvider>
           <ReactQueryProvider>
         <ScrollProvider>
           {" "}
@@ -46,6 +48,7 @@ export default function RootLayout({
             success: { duration: 3000 },
           }}
         />
+        </CartProvider>
       </body>
     </html>
   );
