@@ -19,6 +19,8 @@ type Props = {
 const money = (n: number) => `$${n.toFixed(2)}`;
 
 export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
+  console.log(items);
+  
   // Logic Fix: Items seedha props se use ho rahe hain
   const totalItems = items.reduce((a, b) => a + b.quantity, 0);
 
@@ -48,7 +50,7 @@ export default function CartTableLeft({ items, onRemove, onQtyChange }: Props) {
                   <td>
                     <div className="flex items-center gap-4">
                       <div className="w-16 h-16 rounded-md bg-gray-100 flex items-center justify-center overflow-hidden">
-                        <Image src={item.image} alt={item.title} width={64} height={64} className="object-cover" />
+                        <Image src={item.image} alt={item.title} width={40} height={40} className="object-cover" unoptimized/>
                       </div>
                       <div>
                         <p className="text-sm font-medium text-gray-800">{item.title}</p>

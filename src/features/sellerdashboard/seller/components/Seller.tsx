@@ -43,8 +43,8 @@ const Seller: React.FC = () => {
   const [Category, setCategory] = useState("Earphone");
 
   const [Currency, setCurrency] = useState("PKR");
-  const [Price, setPrice] = useState<number>(0);
-  const [Offer, setOffer] = useState<number>(0);
+  const [Price, setPrice] = useState<number|string>('');
+  const [Offer, setOffer] = useState<number|string>('');
 
   const [Featured, setFeatured] = useState<boolean>(false);
 
@@ -212,7 +212,7 @@ const Seller: React.FC = () => {
       </div>
 
       {/* Price preview */}
-      {Offer >= 0 && (
+      {Offer >= '' && (
         <div className="mt-2 text-sm">
           {Price > Offer && (
             <span className="line-through text-gray-400 mr-2">
