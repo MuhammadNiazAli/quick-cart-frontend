@@ -21,6 +21,7 @@ const ExternalIcon = ({ className = "" }: { className?: string }) => (
 );
 
 type CardProps = {
+  id: string;
   image: string;
   title: string;
   desc: string;
@@ -28,9 +29,18 @@ type CardProps = {
 };
 
 const FeatureCard = ({ image, title, desc, buttonText }: CardProps) => {
+  // ✅ Base URL set kiya (Make sure ye .env mein ho, warna default localhost use hoga)
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
+  // ✅ Image URL check: Agar "http" se shuru nahi ho raha, toh base url jor do
+  const fullImageUrl = image.startsWith("http") 
+    ? image 
+    : `${API_URL}${image}`;
+
   return (
     <div className="relative h-95 rounded-[5px] overflow-hidden bg-gray-200">
-      <DirectionAwareHover imageUrl={image}>
+      {/* ✅ Ab fullImageUrl use kiya */}
+      <DirectionAwareHover imageUrl={fullImageUrl}>
         <div className="px-8 pb-5">
           <h3 className="text-white text-[21px] font-medium font-outfit">
             {title}
