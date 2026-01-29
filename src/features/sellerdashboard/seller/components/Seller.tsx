@@ -82,12 +82,12 @@ const Seller: React.FC = () => {
       formdata.append("offer", String(Offer));
       formdata.append("image", imageFile);
 
-      // ✅ STEP 1: create normal product
+      // Create normal product first
       const createdProduct = await createProduct(formdata);
 
-      // ✅ STEP 2: if featured checked → call featured POST API
+      // If featured checked, mark the product as featured
       if (Featured) {
-        await addFeaturedProduct(createdProduct._id);
+        await addFeaturedProduct(createdProduct._id); // Call the API to add it to the featured list
       }
 
       // reset form (same behavior)

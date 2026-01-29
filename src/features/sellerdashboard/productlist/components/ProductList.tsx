@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import React from "react";
-import { products } from "../../../../../public/assets/cartdata";
+import React, { useEffect, useState } from "react";
+import { getAllProducts } from "@/services/product"; // Assuming getAllProducts is exported from the correct path
 
 const getCategory = (title: string) => {
   const t = title.toLowerCase();
@@ -17,10 +18,42 @@ const getCategory = (title: string) => {
 };
 
 const ProductList = () => {
+  // State to store products, loading, and error
+  const [products, setProducts] = useState<any[]>([]);  // Replace `any` with `Product` type
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch products when the component mounts
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const fetchedProducts = await getAllProducts();
+        setProducts(fetchedProducts);
+      } catch (err) {
+        setError("Failed to fetch products");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Show loading or error messages if needed
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <div className="bg-white -ml-50 lg:ml-0 rounded-lg border p-4 mt-5">
-      <h2 className="text-xl font-semibold mb-4">All Product</h2>
+      <h2 className="text-xl font-semibold mb-4">All Products</h2>
 
+      {/* Table headers */}
       <div className="grid grid-cols-4 text-sm font-medium text-gray-700 border-b pb-3">
         <span>Product</span>
         <span>Category</span>
@@ -28,15 +61,16 @@ const ProductList = () => {
         <span className="text-right">Action</span>
       </div>
 
-      {products.map((item) => (
+      {/* Iterate over fetched products */}
+      {products.map((item: any) => (  // Use correct type instead of `any`
         <div
-          key={item.id}
+          key={item._id}  // Use the product's unique id
           className="grid grid-cols-4 items-center py-5 border-b last:border-none"
         >
           <div className="flex items-center gap-3">
             <div className="w-14 h-14 bg-gray-100 rounded-md flex items-center justify-center">
               <img
-                src={item.image.src}
+                src={item.image}  // Assuming `item.image` is the correct URL string
                 alt={item.title}
                 className="w-10 object-contain"
               />

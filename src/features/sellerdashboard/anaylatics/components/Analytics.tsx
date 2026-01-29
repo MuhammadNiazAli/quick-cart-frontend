@@ -18,7 +18,7 @@ import { PiUsersThree } from "react-icons/pi";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
 
-import { useAnalytics } from "@/hooks/analytics/useAnalytics";
+import { useAnalytics } from "@/hooks/analytics/useAnalytics"; // Hook to fetch analytics data
 
 ChartJS.register(
   CategoryScale,
@@ -35,6 +35,7 @@ ChartJS.register(
 const Analytics: React.FC = () => {
   const { data, isLoading, isError } = useAnalytics();
 
+  // Handle loading state
   if (isLoading) {
     return (
       <div className="p-10 text-center text-gray-600">
@@ -43,6 +44,7 @@ const Analytics: React.FC = () => {
     );
   }
 
+  // Handle error state
   if (isError || !data) {
     return (
       <div className="p-10 text-center text-red-500">
@@ -51,9 +53,10 @@ const Analytics: React.FC = () => {
     );
   }
 
+  // Destructure data from the API response
   const {
     users,
-    products,
+    products,  // Total number of products
     orders,
     salesData,
     buyData,
@@ -76,7 +79,7 @@ const Analytics: React.FC = () => {
 
         <div className="bg-white p-5 rounded-xl shadow-md flex flex-col items-center">
           <h2 className="text-gray-500 mb-1">Products</h2>
-          <p className="text-2xl font-bold text-gray-900">{products}</p>
+          <p className="text-2xl font-bold text-gray-900">{products}</p> {/* Display product count */}
           <MdOutlineProductionQuantityLimits className="text-orange-500 lg:w-20 lg:h-20 w-8 h-8 mt-2 lg:mt-7" />
         </div>
 
