@@ -3,48 +3,30 @@
 
 import React, { useRef, useState } from "react";
 import { createProduct, addFeaturedProduct } from "@/services/product";
+import api from "@/lib/axios";
+import toast from "react-hot-toast";
 
 const CURRENCIES = [
-  "USD",
-  "EUR",
-  "GBP",
-  "JPY",
-  "CNY",
-  "AED",
-  "SAR",
-  "PKR",
-  "INR",
-  "CAD",
+  "USD", "EUR", "GBP", "JPY", "CNY", "AED", "SAR", "PKR", "INR", "CAD",
 ];
 
 const CURRENCY_SYMBOL: Record<string, string> = {
-  USD: "$",
-  EUR: "€",
-  GBP: "£",
-  JPY: "¥",
-  CNY: "¥",
-  AED: "د.إ",
-  SAR: "﷼",
-  PKR: "Rs",
-  INR: "₹",
-  CAD: "$",
+  USD: "$", EUR: "€", GBP: "£", JPY: "¥", CNY: "¥", AED: "د.إ", SAR: "﷼", PKR: "Rs", INR: "₹", CAD: "$",
 };
 
 const Seller: React.FC = () => {
   const fileRef = useRef<HTMLInputElement | null>(null);
 
-  // image preview
   const [image, setImage] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
 
-  // form fields
   const [Title, setTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [Category, setCategory] = useState("Earphone");
 
   const [Currency, setCurrency] = useState("PKR");
-  const [Price, setPrice] = useState<number>(0);
-  const [Offer, setOffer] = useState<number>(0);
+  const [Price, setPrice] = useState<number | string>('');
+  const [Offer, setOffer] = useState<number | string>('');
 
   const [Featured, setFeatured] = useState<boolean>(false);
 
@@ -53,7 +35,6 @@ const Seller: React.FC = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
     setImage(URL.createObjectURL(file));
     setImageFile(file);
   };
@@ -64,45 +45,58 @@ const Seller: React.FC = () => {
     return value;
   };
 
+  const resetForm = () => {
+    setImage(null);
+    setImageFile(null);
+    setTitle("");
+    setDescription("");
+    setCategory("Earphone");
+    setCurrency("PKR");
+    setPrice('');
+    setOffer('');
+    setFeatured(false);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!imageFile) {
-      alert("Image required");
+      toast.error("Image required");
       return;
     }
 
-    try {
-      const formdata = new FormData();
-      formdata.append("title", Title);
-      formdata.append("description", Description);
-      formdata.append("category", Category);
-      formdata.append("currency", Currency);
-      formdata.append("price", String(Price));
-      formdata.append("offer", String(Offer));
-      formdata.append("image", imageFile);
+    const formdata = new FormData();
+    formdata.append("title", Title);
+    formdata.append("description", Description);
+    formdata.append("image", imageFile);
 
-      // Create normal product first
-      const createdProduct = await createProduct(formdata);
+    if (!Featured) {
+      // Logic: Normal Product Submission
+      try {
+        formdata.append("category", Category);
+        formdata.append("currency", Currency);
+        formdata.append("price", String(Price));
+        formdata.append("offer", String(Offer));
 
-      // If featured checked, mark the product as featured
-      if (Featured) {
-        await addFeaturedProduct(createdProduct._id); // Call the API to add it to the featured list
+        await createProduct(formdata);
+        toast.success("Product Created Successfully!");
+        resetForm();
+      } catch (err) {
+        console.error("Product create error:", err);
+        toast.error("Failed to create product");
       }
-
-      // reset form (same behavior)
-      setImage(null);
-      setImageFile(null);
-      setTitle("");
-      setDescription("");
-      setCategory("Earphone");
-      setCurrency("PKR");
-      setPrice(0);
-      setOffer(0);
-      setFeatured(false);
-    } catch (err) {
-      console.error("Product create error:", err);
-      alert("Failed to create product");
+    } else {
+      // Logic: Featured Product Submission
+      try {
+        const res = await api.post('/product/featureproduct', formdata);
+        if (res.status === 200 || res.status === 201) {
+          toast.success("Feature Product Created Successfully!");
+          resetForm();
+        }
+      } catch (error: any) {
+        console.error("Feature error:", error);
+        toast.error(error.response?.data?.message || "Failed to create feature product");
+      }
     }
   };
 
@@ -115,7 +109,6 @@ const Seller: React.FC = () => {
         Product Image
       </h2>
 
-      {/* Image upload */}
       <div
         onClick={handleImageClick}
         className="border-2 border-dashed border-gray-300 rounded-lg h-20 w-30 flex items-center justify-center cursor-pointer hover:border-orange-500 transition"
@@ -139,7 +132,6 @@ const Seller: React.FC = () => {
         onChange={handleImageChange}
       />
 
-      {/* Title */}
       <div className="mt-4">
         <label className="block text-sm text-gray-600 mb-1">
           Product Name
@@ -151,7 +143,6 @@ const Seller: React.FC = () => {
         />
       </div>
 
-      {/* Description */}
       <div className="mt-4">
         <label className="block text-sm text-gray-600 mb-1">
           Description
@@ -164,68 +155,63 @@ const Seller: React.FC = () => {
         />
       </div>
 
-      {/* Category + Currency + Prices */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4">
-        <select
-          value={Category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm"
-        >
-          {[
-            "Earphone",
-            "Headphone",
-            "Watch",
-            "Smartphone",
-            "Laptop",
-            "Camera",
-            "Accessories",
-          ].map((item) => (
-            <option key={item}>{item}</option>
-          ))}
-        </select>
+      {!Featured && (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 mt-4">
+            <select
+              value={Category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="border border-gray-300 rounded-md px-3 py-2 text-sm"
+            >
+              {[
+                "Earphone", "Headphone", "Watch", "Smartphone", "Laptop", "Camera", "Accessories",
+              ].map((item) => (
+                <option key={item}>{item}</option>
+              ))}
+            </select>
 
-        <select
-          value={Currency}
-          onChange={(e) => setCurrency(e.target.value)}
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm"
-        >
-          {CURRENCIES.map((c) => (
-            <option key={c}>{c}</option>
-          ))}
-        </select>
+            <select
+              value={Currency}
+              onChange={(e) => setCurrency(e.target.value)}
+              className="border border-gray-300 rounded-md px-3 py-2 text-sm"
+            >
+              {CURRENCIES.map((c) => (
+                <option key={c}>{c}</option>
+              ))}
+            </select>
 
-        <input
-          type="number"
-          value={Price}
-          onChange={(e) => setPrice(normalizePrice(Number(e.target.value)))}
-          placeholder="Actual price"
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm"
-        />
+            <input
+              type="number"
+              value={Price}
+              onChange={(e) => setPrice(e.target.value === '' ? '' : normalizePrice(Number(e.target.value)))}
+              placeholder="Actual price"
+              className="border border-gray-300 rounded-md px-3 py-2 text-sm"
+            />
 
-        <input
-          type="number"
-          value={Offer}
-          onChange={(e) => setOffer(normalizePrice(Number(e.target.value)))}
-          placeholder="Selling price"
-          className="border border-gray-300 rounded-md px-3 py-2 text-sm"
-        />
-      </div>
+            <input
+              type="number"
+              value={Offer}
+              onChange={(e) => setOffer(e.target.value === '' ? '' : normalizePrice(Number(e.target.value)))}
+              placeholder="Selling price"
+              className="border border-gray-300 rounded-md px-3 py-2 text-sm"
+            />
+          </div>
 
-      {/* Price preview */}
-      {Offer >= 0 && (
-        <div className="mt-2 text-sm">
-          {Price > Offer && (
-            <span className="line-through text-gray-400 mr-2">
-              {CURRENCY_SYMBOL[Currency]} {Price}
-            </span>
+          {Offer !== '' && (
+            <div className="mt-2 text-sm">
+              {Price !== '' && Number(Price) > Number(Offer) && (
+                <span className="line-through text-gray-400 mr-2">
+                  {CURRENCY_SYMBOL[Currency]} {Price}
+                </span>
+              )}
+              <span className="text-orange-600 font-semibold">
+                {CURRENCY_SYMBOL[Currency]} {Offer}
+              </span>
+            </div>
           )}
-          <span className="text-orange-600 font-semibold">
-            {CURRENCY_SYMBOL[Currency]} {Offer}
-          </span>
-        </div>
+        </>
       )}
 
-      {/* Featured */}
       <div className="mt-4">
         <label className="flex items-center gap-2 text-sm text-gray-600">
           <input
@@ -237,7 +223,6 @@ const Seller: React.FC = () => {
         </label>
       </div>
 
-      {/* Submit */}
       <button
         type="submit"
         className="mt-5 px-8 bg-orange-600 text-white py-2 rounded-md text-sm hover:bg-orange-500"

@@ -76,7 +76,7 @@ const FAQSection: React.FC = () => {
                   </span>
 
                   <ChevronDown
-                    className={`h-5 w-5 text-gray-500 shrink-0 transition-transform duration-300 ${
+                    className={`h-5 w-5 text-gray-500 shrink-0 transition-transform duration-300 cursor-pointer ${
                       isOpen ? "rotate-180" : ""
                     }`}
                   />

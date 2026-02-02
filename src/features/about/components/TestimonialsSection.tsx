@@ -148,7 +148,7 @@ const TestimonialCard = ({
           <Star
             key={i}
             className={`h-5 w-5 ${
-              i < rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"
+              i < rating ? "text-orange-400 fill-orange-400" : "text-gray-300"
             }`}
           />
         ))}

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import star from "../../../../public/assets/star_icon.svg";
 import heart from "../../../../public/assets/heart_icon.svg";
 import Link from "next/link";
+import { useCart } from "@/context/CartContext/CartContext";
 
 type CardProps = {
   id: string;
@@ -21,20 +22,21 @@ export default function Card({
   description,
   price,
 }: CardProps) {
-  const router = useRouter();
-
+ const router = useRouter();
+  const { addToCart } = useCart();
   const API_URL = process.env.NEXT_PUBLIC_API_URL!;
+  const imageUrl = image.startsWith("http") ? image : `${API_URL}${image}`;
 
-  const imageUrl = image.startsWith("http")
-    ? image
-    : `${API_URL}${image}`;
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Card navigation rokne ke liye
+    addToCart({ _id: id, title, price, image: imageUrl, quantity: 1 });
+  };
 
   return (
     <div
       onClick={() => router.push(`/shop/${id}`)}
       className="group bg-white rounded-xl border hover:scale-102 border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200 cursor-pointer"
     >
-
       <div className="relative h-30 bg-gray-50 rounded-t-xl flex items-center justify-center overflow-hidden">
         <button
           onClick={(e) => e.stopPropagation()}
@@ -53,11 +55,8 @@ export default function Card({
         />
       </div>
 
-
       <div className="p-3 space-y-1.5">
-        <h3 className="text-sm font-medium text-gray-800 line-clamp-1">
-          {title}
-        </h3>
+        <h3 className="text-sm font-medium text-gray-800 line-clamp-1">{title}</h3>
 
         <p className="text-xs text-gray-500 line-clamp-2">{description}</p>
 
@@ -76,15 +75,14 @@ export default function Card({
             <p className="text-[11px] text-green-600">Free Delivery</p>
           </div>
 
-          <Link href="/cart" className="flex">
-            <button
-              onClick={(e) => e.stopPropagation()}
-              className="text-xs cursor-pointer font-medium px-5 py-1.5 rounded-full bg-orange-600 text-white hover:bg-orange-700 transition"
-            >
-              Buy
-            </button>
-          </Link>
+        <Link href="/cart" onClick={(e) => e.stopPropagation()}>
+          <button onClick={handleAddToCart} className="text-xs px-5 py-1.5 rounded-full bg-orange-600 text-white mt-2 w-full cursor-pointer">
+            Buy Now
+          </button>
+        </Link>
+          
         </div>
+
       </div>
     </div>
   );

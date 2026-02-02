@@ -2,14 +2,16 @@
 
 import React, { useMemo, useState } from "react";
 
-type CartItem = {
-  id: string;
+type Item = {
+  _id: string;
+  title: string;
+  image: string;
   price: number;
-  qty: number;
+  quantity: number;
 };
 
 type Props = {
-  items: CartItem[];
+  items: Item[];
   taxPercent?: number; // default 2
   shippingFee?: number; // default 0
   onPlaceOrder?: () => void;
@@ -30,7 +32,7 @@ export default function Right({
   const [promo, setPromo] = useState("");
 
   const price = useMemo(() => {
-    return items.reduce((sum, it) => sum + it.price * it.qty, 0);
+    return items.reduce((sum, it) => sum + it.price * it.quantity, 0);
   }, [items]);
 
   const tax = useMemo(() => (price * taxPercent) / 100, [price, taxPercent]);
