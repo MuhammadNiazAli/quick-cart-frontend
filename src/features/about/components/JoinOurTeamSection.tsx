@@ -102,6 +102,7 @@ const JoinOurTeamSection: React.FC = () => {
                 font-semibold
                 transition
                 hover:bg-orange-500
+                cursor-pointer
               "
             >
               Explore Opportunities

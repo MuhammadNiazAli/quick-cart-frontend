@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { Mail, User, MessageSquare, Users } from "lucide-react";
+import toast from "react-hot-toast";
 
 type ContactPerson = "niaz" | "ahsaan";
 
@@ -36,20 +37,36 @@ const ContactUsForm: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if(contactTo==='ahsaan'){
+      const formData = new FormData(event.target as HTMLFormElement);
+    formData.append("access_key", "879ed42d-cac0-4706-b51e-b34dbca8ce42");
 
-    const payload = {
-      ...formData,
-      contactTo: contactMeta.label,
-      contactEmail: contactMeta.email,
-    };
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
 
-    console.log(payload);
-    alert(`Thanks! Your message will be sent to ${contactMeta.label}.`);
+    const data = await response.json();
+
+    toast.success(`Thanks! Your message will be sent to ${contactMeta.label}.`);
 
     setFormData({ name: "", email: "", message: "" });
     setContactTo("niaz");
+    }
+    else{
+      const formData = new FormData(event.target as HTMLFormElement);
+    formData.append("access_key", "f2e3d828-6fb2-44f0-809f-16d3f4bf0a0a");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await response.json();
+    toast.success(`Thanks! Your message will be sent to ${contactMeta.label}.`);
+    }
   };
 
   return (
@@ -68,7 +85,7 @@ const ContactUsForm: React.FC = () => {
         </div>
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={onSubmit}
           className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-4"
         >
           <div className="space-y-2">
@@ -172,7 +189,7 @@ const ContactUsForm: React.FC = () => {
 
           <button
             type="submit"
-            className="w-full bg-orange-600 hover:bg-orange-500 text-white font-semibold py-3 rounded-full transition"
+            className="w-full bg-orange-600 hover:bg-orange-500 text-white font-semibold py-3 rounded-full transition cursor-pointer"
           >
             Send Message
           </button>

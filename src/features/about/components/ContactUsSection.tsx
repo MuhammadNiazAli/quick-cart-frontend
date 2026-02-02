@@ -158,7 +158,7 @@ const ContactUsSection: React.FC = () => {
 
             <button
               type="submit"
-              className="w-full rounded-full bg-orange-600 px-6 py-3 text-white font-semibold hover:bg-orange-500 transition"
+              className="w-full rounded-full bg-orange-600 px-6 py-3 text-white font-semibold hover:bg-orange-500 transition cursor-pointer"
             >
               Send Message
             </button>
